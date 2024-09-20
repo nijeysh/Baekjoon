@@ -33,8 +33,25 @@ public class Array {
 
     public void baekjoon10818() {
         Scanner scanner = new Scanner(System.in);
-        int a = scanner.nextInt();
-        System.out.println("a : " + a);
+        int count = scanner.nextInt();
+        int max = 0;
+        int min = 0;
 
+        for (int i = 0; i < count; i++) {
+            int num = scanner.nextInt();
+            if (i == 0) {
+                min = num;
+                max = num;
+                continue;
+            }
+            if (max < num) {
+                max = num;
+            }
+            if (min > num) {
+                min = num;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        System.out.println(sb.append(min).append(" ").append(max));
     }
 }
