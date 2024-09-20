@@ -1,8 +1,10 @@
 import baekjoon.Array;
 
-public class Main {
-    public static void main(String[] args) {
+import java.io.IOException;
 
-        new Array().baekjoon10818();
+public class Main {
+    public static void main(String[] args) throws IOException {
+
+        new Array().baekjoon3052();
     }
 }

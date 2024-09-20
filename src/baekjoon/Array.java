@@ -1,7 +1,9 @@
 package baekjoon;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.*;
 
 public class Array {
     public void baekjoon10807() {
@@ -53,5 +55,129 @@ public class Array {
         }
         StringBuilder sb = new StringBuilder();
         System.out.println(sb.append(min).append(" ").append(max));
+    }
+
+    public void baekjoon2562() {
+        Scanner scanner = new Scanner(System.in);
+        int max = 0;
+        int order = 0;
+        for (int i = 1; i < 10; i++) {
+            int num = scanner.nextInt();
+            if (i == 1 || num > max) {
+                max = num;
+                order = i;
+            }
+        }
+
+        System.out.print(max + "\n" + order);
+    }
+
+    /**
+     * n : 바구니 개수
+     * m : 반복 횟수
+     * 결과 : 반복 횟수가 끝났을 때 바구니에 있는 번호
+     */
+    public void baekjoon10810() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int count = Integer.parseInt(st.nextToken());
+        int iteration = Integer.parseInt(st.nextToken());
+        int[] arr = new int[count];
+
+        for (int i = 0; i < iteration; i++) {
+            st = new StringTokenizer(br.readLine());
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int num = Integer.parseInt(st.nextToken());
+
+            for (int j = start; j <= end; j++) {
+                arr[j - 1] = num;
+            }
+        }
+
+        StringJoiner joiner = new StringJoiner(" ");
+        for (int ball : arr) {
+            joiner.add(String.valueOf(ball));
+        }
+        System.out.print(joiner);
+    }
+
+    /**
+     * n : 바구니 개수
+     * m : 바꿀 횟수
+     * 두 개의 바구니를 서로 바꿈
+     *
+     * memo : StringBuilder가 더 빠른듯
+     */
+    public void baekjoon10813() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int count = Integer.parseInt(st.nextToken());
+        int iteration = Integer.parseInt(st.nextToken());
+        int[] arr = new int[count];
+
+        for (int i = 0; i < iteration; i++) {
+            st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            int arrA = arr[a - 1] == 0 ? a : arr[a - 1];
+            int arrB = arr[b - 1] == 0 ? b : arr[b - 1];
+
+            int temp = arrA;
+            arr[a - 1] = arrB;
+            arr[b - 1] = arrA;
+        }
+
+        StringJoiner joiner = new StringJoiner(" ");
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = arr[i] == 0 ? i + 1 : arr[i];
+            joiner.add(Integer.toString(arr[i]));
+        }
+
+        System.out.print(joiner);
+    }
+
+    /**
+     *
+     */
+    public void baekjoon5597() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int[] arr = new int[31];
+        int min = 0;
+        int next = 0;
+
+        for (int i = 0; i < 28; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int number = Integer.parseInt(st.nextToken()); // 1 ~ 30
+
+            arr[number] = number;
+        }
+
+        for (int i = 0; i < arr.length; i++) {
+            if (i != 0 && arr[i] == 0) {
+                min = min == 0 ? i : min > i ? i : min;
+                next = next == 0 ? i : next < i ? i : next;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(min).append("\n").append(next);
+        System.out.print(sb);
+    }
+
+    /**
+     * 한 줄에 하나의 문자
+     * br.readLine()
+     *
+     * 서로 다른 나머지의 개수
+     */
+    public void baekjoon3052() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        Set arr = new HashSet();
+        for (int i = 0; i < 10; i++) {
+            int number = Integer.parseInt(br.readLine());
+            arr.add(number % 42);
+        }
+        System.out.print(arr.size());
     }
 }
