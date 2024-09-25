@@ -180,4 +180,45 @@ public class OneDimensionArray {
         }
         System.out.print(arr.size());
     }
+
+    /**
+     *  바구니 역순으로 위치시키기
+     */
+    public void baekjoon10811() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int basket = Integer.parseInt(st.nextToken());
+        int count = Integer.parseInt(st.nextToken());
+        int[] arr = new int[basket + 1];
+
+        for (int i = 1; i <= basket; i++) {
+            arr[i] = i;
+        }
+
+        for (int i = 0; i < count; i++) {
+            st = new StringTokenizer(br.readLine());
+
+            int start = Integer.parseInt(st.nextToken());
+            int end = Integer.parseInt(st.nextToken());
+            int diff = (end - start);
+            if (diff == 0) continue;
+
+            int midPoint =  + start + (diff / 2) + 1;
+            int step = (diff % 2) == 0 ? 2 : 1;
+            for (int j = midPoint; j <= end; j++) {
+                int temp = arr[j];
+                arr[j] = arr[j - step];
+                arr[j - step] = temp;
+
+                step += 2;
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int num : arr) {
+            if (num == 0) continue;
+            sb.append(num).append(" ");
+        }
+        System.out.println(sb);
+    }
 }
