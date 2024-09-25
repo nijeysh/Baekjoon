@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Array {
+public class OneDimensionArray {
     public void baekjoon10807() {
         Scanner scanner = new Scanner(System.in);
 
