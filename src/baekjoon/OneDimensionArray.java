@@ -221,4 +221,30 @@ public class OneDimensionArray {
         }
         System.out.println(sb);
     }
+
+    /**
+     * 점수 조작.. 나쁜 세준이..
+     * 최대값 <
+     *
+     */
+    public void baekjoon1546() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(br.readLine());
+        double[] arr = new double[count];
+
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int max = 0;
+        for (int i = 0; i < count; i++) {
+            int score = Integer.parseInt(st.nextToken());
+            arr[i] = score;
+            max = score > max ? score : max;
+        }
+
+        double sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += (arr[i] / max) * 100;
+        }
+
+        System.out.println(sum / count);
+    }
 }
