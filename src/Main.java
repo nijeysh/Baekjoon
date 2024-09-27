@@ -5,6 +5,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new CharacterString().baekjoon9086();
+        new CharacterString().baekjoon11720();
     }
 }

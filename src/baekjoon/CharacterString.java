@@ -33,4 +33,26 @@ public class CharacterString {
         }
         System.out.print(sb);
     }
+
+    public void baekjoon11654() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String alphabet = br.readLine();
+        System.out.println(alphabet.charAt(0) + 0);
+    }
+
+    /**
+     * 문자열 합
+     * ADD) charAt(i) - '0'
+     */
+    public void baekjoon11720() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(br.readLine());
+        String str = br.readLine();
+        int sum = 0;
+        for (int i = 0; i < count; i++) {
+            String num = String.valueOf(str.charAt(i));
+            sum += Integer.parseInt(num);
+        }
+        System.out.println(sum);
+    }
 }
