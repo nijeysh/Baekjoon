@@ -3,7 +3,6 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
 
 public class CharacterString {
 //    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -54,5 +53,36 @@ public class CharacterString {
             sum += Integer.parseInt(num);
         }
         System.out.println(sum);
+    }
+
+    /**
+     * 알파벳 위치 찾기
+     * char s
+     * (int) 's'
+     */
+    public void baekjoon10809() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        int[] arr = new int[26];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = -1;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            int index = 97 + i;
+            for (int j = 0; j < str.length(); j++) {
+                if (index == (int) str.charAt(j)) {
+                    arr[i] = j;
+                    break;
+                }
+            }
+            if (i == arr.length - 1) {
+                sb.append(arr[i]);
+            } else {
+                sb.append(arr[i]).append(" ");
+            }
+        }
+        System.out.print(sb);
     }
 }
