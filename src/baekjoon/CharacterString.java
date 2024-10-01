@@ -1,8 +1,8 @@
 package baekjoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
+import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class CharacterString {
 //    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
@@ -84,5 +84,42 @@ public class CharacterString {
             }
         }
         System.out.print(sb);
+    }
+
+    /**
+     * case1)
+     * StringBuilder sb = new StringBuilder()
+     * sb.append
+     * System.out.println(sb)
+     */
+    public void baekjoon2675() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int count = Integer.parseInt(br.readLine());
+
+
+        for (int i = 0; i < count; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int repeat = Integer.parseInt(st.nextToken());
+            String str = st.nextToken();
+            StringBuilder sb = new StringBuilder();
+
+            for (int j = 0; j < str.length(); j++) {
+                for (int k = 0; k < repeat; k++) {
+                    sb.append(str.charAt(j));
+                }
+            }
+            bw.write(sb.toString());
+            bw.newLine();
+        }
+        bw.flush();
+        bw.close();
+        br.close();
+    }
+
+    public void baekjoon1152() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        System.out.print(st.countTokens());
     }
 }
