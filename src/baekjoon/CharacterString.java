@@ -1,7 +1,7 @@
 package baekjoon;
 
 import java.io.*;
-import java.util.Arrays;
+import java.util.StringJoiner;
 import java.util.StringTokenizer;
 
 public class CharacterString {
@@ -121,5 +121,61 @@ public class CharacterString {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         System.out.print(st.countTokens());
+    }
+
+    /**
+     * 두 수의 비교
+     * Math.max(A, B)
+     * reverse()
+     */
+    public void baekjoon2908() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        String a = st.nextToken();
+        String b = st.nextToken();
+
+        StringBuilder sbA = new StringBuilder();
+        StringBuilder sbB = new StringBuilder();
+        for (int i = 2; i >= 0; i--) {
+            sbA.append(a.charAt(i));
+            sbB.append(b.charAt(i));
+        }
+
+        System.out.print(Math.max(Integer.parseInt(sbA.toString()), Integer.parseInt(sbB.toString())));
+//        System.out.print(sbA.compareTo(sbB) > 0 ? sbA : sbB);
+    }
+
+    public void baekjoon5622() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String alphabet = br.readLine();
+        int time = 0;
+
+        for (int i = 0; i < alphabet.length(); i++) {
+            int ch = alphabet.charAt(i) * 1;
+            int num = ch < 'S' ? ch - 65 : ch - 66;
+
+            if (num == 0) {
+                time += 3;
+            } else if (ch == 'Z') {
+                time += (num / 3) + 2;
+            } else {
+                time += (num / 3) + 3;
+            }
+        }
+        System.out.print(time);
+    }
+
+    /**
+     *
+     * 입력 받은 대로 출력하는 프로그램을 작성하시오.
+     *
+     * 입력이 주어진다.
+     * 입력은 최대 100줄로 이루어져 있고, 알파벳 소문자, 대문자, 공백, 숫자로만 이루어져 있다.
+     * 각 줄은 100글자를 넘지 않으며, 빈 줄은 주어지지 않는다.
+     * 또, 각 줄은 공백으로 시작하지 않고, 공백으로 끝나지 않는다.
+     *
+     */
+    public void baekjoon11718() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     }
 }
