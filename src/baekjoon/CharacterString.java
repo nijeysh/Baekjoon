@@ -178,35 +178,43 @@ public class CharacterString {
      */
     public void baekjoon11718() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int count = 0;
-        Boolean isStop = false;
+//        int count = 0;
+//        Boolean isStop = false;
+//        StringBuilder sb = new StringBuilder();
+//        while (true) {
+//            String str = br.readLine();
+//            count++;
+//            if (str == null || count > 100 || str.length() > 100 || str.length() == 0) {
+//                break;
+//            }
+//            if (count != 1) {
+//                sb.append("\n");
+//            }
+//            for (int i = 0; i < str.length(); i++) {
+//                char ch = str.toUpperCase().charAt(i);
+//                if (str.charAt(0) == ' ' || str.charAt(str.length() - 1) == ' ') {
+//                    isStop = true;
+//                    break;
+//                }
+//
+//                if (Character.isDigit(ch) || ch == ' ' || (65 <= ch && 90 >= ch)) {
+//                } else {
+//                    isStop = true;
+//                    break;
+//                }
+//            }
+//            if (isStop) break;
+//            sb.append(str);
+//        }
+//
+//        System.out.print(sb);
+
+        // 아래 코드로 해결가능
         StringBuilder sb = new StringBuilder();
-        while (true) {
-            String str = br.readLine();
-            count++;
-            if (str == null || count > 100 || str.length() > 100 || str.length() == 0) {
-                break;
-            }
-            if (count != 1) {
-                sb.append("\n");
-            }
-            for (int i = 0; i < str.length(); i++) {
-                char ch = str.toUpperCase().charAt(i);
-                if (str.charAt(0) == ' ' || str.charAt(str.length() - 1) == ' ') {
-                    isStop = true;
-                    break;
-                }
-
-                if (Character.isDigit(ch) || ch == ' ' || (65 <= ch && 90 >= ch)) {
-                } else {
-                    isStop = true;
-                    break;
-                }
-            }
-            if (isStop) break;
-            sb.append(str);
+        String str;
+        while ((str = br.readLine()) != null) {
+            sb.append("\n");
         }
-
-        System.out.print(sb);
+        System.out.println(sb);
     }
 }
