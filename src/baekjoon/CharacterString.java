@@ -174,8 +174,39 @@ public class CharacterString {
      * 각 줄은 100글자를 넘지 않으며, 빈 줄은 주어지지 않는다.
      * 또, 각 줄은 공백으로 시작하지 않고, 공백으로 끝나지 않는다.
      *
+     * StringJoiner보다 StringBuilder가 더 빠르다.
      */
     public void baekjoon11718() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int count = 0;
+        Boolean isStop = false;
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            String str = br.readLine();
+            count++;
+            if (str == null || count > 100 || str.length() > 100 || str.length() == 0) {
+                break;
+            }
+            if (count != 1) {
+                sb.append("\n");
+            }
+            for (int i = 0; i < str.length(); i++) {
+                char ch = str.toUpperCase().charAt(i);
+                if (str.charAt(0) == ' ' || str.charAt(str.length() - 1) == ' ') {
+                    isStop = true;
+                    break;
+                }
+
+                if (Character.isDigit(ch) || ch == ' ' || (65 <= ch && 90 >= ch)) {
+                } else {
+                    isStop = true;
+                    break;
+                }
+            }
+            if (isStop) break;
+            sb.append(str);
+        }
+
+        System.out.print(sb);
     }
 }
