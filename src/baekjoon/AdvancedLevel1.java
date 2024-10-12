@@ -181,6 +181,9 @@ public class AdvancedLevel1 {
         System.out.print(String.format("%.6f", subjectSum / scoreSum));
     }
 
+    /**
+     * 백준에 커밋 시 static (main static)
+     */
     private double gradeScore(String grade) {
         double score = 0.0;
         switch (grade) {
