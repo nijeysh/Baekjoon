@@ -6,6 +6,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new TwoDimensionArray().baekjoon2738();
+        new TwoDimensionArray().baekjoon2566();
     }
 }

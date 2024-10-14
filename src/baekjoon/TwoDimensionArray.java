@@ -43,4 +43,28 @@ public class TwoDimensionArray {
 
         System.out.print(sb);
     }
+
+    public void baekjoon2566() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int max = 0;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < 9; i++) {
+            String[] arr = br.readLine().split(" ");
+            for (int j = 0; j < arr.length; j++) {
+                int num = Integer.parseInt(arr[j]);
+                if (max <= num) {
+                    max = num;
+                    sb.setLength(0);
+                    sb.append(max).append("\n");
+                    sb.append(i + 1).append(" ").append(j + 1);
+                }
+            }
+        }
+        System.out.print(sb);
+    }
+
+    public void baekjoon10798() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    }
 }
