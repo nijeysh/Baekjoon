@@ -106,7 +106,7 @@ public class TwoDimensionArray {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int row = Integer.parseInt(st.nextToken());
             int column = Integer.parseInt(st.nextToken());
-            // 1로 채우기
+            // 색종이는 10 x 10이므로 +10까지로 설정
             for (int j = row; j < row + 10; j++) {
                 for (int k = column; k < column + 10; k++) {
                     if (square[j][k] == 1) continue;
