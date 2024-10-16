@@ -3,6 +3,7 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class TwoDimensionArray {
 
@@ -66,5 +67,28 @@ public class TwoDimensionArray {
 
     public void baekjoon10798() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        char[][] words = new char[5][15];
+        int maxLen = 0;
+
+        for (int i = 0; i < 5; i++) {
+            char[] arr = br.readLine().toCharArray();
+            if (maxLen < arr.length) {
+                maxLen = arr.length;
+            }
+            for (int j = 0; j < arr.length; j++) {
+                words[i][j] = arr[j];
+            }
+        }
+
+        for (int i = 0; i < maxLen; i++) {
+            for (int j = 0; j < words.length; j++) {
+                char ch = words[j][i];
+                if (ch != '\u0000') {
+                    sb.append(ch);
+                }
+            }
+        }
+        System.out.print(sb);
     }
 }
