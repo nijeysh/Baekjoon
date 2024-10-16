@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class TwoDimensionArray {
 
@@ -90,5 +91,31 @@ public class TwoDimensionArray {
             }
         }
         System.out.print(sb);
+    }
+
+    /**
+     *  100 x 100
+     *  차지하는 공간을 1로 놓기
+     */
+    public void baekjoon2563() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(br.readLine());
+        int[][] square = new int[100][100];
+        int occupancy = 0;
+        for (int i = 0; i < count; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int row = Integer.parseInt(st.nextToken());
+            int column = Integer.parseInt(st.nextToken());
+            // 1로 채우기
+            for (int j = row; j < row + 10; j++) {
+                for (int k = column; k < column + 10; k++) {
+                    if (square[j][k] == 1) continue;
+                    square[j][k] = 1;
+                    occupancy++;
+                }
+            }
+        }
+
+        System.out.print(occupancy);
     }
 }
