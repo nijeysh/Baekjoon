@@ -52,7 +52,34 @@ public class BasicMath {
         System.out.print(sb.reverse());
     }
 
+    /**
+     * 1달러 = 100센트
+     * 쿼터(Quarter, $0.25)의 개수, 다임(Dime, $0.10)의 개수, 니켈(Nickel, $0.05)의 개수, 페니(Penny, $0.01)의 개수
+     */
     public void baekjoon2720() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(br.readLine());
+        int[] money = {25, 10, 5};
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < count; i++) {
+            int change = Integer.parseInt(br.readLine());
+            for (int j = 0; j < money.length; j++) {
+                sb.append(change / money[j]).append(" ");
+                change = (change % money[j]);
+            }
 
+            sb.append(change).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    /**
+     * 1 -> 4개 4 * (1)
+     * 2 -> 16개 4 * (4)
+     * 3 -> 64개 4 * (4 * 4)
+     */
+    public void baekjoon2903() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
     }
 }
