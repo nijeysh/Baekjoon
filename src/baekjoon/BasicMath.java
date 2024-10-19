@@ -74,12 +74,16 @@ public class BasicMath {
     }
 
     /**
-     * 1 -> 4개 4 * (1)
-     * 2 -> 16개 4 * (4)
-     * 3 -> 64개 4 * (4 * 4)
+     * 사각형이 늘어나는 개수
+     * 2 * n
+     * 점은 + 1
+     * 더 이상의 입력이 없을 경우 br.close();
      */
     public void baekjoon2903() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
+        br.close();
+        int side = (int) (Math.pow(2, n) + 1);
+        System.out.print(side * side);
     }
 }
