@@ -86,4 +86,41 @@ public class BasicMath {
         int side = (int) (Math.pow(2, n) + 1);
         System.out.print(side * side);
     }
+
+    /**
+     * 최소 개수의 방
+     *
+     * long a = Integer.parseInt(br.readLine());
+     * int count = 1;
+     * int six = 6;
+     * int cnt = 1;
+     *
+     * while (a > cnt) {
+     *   cnt += six;
+     *   six += 6;
+     *   count++;
+     * }
+     *
+     */
+    public void baekjoon2292() throws IOException {
+        // 1
+        // 2, 3, 4, 5, 6, 7
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        long count = 1;
+        int i = 1;
+        // 1은 가운데
+        while (true) {
+            long max = 6 * i;
+            count = max + count;
+            if (count >= n) {
+                if (n == 1) {
+                    i = 0;
+                }
+                break;
+            }
+            i++;
+        }
+        System.out.print(i + 1);
+    }
 }
