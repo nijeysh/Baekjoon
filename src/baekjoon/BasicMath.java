@@ -126,31 +126,45 @@ public class BasicMath {
 
     /**
      * 분수 찾기
-     * 단위는 4
+     * 지그재그
      */
     public void baekjoon1193() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int count = Integer.parseInt(br.readLine());
-        int[][] matrix = new int[count][count];
-        int num = 0;
+        int num = 1;
         int row = 0;
         int column = 0;
-        Boolean topdown = false;
-
+        int repeat = 1;
+        Boolean isContinue = true;
+            // 1            // 2, 3             // 4, 5, 6               7,8,9
         // 1 -> (0,0) / 2-> (0,1) (1, 0) / 3-> (2,0) (1,1) (0, 2) / (0, 3) (1, 2) (2, 1) (3, 0) / (4, 0) ...
-        while (count >= num) {
-            if (topdown) {
-                matrix[row][column] = 1;
-                if (row == 0) {
+        while (isContinue) {
+            row = 0;
+            column = 0;
+            // 반복횟수가 짝수일때 topdown
+            for (int i = 0; i < repeat; i++) {
+                if (repeat % 2 == 0) {
+                    row = i;
+                    column = (repeat - 1) - i;
+                } else {
+                    row = (repeat - 1) - i;
+                    column = i;
+                }
+
+                if (num == count) {
+                    isContinue = false;
                     break;
                 }
-            } else {
-                matrix[row][column] = 1;
-                if (column == 0) {
-                    break;
-                }
+                num++;
             }
+            repeat++;
         }
-        System.out.println(Arrays.deepToString(matrix));
+        StringBuilder sb = new StringBuilder();
+        sb.append(row + 1).append("/").append(column + 1);
+        System.out.println(sb);
+    }
+
+    public void baekjoon2869() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     }
 }
