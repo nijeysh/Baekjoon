@@ -1,9 +1,6 @@
 package baekjoon;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class BasicMath {
@@ -164,7 +161,22 @@ public class BasicMath {
         System.out.println(sb);
     }
 
+    /**
+     * A: 낮에 올라갈 수 있는 거리
+     * V: 밤에 미끄러지는 거리
+     * B: 총 높이
+     */
     public void baekjoon2869() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int v = Integer.parseInt(st.nextToken());
+
+        // 마지막날에는 미끄러지지 않으므로 총거리는 v - b만 계산하면 된다. / 하루 이동거리
+        bw.write(String.valueOf((int) Math.ceil((double) (v - b) / (a - b))));
+        bw.flush();
+        bw.close();
     }
 }
