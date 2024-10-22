@@ -31,13 +31,31 @@ public class Geometry1 {
 
     /**
      * 네 번재 좌표
+     * 배열에 할당
      */
     public void baekjoon3009() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int minX = 0;
+        int maxX = 0;
+        int minY = 0;
+        int maxY = 0;
+        int sumX = 0;
+        int sumY = 0;
+
         for (int i = 0; i < 3; i++) {
             String[] arr = br.readLine().split(" ");
-            int x = Integer.parseInt(arr[0]);
+            int x= Integer.parseInt(arr[0]);
             int y = Integer.parseInt(arr[1]);
+
+            sumX += x;
+            sumY += y;
+            minX = minX == 0 ? x : Math.min(minX, x);
+            minY = minY == 0 ? y : Math.min(minY, y);
+            maxX = maxX == 0 ? x : Math.max(maxX, x);
+            maxY = maxY == 0 ? y : Math.max(maxY, y);
         }
+        sb.append((2 * (minX + maxX)) - sumX).append(" ").append((2 * (minY + maxY)) - sumY);
+        System.out.println(sb);
     }
 }
