@@ -26,4 +26,32 @@ public class TSS {
 
         System.out.println(fourthX + " " + fourthY);
     }
+
+    /**
+     * 하나라도 높은 점수가 있다면 ++ => continue;
+     * 전부 다 점수가 낮다면
+     */
+    public void baekjoon1946() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // 최대 성적 개수
+        int count = Integer.parseInt(br.readLine());
+        int applicant = Integer.parseInt(br.readLine());
+        String[] arr = new String[applicant];
+
+        // 지원자 성적
+        for (int i = 0; i < applicant; i++) {
+            arr[i] = br.readLine();
+        }
+
+        // 제출한 성적 -> 값이 없을 경우도 고려
+        // n번째 지원자의 성적
+        // 자기자신과 비교하지 않는다
+        for (int i = 0; i < applicant; i++) {
+            String[] grade = arr[i].split(" ");
+            // 가진 성적의 개수만큼
+//            for (int ) {
+
+//            }
+        }
+    }
 }
