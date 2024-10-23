@@ -3,7 +3,7 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class TSS {
 
@@ -28,30 +28,39 @@ public class TSS {
     }
 
     /**
-     * 하나라도 높은 점수가 있다면 ++ => continue;
-     * 전부 다 점수가 낮다면
+     * 확인필요
      */
     public void baekjoon1946() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        // 최대 성적 개수
-        int count = Integer.parseInt(br.readLine());
-        int applicant = Integer.parseInt(br.readLine());
-        String[] arr = new String[applicant];
+        int testCount = Integer.parseInt(br.readLine());
+        StringBuilder sb = new StringBuilder();
 
-        // 지원자 성적
-        for (int i = 0; i < applicant; i++) {
-            arr[i] = br.readLine();
+        for (int i = 0; i < testCount; i++) {
+            int applicantCount = Integer.parseInt(br.readLine());
+            int chosen = 0;
+            List<int[]> applicants = new ArrayList<>();
+
+            // 지원자 점수와 순위 입력
+            for (int j = 0; j < applicantCount; j++) {
+                StringTokenizer st = new StringTokenizer(br.readLine());
+                int score = Integer.parseInt(st.nextToken());
+                int rank = Integer.parseInt(st.nextToken());
+                applicants.add(new int[] { score, rank });
+            }
+
+            // 점수를 기준으로 정렬
+            applicants.sort(Comparator.comparingInt(a -> a[0]));
+
+            int minRank = Integer.MAX_VALUE;
+            for (int[] applicant : applicants) {
+                if (applicant[1] < minRank) {
+                    chosen++;
+                    minRank = applicant[1]; // 현재까지 가장 낮은 순위를 업데이트
+                }
+            }
+
+            sb.append(chosen).append("\n");
         }
-
-        // 제출한 성적 -> 값이 없을 경우도 고려
-        // n번째 지원자의 성적
-        // 자기자신과 비교하지 않는다
-        for (int i = 0; i < applicant; i++) {
-            String[] grade = arr[i].split(" ");
-            // 가진 성적의 개수만큼
-//            for (int ) {
-
-//            }
-        }
+        System.out.print(sb);
     }
 }
