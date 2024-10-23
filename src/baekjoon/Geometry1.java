@@ -58,4 +58,10 @@ public class Geometry1 {
         sb.append((2 * (minX + maxX)) - sumX).append(" ").append((2 * (minY + maxY)) - sumY);
         System.out.println(sb);
     }
+
+    public void baekjoon15894() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        long num = Long.parseLong(br.readLine());
+        System.out.println(num * 4);
+    }
 }
