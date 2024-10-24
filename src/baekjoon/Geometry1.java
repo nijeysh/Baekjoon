@@ -64,4 +64,13 @@ public class Geometry1 {
         long num = Long.parseLong(br.readLine());
         System.out.println(num * 4);
     }
+
+    /**
+     * 옥구슬이 나오는 모든 지점을 포함하는 가장 작은 평행한 변을 갖는 직사각형
+     */
+    public void baekjoon9063() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // x, y 중에 가장 큰 좌표가 있다면 그걸로 선택 (위, 아래, 왼, 오른)
+
+    }
 }
