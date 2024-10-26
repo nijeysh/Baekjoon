@@ -3,6 +3,7 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Geometry1 {
@@ -100,9 +101,9 @@ public class Geometry1 {
      * 이 문제는 BufferedReader가 더 빠름
      */
     public void baekjoon10101() throws IOException {
-        int a = read();
-        int b = read();
-        int c = read();
+        int a = read10101();
+        int b = read10101();
+        int c = read10101();
         StringBuilder sb = new StringBuilder();
 
         if (180 != (a + b + c)) {
@@ -118,7 +119,7 @@ public class Geometry1 {
     }
 
     // 자연수
-    private int read() throws IOException {
+    private int read10101() throws IOException {
         int n = 0;
         int result = 0;
 
@@ -133,7 +134,72 @@ public class Geometry1 {
         }
     }
 
+    /**
+     * 삼각형과 세 변
+     * Math.max 대신 큰 순서대로 정렬 후 비교하는 방법도 있다.
+     */
     public void baekjoon5073() throws IOException {
+        StringBuilder sb = new StringBuilder();
+        int max = 0;
+        int sum = 0;
 
+        while (true) {
+            int a = read5073();
+            int b = read5073();
+            int c = read5073();
+            max = Math.max(a, Math.max(b, c));
+            sum = (a + b + c) - max;
+
+            if ((a == 0 && b == 0 && c == 0)) {
+                break;
+            } else if (max >= sum) {
+                sb.append("Invalid");
+            } else if (a == b && a == c) {
+                sb.append("Equilateral");
+            } else if (a == b || a == c || b == c) {
+                sb.append("Isosceles");
+            } else {
+                sb.append("Scalene");
+            }
+
+            sb.append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    // 자연수 조건 추가
+    public static int read5073() throws IOException {
+        int n = 0;
+        int result = 0;
+
+        while (true) {
+            n = System.in.read();
+            if (n < '0' || n > '9') {
+                return result;
+            }
+
+            result *= 10;
+            result += n - '0';
+        }
+    }
+
+    /**
+     * 세 막대
+     * 삼각형의 조건: 삼각형의 나머지 두 변의 합은 가장 긴 변의 길이보다 커야한다.
+     * (a, b, c가 자연수이고 c가 제일 큰 수일 때 : a + b > c)
+     */
+    public void baekjoon14215() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+        int[] arr = {a, b, c};
+        Arrays.sort(arr);
+        // 가장 큰 둘레
+        if (arr[2] >= (arr[0] + arr[1])) {
+            arr[2] = (arr[0] + arr[1]) - 1;
+        }
+        System.out.print(arr[0] + arr[1] + arr[2]);
     }
 }

@@ -7,6 +7,6 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new Geometry1().baekjoon5073();
+        new Geometry1().baekjoon14215();
     }
 }
