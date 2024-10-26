@@ -63,4 +63,53 @@ public class TSS {
         }
         System.out.print(sb);
     }
+
+    /**
+     * 숫자를 읽어서 정수로 변환하는 로직
+     */
+    public int read() throws Exception {
+        int c, n = System.in.read() & 15;
+        boolean isNegative = n == 13;
+        if (isNegative) n = System.in.read() & 15;
+        while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
+        return isNegative ? ~n + 1 : n;
+    }
+
+    /**
+     * 옥구슬(baekjoon9063) 아래 참조
+     */
+    private static int inputInt() throws Exception{
+        int temp;
+        int result = 0;
+        int negative = 1;
+        while(true){
+            temp = System.in.read();
+            if(temp == '-') {
+                negative = -1;
+                continue;
+            }else if(temp < '0' || temp  > '9'){
+                return result*negative;
+            }
+            result *= 10;
+            result += temp - '0';
+        }
+    }
+    public static void main(String[] args) throws Exception{
+        int min_x = 10000;
+        int max_x = -10000;
+        int min_y = 10000;
+        int max_y = -10000;
+        int temp_x;
+        int temp_y;
+        int n = inputInt();
+        for(int i = 0; i < n; i++){
+            temp_x = inputInt();
+            temp_y = inputInt();
+            if(max_x < temp_x) max_x = temp_x;
+            if(min_x > temp_x) min_x = temp_x;
+            if(max_y < temp_y) max_y = temp_y;
+            if(min_y > temp_y) min_y = temp_y;
+        }
+        System.out.print((max_x-min_x)*(max_y-min_y));
+    }
 }

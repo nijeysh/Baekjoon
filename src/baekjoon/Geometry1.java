@@ -94,4 +94,46 @@ public class Geometry1 {
 
         System.out.print((square[1] - square[0]) * (square[3] - square[2]));
     }
+
+    /**
+     * 삼각형 외우기
+     * 이 문제는 BufferedReader가 더 빠름
+     */
+    public void baekjoon10101() throws IOException {
+        int a = read();
+        int b = read();
+        int c = read();
+        StringBuilder sb = new StringBuilder();
+
+        if (180 != (a + b + c)) {
+            sb.append("Error");
+        } else if (a == b && a == c) {
+            sb.append("Equilateral");
+        } else if (a == b || a == c || b == c) {
+            sb.append("Isosceles");
+        } else {
+            sb.append("Scalene");
+        }
+        System.out.print(sb);
+    }
+
+    // 자연수
+    private int read() throws IOException {
+        int n = 0;
+        int result = 0;
+
+        while (true) {
+            n = System.in.read();
+            if (n < '0' || n > '9') {
+                return result;
+            }
+
+            result *= 10;   // 하나를 더 입력받았으므로 기존 값은 단위가 * 10
+            result += n - '0';   // ASCII 정수로 만들기 (48 ~ 57)
+        }
+    }
+
+    public void baekjoon5073() throws IOException {
+
+    }
 }
