@@ -71,6 +71,27 @@ public class Geometry1 {
     public void baekjoon9063() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         // x, y 중에 가장 큰 좌표가 있다면 그걸로 선택 (위, 아래, 왼, 오른)
+        int[] square = new int[4];
+        int count = Integer.parseInt(br.readLine());
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int x = Integer.parseInt(st.nextToken());
+        int y = Integer.parseInt(st.nextToken());
+        square[0] = x;
+        square[1] = x;
+        square[2] = y;
+        square[3] = y;
 
+        for (int i = 0; i < count - 1; i++) {
+            st = new StringTokenizer(br.readLine());
+            x = Integer.parseInt(st.nextToken());
+            y = Integer.parseInt(st.nextToken());
+
+            square[0] = Math.min(square[0], x);
+            square[1] = Math.max(square[1], x);
+            square[2] = Math.min(square[2], y);
+            square[3] = Math.max(square[3], y);
+        }
+
+        System.out.print((square[1] - square[0]) * (square[3] - square[2]));
     }
 }
