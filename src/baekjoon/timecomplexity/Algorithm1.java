@@ -173,6 +173,9 @@ public class Algorithm1 {
      * 10
      * => 1
      * f(n) = 7n + 7, g(n) = n, c = 8, n0 = 10이다. 모든 n ≥ 10에 대하여 7n + 7 ≤ 8n 이므로 O(n) 정의를 만족한다.
+     *
+     * if (c-a1 < 0 || (c-a1)* n0 < a0 ) System.out.println("0");
+     * else System.out.println("1");
      */
     public void baekjoon24313() throws IOException {
         // f(n) = a1 * n + a0;
