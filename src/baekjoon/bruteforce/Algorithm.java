@@ -3,6 +3,7 @@ package baekjoon.bruteforce;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Algorithm {
 
@@ -13,9 +14,17 @@ public class Algorithm {
         int n = read();
         int m = read();
         int[] arr = new int[n];
-
         for (int i = 0; i < arr.length; i++) {
             arr[i] = read();
+        }
+        Arrays.sort(arr);
+
+        // 10 20 30 40 50 60 70 80 90
+        for (int i = 2; i < arr.length; i++) {
+            int max = arr[i];
+            for (int j = 0; j < i; j++) {
+
+            }
         }
     }
 
