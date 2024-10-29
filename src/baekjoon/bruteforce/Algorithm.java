@@ -19,13 +19,24 @@ public class Algorithm {
         }
         Arrays.sort(arr);
 
-        // 10 20 30 40 50 60 70 80 90
+        int max;
+        int min;
+        int middle;
+        int sum = 0;
+        // 10 20 30 40 !! 50 !! 60 70 80 90
         for (int i = 2; i < arr.length; i++) {
-            int max = arr[i];
-            for (int j = 0; j < i; j++) {
-
+            max = arr[i];
+            for (int j = 0; j < i - 1; j++) {
+                min = arr[j];
+                for (int k = j + 1; k < i; k++) {
+                    middle = arr[k];
+                    if (max + min + middle <= m) {
+                        sum = Math.max(sum, (max + min + middle));
+                    }
+                }
             }
         }
+        System.out.print(sum);
     }
 
     private static int read() throws IOException {
