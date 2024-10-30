@@ -150,7 +150,6 @@ public class Algorithm1 {
         System.out.println("count: " + count);
     }
 
-    // 수정예정
     /**
      *
      * O(g(n)) = {f(n) | 모든 n ≥ n0에 대하여 f(n) ≤ c × g(n)인 양의 상수 c와 n0가 존재한다.}
