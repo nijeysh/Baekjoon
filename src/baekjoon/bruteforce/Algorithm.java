@@ -49,16 +49,33 @@ public class Algorithm {
      *
      * 자연수 N이 주어졌을 때, N의 가장 작은 생성자를 구해내는 프로그램을 작성하시오.
      */
+
+    // 216의 분해합은 225
+    // 216는 225의 생성자이다
+    // 0 ~ 9
+    // 1 + 9 + 8 + 198
+    private static int number;
+    private static int value = 0;
     public void baekjoon2231() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String n = br.readLine();
-        int[] arr = new int[n.length()];
-        // 각 자리수를 쪼갠 후 경우의 수를 구한다.
-        for (int i = 0; i < n.length(); i++) {
-            arr[i] = n.charAt(i) - '0';
-        }
+        number = Integer.parseInt(br.readLine());
+        int arrays[] = new int[number];
+        // 맨 앞자리 제외 각 자리수는 0 ~ 9자리
+        // 1, 0, 0 -> 1, 0, 1 -> 1, 0, 2 ....
+        // 2, 0, 0, 1
 
-        System.out.println(Arrays.toString(arr));
+        // 각자의 시작 자리수를
+
+        // 맨 앞에는 1부터 시작
+        arrays[0] = 1;
+        collection(arrays);
+    }
+
+    private static void collection(int[] arrays) throws IOException {
+
+        for (int i = 0; i < 9; i++) {
+
+        }
     }
 
     private static int read() throws IOException {
