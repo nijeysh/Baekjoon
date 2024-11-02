@@ -56,25 +56,47 @@ public class Algorithm {
     // 1 + 9 + 8 + 198
     private static int number;
     private static int value = 0;
+    private static int[] answer;
+    private static int count = 0;
     public void baekjoon2231() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        number = Integer.parseInt(br.readLine());
-        int arrays[] = new int[number];
+        String n = br.readLine();
+        number = Integer.parseInt(n);
+        int arrays[] = new int[n.length()];
         // 맨 앞자리 제외 각 자리수는 0 ~ 9자리
         // 1, 0, 0 -> 1, 0, 1 -> 1, 0, 2 ....
         // 2, 0, 0, 1
 
-        // 각자의 시작 자리수를
-
         // 맨 앞에는 1부터 시작
         arrays[0] = 1;
-        collection(arrays);
+        collection(arrays, 0, 0);
+        System.out.println(count);
     }
 
-    private static void collection(int[] arrays) throws IOException {
+    private static void collection(int[] arrays, int index, int depth) throws IOException {
+        count++;
+        int sum = 0;
+        if (index == arrays.length) return;
+        if (value == 0) {
+            for (int i = 0; i < arrays.length; i++) {
+                sum += arrays[i];
+            }
+            if (sum == number) {
+                value = sum;
+                answer = arrays;
+                System.out.println("answer: " + answer);
+                return;
+            }
 
-        for (int i = 0; i < 9; i++) {
-
+            System.out.println("for문 전 depth: " + depth);
+            // 해당하는 인덱스는 index, depth는 9까지만
+            for (int i = depth; arrays[index] < 9; i++) {
+                arrays[index] = i;
+                System.out.println("depth: " + depth + ", index: " + index + ", arrays[index]: " + arrays[index] + ", i: " + i);
+                collection(arrays, index + 1, i);
+            }
+        } else {
+            System.out.println("else! index:" + index + ", depth: " + depth);
         }
     }
 
