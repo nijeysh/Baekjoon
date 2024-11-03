@@ -70,16 +70,16 @@ public class Algorithm {
         // 맨 앞에는 1부터 시작
         arrays[0] = 1;
         collection(arrays, 0, 0);
-        System.out.println(count);
+        System.out.println("count : " + count);
     }
 
     private static void collection(int[] arrays, int index, int depth) throws IOException {
         count++;
         int sum = 0;
-        if (index == arrays.length) return;
         if (value == 0) {
             for (int i = 0; i < arrays.length; i++) {
                 sum += arrays[i];
+                sum += Math.pow(10, arrays.length - 1 - i) * arrays[i];
             }
             if (sum == number) {
                 value = sum;
@@ -87,12 +87,11 @@ public class Algorithm {
                 System.out.println("answer: " + answer);
                 return;
             }
+            if (index == arrays.length) return;
 
-            System.out.println("for문 전 depth: " + depth);
             // 해당하는 인덱스는 index, depth는 9까지만
             for (int i = depth; arrays[index] < 9; i++) {
                 arrays[index] = i;
-                System.out.println("depth: " + depth + ", index: " + index + ", arrays[index]: " + arrays[index] + ", i: " + i);
                 collection(arrays, index + 1, i);
             }
         } else {
