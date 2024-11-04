@@ -183,8 +183,14 @@ public class Algorithm {
     public void baekjoon1018() throws IOException {
         int n = read();
         int m = read();
+
+        // 가로
         for (int i = 0; i < n; i++) {
 
+            // 세로
+            for (int j = 0; j < m; j++) {
+
+            }
         }
     }
 
