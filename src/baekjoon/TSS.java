@@ -94,7 +94,7 @@ public class TSS {
             result += temp - '0';
         }
     }
-    public static void main(String[] args) throws Exception{
+    public static void square() throws Exception{
         int min_x = 10000;
         int max_x = -10000;
         int min_y = 10000;
@@ -111,5 +111,48 @@ public class TSS {
             if(min_y > temp_y) min_y = temp_y;
         }
         System.out.print((max_x-min_x)*(max_y-min_y));
+    }
+
+    /**
+     * 백준 2798, 블랙잭, dfs 예시코드
+     *
+     */
+    private static int n; // 숫자의 개수
+    private static int m; // m을 넘지 않으면서 m에 최대한 가까운 수
+    private static int[] numbers; // 입력 받는 숫자 배열
+    private static int answer; // 정답
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        numbers = new int[n]; // 숫자 배열 초기화.
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            numbers[i] = Integer.parseInt(st.nextToken());
+        }
+
+        answer = 0;
+        dfs(0, 0, 0);
+
+        System.out.println(answer);
+
+    }
+
+    private static void dfs(int index, int num, int depth) {
+        if (depth == 3) { // 숫자 3개를 선택했다면..
+            if (num <= m) { // 그 합이 m 이하라면
+                answer = Math.max(answer, num); // 현재까지의 최적값을 갱신
+            }
+            return;
+        }
+
+        for (int i = index; i < n; i++) {
+            dfs(i + 1, num + numbers[i], depth + 1); // i+1로 인덱스 갱신
+        }
     }
 }

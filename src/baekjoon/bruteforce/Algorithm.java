@@ -56,7 +56,31 @@ public class Algorithm {
      *
      * 모든 노드를 탐색하지 않고 최소 생성자를 구하는 방법 확인
      */
-    private static int number;
+    public void baekjoon2231() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String n = br.readLine();
+        int number = Integer.parseInt(n);
+        int answer = 0;
+        /**
+         * int i = (number - (n.length() * 9))
+         * 각 자리수의 최대값은 9
+         * 117 = 99 + 9 + 9
+         */
+        for (int i = (number - (n.length() * 9)); i <= number; i++) {
+            int sum = i;
+            String str = String.valueOf(i);
+            for (int j = 0; j < str.length(); j++) {
+                sum += str.charAt(j) - '0';
+            }
+            if (sum == number) {
+                answer = i;
+                break;
+            }
+        }
+        System.out.print(answer);
+    }
+
+    /*private static int number;
     private static int value = 0;
     public void baekjoon2231() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -68,9 +92,9 @@ public class Algorithm {
         collection(arrays, 0);
 
         System.out.print(value);
-    }
+    }*/
 
-    private static void collection(int[] arrays, int index) throws IOException {
+    /*private static void collection(int[] arrays, int index) throws IOException {
         int sum = 0;
         int n = 0;
         if (index == arrays.length) {
@@ -91,6 +115,10 @@ public class Algorithm {
             arrays[index] = i;
             collection(arrays, index + 1);
         }
+    }*/
+
+    public void baekjoon19532() throws IOException {
+
     }
 
     private static int read() throws IOException {
