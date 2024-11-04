@@ -2,6 +2,7 @@ package baekjoon.bruteforce;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Algorithm {
 
@@ -117,8 +118,74 @@ public class Algorithm {
         }
     }*/
 
-    public void baekjoon19532() throws IOException {
+    /*public void baekjoon19532() throws IOException {
+        int a = read();
+        int b = read();
+        int c = read();
+        int d = read();
+        int e = read();
+        int f = read();
 
+        *//**
+         * ax + by = c
+         * -> by = c - ax -> y = (c - ax) / b
+         * -> ax = c - by -> x = (c - by) / a
+         *
+         * dx + ey = f
+         * -> ey = f - dx -> y = (f - dx) / e
+         * -> dx = f - ey -> x = (f - ey) / d
+         *
+         * y = ((a * f) - (d * c)) / ((a * e) - (d * b));
+         * x = (c - (b * y)) / a;
+         *
+         *//*
+        StringBuilder sb = new StringBuilder();
+        for (int i = -999; i < 1000; i++) {
+            for (int j = -999; j < 1000; j++) {
+                if (((a * i) + (b * j) == c) && ((d * i) + (e * j) == f)) {
+                    sb.append(i).append(" ").append(j);
+                }
+            }
+        }
+        System.out.println(sb);
+    }*/
+
+    /**
+     * 크래머의 법칙
+     */
+    public void baekjoon19532() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int a = Integer.parseInt(st.nextToken());
+        int b = Integer.parseInt(st.nextToken());
+        int c = Integer.parseInt(st.nextToken());
+        int d = Integer.parseInt(st.nextToken());
+        int e = Integer.parseInt(st.nextToken());
+        int f = Integer.parseInt(st.nextToken());
+
+        int x = (c * e - b * f) / (a * e - b * d);
+        int y = (a * f - c * d) / (a * e - b * d);
+
+        System.out.println(x + " " + y);
+    }
+
+    /**
+     * N과 M은 8보다 크거나 같고, 50보다 작거나 같은 자연수이다.
+     * B는 검은색이며, W는 흰색이다.
+     * 8×8 크기의 체스판
+     * 다시 칠해야 하는 정사각형의 최소 개수
+     *
+     * 체스판은 검은색과 흰색이 번갈아서 칠해져 있어야 한다.
+     * 구체적으로, 각 칸이 검은색과 흰색 중 하나로 색칠되어 있고, 변을 공유하는 두 개의 사각형은 다른 색으로 칠해져 있어야 한다.
+     * 따라서 이 정의를 따르면 체스판을 색칠하는 경우는 두 가지뿐이다.
+     * 하나는 맨 왼쪽 위 칸이 흰색인 경우, 하나는 검은색인 경우이다.
+     */
+    public void baekjoon1018() throws IOException {
+        int n = read();
+        int m = read();
+        for (int i = 0; i < n; i++) {
+
+        }
     }
 
     private static int read() throws IOException {
