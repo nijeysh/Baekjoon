@@ -1,8 +1,6 @@
 package baekjoon.bruteforce;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 
 public class Algorithm {
@@ -50,52 +48,48 @@ public class Algorithm {
      * 자연수 N이 주어졌을 때, N의 가장 작은 생성자를 구해내는 프로그램을 작성하시오.
      */
 
-    // 216의 분해합은 225
-    // 216는 225의 생성자이다
-    // 0 ~ 9
-    // 1 + 9 + 8 + 198
+    /**
+     * 216의 분해합은 225
+     * 216는 225의 생성자이다
+     * 0 ~ 9
+     * 1 + 9 + 8 + 198
+     *
+     * 모든 노드를 탐색하지 않고 최소 생성자를 구하는 방법 확인
+     */
     private static int number;
     private static int value = 0;
-    private static int[] answer;
-    private static int count = 0;
     public void baekjoon2231() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
         String n = br.readLine();
         number = Integer.parseInt(n);
         int arrays[] = new int[n.length()];
-        // 맨 앞자리 제외 각 자리수는 0 ~ 9자리
-        // 1, 0, 0 -> 1, 0, 1 -> 1, 0, 2 ....
-        // 2, 0, 0, 1
 
-        // 맨 앞에는 1부터 시작
-        arrays[0] = 1;
-        collection(arrays, 0, 0);
-        System.out.println("count : " + count);
+        collection(arrays, 0);
+
+        System.out.print(value);
     }
 
-    private static void collection(int[] arrays, int index, int depth) throws IOException {
-        count++;
+    private static void collection(int[] arrays, int index) throws IOException {
         int sum = 0;
-        if (value == 0) {
+        int n = 0;
+        if (index == arrays.length) {
             for (int i = 0; i < arrays.length; i++) {
                 sum += arrays[i];
-                sum += Math.pow(10, arrays.length - 1 - i) * arrays[i];
+                n += Math.pow(10, arrays.length - 1 - i) * arrays[i];
             }
+            sum += n;
             if (sum == number) {
-                value = sum;
-                answer = arrays;
-                System.out.println("answer: " + answer);
+                value = value == 0 ? n : Math.min(n, value);
                 return;
             }
-            if (index == arrays.length) return;
+            return;
+        }
 
-            // 해당하는 인덱스는 index, depth는 9까지만
-            for (int i = depth; arrays[index] < 9; i++) {
-                arrays[index] = i;
-                collection(arrays, index + 1, i);
-            }
-        } else {
-            System.out.println("else! index:" + index + ", depth: " + depth);
+        // 해당하는 인덱스는 index, depth는 9까지만
+        for (int i = 0; i <= 9; i++) {
+            arrays[index] = i;
+            collection(arrays, index + 1);
         }
     }
 
