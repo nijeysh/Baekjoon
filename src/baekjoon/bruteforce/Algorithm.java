@@ -180,16 +180,17 @@ public class Algorithm {
      * 따라서 이 정의를 따르면 체스판을 색칠하는 경우는 두 가지뿐이다.
      * 하나는 맨 왼쪽 위 칸이 흰색인 경우, 하나는 검은색인 경우이다.
      */
+    private static String[][] matrix;
     public void baekjoon1018() throws IOException {
-        int n = read();
-        int m = read();
+        int n = read(); // 세로
+        int m = read(); // 가로
+        boolean white;
 
-        // 가로
+        // 세로
         for (int i = 0; i < n; i++) {
-
-            // 세로
+            // 가로
             for (int j = 0; j < m; j++) {
-
+//                matrix[i][j] = readAlphabet();
             }
         }
     }
@@ -212,6 +213,17 @@ public class Algorithm {
 
             result *= 10;
             result += n - '0';
+        }
+    }
+
+    private static String readAlphabet() throws IOException {
+        int n;
+
+        while (true) {
+            n = System.in.read();
+            if ((n >= 'A' && n <= 'Z') || (n >= 'a' && n <= 'z')) {
+                return Character.toString(n);
+            }
         }
     }
 }
