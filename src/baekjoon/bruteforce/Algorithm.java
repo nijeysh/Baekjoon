@@ -180,19 +180,59 @@ public class Algorithm {
      * 따라서 이 정의를 따르면 체스판을 색칠하는 경우는 두 가지뿐이다.
      * 하나는 맨 왼쪽 위 칸이 흰색인 경우, 하나는 검은색인 경우이다.
      */
-    private static String[][] matrix;
-    public void baekjoon1018() throws IOException {
-        int n = read(); // 세로
-        int m = read(); // 가로
-        boolean white;
 
-        // 세로
+    private static int min = Integer.MAX_VALUE;
+    private static int n;
+    private static int m;
+    private static int[][] matrix;
+    public void baekjoon1018() throws IOException {
+        n = read(); // 세로
+        m = read(); // 가로
+        matrix = new int[n][m];
+
         for (int i = 0; i < n; i++) {
-            // 가로
             for (int j = 0; j < m; j++) {
-//                matrix[i][j] = readAlphabet();
+                matrix[i][j] = readAlphabet();
             }
         }
+
+        combination(0, 0);
+        System.out.println("min: " + min);
+    }
+
+    private static void combination(int depthX, int depthY) {
+        // W일때 B일때
+        char[] color = {'W', 'B'};
+        int[] count = new int[2];
+        // 세로
+        for (int i = depthY; i < n - 8; i++) {
+            // 가로
+            for (int j = depthX; j < m - 8; j++) {
+                // 컬럼 번호가 홀수 / 짝수일 때
+                if (j % 2 == 0) {
+                    if (color[0] == matrix[i][j]) {
+                        count[1]++;
+                    } else {
+                        count[0]++;
+                    }
+                } else {
+                    if (color[0] == matrix[i][j]) {
+                        count[0]++;
+                    } else {
+                        count[1]++;
+                    }
+                }
+            }
+            // 바꾸기
+            char temp = color[0];
+            color[0] = color[1];
+            color[1] = temp;
+            combination(depthX + 1, i + 1);
+        }
+
+        System.out.println("count[0] : " + count[0]);
+        System.out.println("count[1] : " + count[1]);
+        min = Math.min(min, Math.min(count[0], count[1]));
     }
 
     private static int read() throws IOException {
@@ -216,13 +256,13 @@ public class Algorithm {
         }
     }
 
-    private static String readAlphabet() throws IOException {
+    private static int readAlphabet() throws IOException {
         int n;
 
         while (true) {
             n = System.in.read();
             if ((n >= 'A' && n <= 'Z') || (n >= 'a' && n <= 'z')) {
-                return Character.toString(n);
+                return n;
             }
         }
     }
