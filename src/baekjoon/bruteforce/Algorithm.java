@@ -196,8 +196,15 @@ public class Algorithm {
             }
         }
 
-        combination(0, 0);
-        System.out.println("min: " + min);
+        // 9인데 1까지 가능
+        // 0,0 // 0, 1 // 0,2 부터
+        // 1,1 // 1,2 // 1, 3
+        for (int i = 0; i < n - 7; i++) {
+            for (int j = 0; j < m - 7; j++) {
+                combination(i, j);
+            }
+        }
+        System.out.println(min);
     }
 
     private static void combination(int depthY, int depthX) {
@@ -207,7 +214,6 @@ public class Algorithm {
         // 세로
         for (int i = depthY; i < depthY + 8; i++) {
             // 9인데 2일경우
-            if (i > n - 7) break;
             // 가로
             for (int j = depthX; j < depthX + 8; j++) {
                 // 컬럼 번호가 홀수 / 짝수일 때
@@ -224,13 +230,6 @@ public class Algorithm {
                         count[1]++;
                     }
                 }
-
-                // 9인데 1까지 가능
-                // 0,0 // 0, 1 // 0,2 부터
-                // 1,1 // 1,2 // 1, 3
-//                if (j < m - 7) {
-//                    combination(depthY, j + 1);
-//                }
             }
             // 바꾸기
             char temp = color[0];
@@ -238,8 +237,6 @@ public class Algorithm {
             color[1] = temp;
         }
 
-        System.out.println("count[0] : " + count[0]);
-        System.out.println("count[1] : " + count[1]);
         min = Math.min(min, Math.min(count[0], count[1]));
     }
 
