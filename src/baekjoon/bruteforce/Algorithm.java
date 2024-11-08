@@ -170,6 +170,8 @@ public class Algorithm {
     }
 
     /**
+     * 체스판
+     *
      * N과 M은 8보다 크거나 같고, 50보다 작거나 같은 자연수이다.
      * B는 검은색이며, W는 흰색이다.
      * 8×8 크기의 체스판
@@ -239,6 +241,133 @@ public class Algorithm {
 
         min = Math.min(min, Math.min(count[0], count[1]));
     }
+
+    /**
+     * 666 시리즈 만들기
+     *
+     * 종말의 수란 어떤 수에 6이 적어도 3개 이상 연속으로 들어가는 수를 말한다.
+     * 제일 작은 종말의 수는 666이고, 그 다음으로 큰 수는 1666, 2666, 3666, .... 이다.
+     *
+     * 따라서, 숌은 첫 번째 영화의 제목은 "세상의 종말 666", 두 번째 영화의 제목은 "세상의 종말 1666"와 같이 이름을 지을 것이다.
+     * 일반화해서 생각하면, N번째 영화의 제목은 세상의 종말 (N번째로 작은 종말의 수) 와 같다.
+     *
+     * 숌이 만든 N번째 영화의 제목에 들어간 수를 출력하는 프로그램을 작성하시오.
+     */
+    public void baekjoon1436() throws IOException {
+        // 666은 앞 혹은 뒤에
+        // 자리수 생각
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int number = Integer.parseInt(br.readLine());
+        int count = 1;
+        int num = 666;
+        int seq = 0;
+
+        // 세 자리수부터 시작, 네 자리수, 다섯 자리수
+        // 666, 1666, 2666, 3666, 4666, 5666, 6660, 6661, 6662 ..., 7666
+        // 10666, 11666, 12666, 13666, 14666, 15666
+        // 100666, 111666, .. 106661, 106662
+        // 666 앞과 뒤에 숫자가 존재할 수 있다.
+        // 666앞에 6이 나오면 666 뒤의 수를 증가
+        // 위와 같이 생각한 방법으로 코드를 다시 짜보기
+        while (count < number) {
+            num++;
+            int temp = num;
+            while (temp > 0) {
+                int remainder = temp % 10;
+                temp = temp / 10;
+                if (remainder == 6) {
+                    seq++;
+                } else {
+                    seq = 0;
+                }
+                if (seq == 3) break;
+            }
+            if (seq == 3) {
+                count++;
+            }
+            seq = 0;
+        }
+
+        System.out.print(num);
+    }
+
+    /**
+     * 설탕배달
+     *
+     * 상근이는 지금 사탕가게에 설탕을 정확하게 N킬로그램을 배달해야 한다.
+     * 설탕공장에서 만드는 설탕은 봉지에 담겨져 있다. 봉지는 3킬로그램 봉지와 5킬로그램 봉지가 있다.
+     *
+     * 상근이는 귀찮기 때문에, 최대한 적은 봉지를 들고 가려고 한다.
+     * 예를 들어, 18킬로그램 설탕을 배달해야 할 때,
+     * 3킬로그램 봉지 6개를 가져가도 되지만, 5킬로그램 3개와 3킬로그램 1개를 배달하면, 더 적은 개수의 봉지를 배달할 수 있다.
+     *
+     * 상근이가 배달하는 봉지의 최소 개수를 출력한다. 만약, 정확하게 N킬로그램을 만들 수 없다면 -1을 출력한다.
+     */
+    public void baekjoon2839() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int kilogram = Integer.parseInt(br.readLine());
+        int n = kilogram;
+
+        // 1) 5로 전부 나눈 후 3으로 나누는 방법
+        // 2) 1에서 나눠지지 않으면 5를 한개씩 줄이면서 3으로 나눌 수 있는지 계산한다.
+        int q5 = n / 5;
+        n = n % 5;
+
+        int q3 = n / 3;
+        n = n % 3;
+
+        while (true) {
+            if (n != 0) {
+                // 전부 다 3으로 나눠도 0이 되지 않을 경우 -1
+                if (q5 == 0) {
+                    q3 = -1;
+                    break;
+                }
+
+                n = kilogram;
+                q5--;
+                q3 = 0;
+
+                n = n - (q5 * 5);
+                while (n >= 3) {
+                    q3 = n / 3;
+                    n = n % 3;
+                }
+            } else {
+                break;
+            }
+        }
+
+        System.out.print(q5 + q3);
+
+
+        // 코드 줄이기
+/*
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+
+        int result = 0;
+        while(n > 0){
+            // n이 전부 5로 나눠지면 끝
+            if(n % 5 == 0){
+                result += n / 5;
+                break;
+            } else {
+            // n을 3으로 한번씩 나눈다
+                n -= 3;
+                result++;
+            }
+
+            // 3으로 뺀 n이 0보다 작으면 (0으로 떨어지지 않았을 때) 5와 3으로 나눌 수 없는 값이므로 -1을 리턴한다.
+            if(n < 0){
+                result = -1;
+            }
+        }
+        System.out.print(result);
+*/
+    }
+
+
 
     private static int read() throws IOException {
         int n;
