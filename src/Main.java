@@ -1,5 +1,5 @@
 import baekjoon.*;
-import baekjoon.bruteforce.Algorithm;
+import baekjoon.sort.Algorithm;
 import baekjoon.timecomplexity.Algorithm1;
 
 import java.io.BufferedReader;
@@ -9,7 +9,7 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new Algorithm().baekjoon2839();
+        new Algorithm().baekjoon2750();
 
         // 아래 다시 확인하기
         // new Algorithm1().baekjoon24267();
