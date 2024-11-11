@@ -1,7 +1,10 @@
 package baekjoon.sort;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Algorithm {
 
@@ -11,7 +14,6 @@ public class Algorithm {
      * N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는 프로그램을 작성하시오.
      * 이 수는 절댓값이 1,000보다 작거나 같은 정수이다. 수는 중복되지 않는다.
      */
-
     public void baekjoon2750() throws IOException {
         int n = read();
         int[] arr = new int[n];
@@ -28,18 +30,49 @@ public class Algorithm {
         System.out.print(sb);
     }
 
-     public void baekjoon2587() throws IOException {
-         int arr[] = new int[5];
-         int sum = 0;
-         StringBuilder sb = new StringBuilder();
-         for (int i = 0; i < arr.length; i++) {
-            arr[i] = read();
-             sum += arr[i];
-         }
-         Arrays.sort(arr);
-         sb.append(sum / 5).append("\n").append(arr[2]);
-         System.out.print(sb);
-     }
+    /**
+     * 5개의 수의 평균과 중앙값을 구하는 문제
+     *
+     */
+    public void baekjoon2587() throws IOException {
+        int arr[] = new int[5];
+        int sum = 0;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+           arr[i] = read();
+            sum += arr[i];
+        }
+        Arrays.sort(arr);
+        sb.append(sum / 5).append("\n").append(arr[2]);
+        System.out.print(sb);
+    }
+
+    /**
+     * 2022 연세대학교 미래캠퍼스 슬기로운 코딩생활에 N명의 학생들이 응시했다.
+     *
+     * 이들 중 점수가 가장 높은 k명은 상을 받을 것이다. 이 때, 상을 받는 커트라인이 몇 점인지 구하라.
+     * 커트라인이란 상을 받는 사람들 중 점수가 가장 가장 낮은 사람의 점수를 말한다.
+     *
+     */
+    public void baekjoon25305() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+        int[] arr = new int[n];
+
+        st = new StringTokenizer(br.readLine());
+        for (int i = 0; i < n; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
+        }
+
+        Arrays.sort(arr);
+        System.out.println(arr[n - k]);
+    }
+
+    public void baekjoon2751() throws IOException {
+
+    }
 
     private static int read() throws IOException {
         int n;
