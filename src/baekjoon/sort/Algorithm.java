@@ -70,7 +70,56 @@ public class Algorithm {
         System.out.println(arr[n - k]);
     }
 
+    /**
+     * N개의 수가 주어졌을 때, 이를 오름차순으로 정렬하는 프로그램을 작성하시오.
+     *
+     * 첫째 줄에 수의 개수 N(1 ≤ N ≤ 1,000,000)이 주어진다.
+     * 둘째 줄부터 N개의 줄에는 수가 주어진다. 이 수는 절댓값이 1,000,000보다 작거나 같은 정수이다. 수는 중복되지 않는다.
+     *
+     */
     public void baekjoon2751() throws IOException {
+    }
+
+    /**
+     * 첫째 줄에 수의 개수 N(1 ≤ N ≤ 10,000,000)이 주어진다. 둘째 줄부터 N개의 줄에는 수가 주어진다. 이 수는 10,000보다 작거나 같은 자연수이다.
+     *
+     */
+    public void baekjoon10989() throws IOException {
+    }
+
+    /**
+     * 수가 주어지면, 그 수의 각 자리수를 내림차순으로 정렬해보자.
+     * N은 1,000,000,000보다 작거나 같은 자연수이다.
+     *
+     * char[] arr = s.toCharArray();
+     * String result = new StringBuilder(new String(arr)).reverse().toString();
+     *
+     * 혹은
+     *
+     * Arrays.sort(arr, Collections.reverseOrder());
+     */
+    public void baekjoon1427() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String n = br.readLine();
+        int[] arr = new int[n.length()];
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < n.length(); i++) {
+            arr[i] = n.charAt(i) - '0';
+        }
+        Arrays.sort(arr);
+
+        for (int i = (arr.length - 1); i >= 0; i--) {
+            sb.append(arr[i]);
+        }
+        System.out.print(sb);
+    }
+
+    /**
+     * 2차원 평면 위의 점 N개가 주어진다.
+     * 좌표를 x좌표가 증가하는 순으로, x좌표가 같으면 y좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
+     */
+    public void baekjoon11650() throws IOException {
 
     }
 
@@ -96,8 +145,8 @@ public class Algorithm {
     }
 
     /* 정렬 */
-    // merge sort
-    private static int[] sortedArr;
+    // merge sort (검사중)
+    /*private static int[] sortedArr;
     public void sort1() throws IOException {
         // 음수도 있음
         // 선택, 삽입, 버블 등
@@ -156,7 +205,7 @@ public class Algorithm {
         for (int i = left; i <= right; i++) {
             arr[i] = sortedArr[i];
         }
-    }
+    }*/
 
     // left pivot sort (quick sort)
     public void sort2() throws IOException {
