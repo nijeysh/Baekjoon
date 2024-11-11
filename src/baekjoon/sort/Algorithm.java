@@ -12,8 +12,47 @@ public class Algorithm {
      * 이 수는 절댓값이 1,000보다 작거나 같은 정수이다. 수는 중복되지 않는다.
      */
 
-    private static int[] sortedArr;
     public void baekjoon2750() throws IOException {
+        int n = read();
+        int[] arr = new int[n];
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = read();
+        }
+
+        Arrays.sort(arr);
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    private static int read() throws IOException {
+        int n;
+        int result = 0;
+        int operation = 1;
+
+        while (true) {
+            n = System.in.read();
+            if (n == '-') {
+                operation = -1;
+                continue;
+            }
+
+            if (n < '0' || n > '9') {
+                return result * operation;
+            }
+
+            result *= 10;
+            result += n - '0';
+        }
+    }
+
+    /* 정렬 */
+    // merge sort
+    private static int[] sortedArr;
+    public void sort1() throws IOException {
         // 음수도 있음
         // 선택, 삽입, 버블 등
         // 퀵 혹은 병합
@@ -71,27 +110,55 @@ public class Algorithm {
         for (int i = left; i <= right; i++) {
             arr[i] = sortedArr[i];
         }
-
     }
 
-    private int read() throws IOException {
-        int n;
-        int result = 0;
-        int operation = 1;
-
-        while (true) {
-            n = System.in.read();
-            if (n == '-') {
-                operation = -1;
-                continue;
-            }
-
-            if (n < '0' || n > '9') {
-                return result * operation;
-            }
-
-            result *= 10;
-            result += n - '0';
+    // left pivot sort (quick sort)
+    public void sort2() throws IOException {
+        int n = read();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = read();
         }
+        leftQuickSort(arr, 0, arr.length - 1);
+        System.out.println(Arrays.toString(arr));
     }
+
+    private static void leftQuickSort(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+        int pivot = partition(arr, left, right);
+        leftQuickSort(arr, left, pivot - 1);
+        leftQuickSort(arr, pivot + 1, right);
+    }
+
+    private static int partition(int[] arr, int left, int right) {
+        int low = left;
+        int high = right;
+        int pivot = arr[left];
+
+        while (low < high) {
+            while (arr[high] > pivot && low < high) {
+                high--;
+            }
+
+            while (arr[low] <= pivot && low < high) {
+                low++;
+            }
+
+            swap(arr, low, high);
+        }
+
+        swap(arr, left, low);
+
+        return low;
+    }
+
+    private static void swap(int[] arr, int left, int right) {
+        int temp = arr[left];
+        arr[left] = arr[right];
+        arr[right] = temp;
+    }
+
 }
