@@ -28,6 +28,19 @@ public class Algorithm {
         System.out.print(sb);
     }
 
+     public void baekjoon2587() throws IOException {
+         int arr[] = new int[5];
+         int sum = 0;
+         StringBuilder sb = new StringBuilder();
+         for (int i = 0; i < arr.length; i++) {
+            arr[i] = read();
+             sum += arr[i];
+         }
+         Arrays.sort(arr);
+         sb.append(sum / 5).append("\n").append(arr[2]);
+         System.out.print(sb);
+     }
+
     private static int read() throws IOException {
         int n;
         int result = 0;
