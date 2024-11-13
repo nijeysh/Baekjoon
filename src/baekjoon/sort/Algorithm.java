@@ -120,7 +120,16 @@ public class Algorithm {
      * 좌표를 x좌표가 증가하는 순으로, x좌표가 같으면 y좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
      */
     public void baekjoon11650() throws IOException {
+        int n = read();
+        int[][] arr = new int[n][2];
 
+        // (0, 0) (1, 0) (2, 0) (3, 0) (4, 0)
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = read();
+            arr[i][1] = read();
+        }
+
+//        System.out.println(Arrays.deepToString(arr));
     }
 
     private static int read() throws IOException {
