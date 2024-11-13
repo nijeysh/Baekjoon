@@ -39,6 +39,6 @@
         Dy = (2 x 2) - (4 x 8) = -28
         y = Dy / D = -28 / -14 = 2
         <br>
-        <b>해는 x = 1, y = 2</b>
+        <strong>해는 x = 1, y = 2</strong>
 </pre>
 <br>
