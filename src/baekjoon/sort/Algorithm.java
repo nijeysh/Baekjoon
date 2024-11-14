@@ -131,7 +131,6 @@ public class Algorithm {
     public void baekjoon11650() throws IOException {
         int n = read();
         StringBuilder sb = new StringBuilder();
-        int[] arrX = new int[n];
         int[][] arr = new int[n][2];
 
         // (0, 0) (1, 0) (2, 0) (3, 0) (4, 0)
@@ -156,7 +155,7 @@ public class Algorithm {
             }
         });
 */
-        // 3)
+        // 3) x[0], y[0] -> x[1], y[1]
         Arrays.sort(arr, (x, y) -> {
             if (x[0] == y[0]) {
                 return x[1] - y[1];
@@ -170,7 +169,6 @@ public class Algorithm {
             sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
         }
         System.out.print(sb);
-//        System.out.println(Arrays.deepToString(arr));
     }
 
     private static int read() throws IOException {
