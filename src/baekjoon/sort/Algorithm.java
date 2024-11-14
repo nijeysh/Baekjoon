@@ -140,11 +140,10 @@ public class Algorithm {
         }
 
         // 1) thenComparingInt
-//        Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).thenComparingInt((int[] b) -> b[1]));
+        // Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).thenComparingInt((int[] b) -> b[1]));
 
         // 2) new Comparator
-/*
-        Arrays.sort(arr, new Comparator<int[]>() {
+        /*Arrays.sort(arr, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
                 int cmp = Integer.compare(o1[0], o2[0]);
@@ -153,8 +152,8 @@ public class Algorithm {
                 }
                 return Integer.compare(o1[1], o2[1]);
             }
-        });
-*/
+        });*/
+
         // 3) x[0], y[0] -> x[1], y[1]
         Arrays.sort(arr, (x, y) -> {
             if (x[0] == y[0]) {
@@ -164,6 +163,44 @@ public class Algorithm {
             }
         });
 
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    /**
+     * 2차원 평면 위의 점 N개가 주어진다.
+     * 좌표를 y좌표가 증가하는 순으로, y좌표가 같으면 x좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
+     *
+     */
+    public void baekjoon11651() throws IOException {
+        int n = read();
+        StringBuilder sb = new StringBuilder();
+        int[][] arr = new int[n][2];
+
+        for (int i = 0; i < n; i++) {
+            arr[i][0] = read();
+            arr[i][1] = read();
+        }
+
+        Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[1]).thenComparingInt((int[] b) -> b[0]));
+
+        /*Arrays.sort(arr, (x, y) -> {
+            if (x[1] == y[1]) {
+                return x[0] - y[0];
+            } else {
+                return x[1] - y[1];
+            }
+        });*/
+
+        /*Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if(o1[1] != o2[1]) return Integer.compare(o1[1], o2[1]);
+                else return Integer.compare(o1[0], o2[0]);
+            }
+        });*/
 
         for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");

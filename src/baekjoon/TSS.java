@@ -75,6 +75,30 @@ public class TSS {
         return isNegative ? ~n + 1 : n;
     }
 
+    /*
+     * buffer로 읽기
+     */
+    static int idx, size, SIZE = 1 << 13;
+    static byte[] buf = new byte[SIZE];
+
+    static int readInt() throws IOException {
+        int sign = 1, n = 0;
+        byte c;
+        while ((c = readBuf()) <= 32) ;
+        if (c == '-') sign = -1;
+        else n = c & 15;
+        while (47 < (c = readBuf()) && c < 58) n = (n << 3) + (n << 1) + (c & 15);
+        return n * sign;
+    }
+
+    static byte readBuf() throws IOException {
+        if (size == idx) {
+            size = System.in.read(buf, idx = 0, SIZE);
+            if (size < 0) buf[0] = -1;
+        }
+        return buf[idx++];
+    }
+
     /**
      * 옥구슬(baekjoon9063) 아래 참조
      */

@@ -9,11 +9,12 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new Algorithm().baekjoon11650();
+        new Algorithm().baekjoon11651();
 
 
         // 정렬 알고리즘 풀이 다시 확인
 //        new Algorithm().baekjoon2751();
+//        new Algorithm().baekjoon11650();
 
         // 아래 다시 확인하기
         // new Algorithm1().baekjoon24267();
