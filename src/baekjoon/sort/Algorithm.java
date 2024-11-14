@@ -119,9 +119,18 @@ public class Algorithm {
     /**
      * 2차원 평면 위의 점 N개가 주어진다.
      * 좌표를 x좌표가 증가하는 순으로, x좌표가 같으면 y좌표가 증가하는 순서로 정렬한 다음 출력하는 프로그램을 작성하시오.
+     *
+     * (확인 예시)
+     * 5
+     * -1 5
+     * 1 5
+     * -1 0
+     * 1 4
+     * 2 3
      */
     public void baekjoon11650() throws IOException {
         int n = read();
+        StringBuilder sb = new StringBuilder();
         int[] arrX = new int[n];
         int[][] arr = new int[n][2];
 
@@ -131,18 +140,32 @@ public class Algorithm {
             arr[i][1] = read();
         }
 
+        // 1) thenComparingInt
+//        Arrays.sort(arr, Comparator.comparingInt((int[] a) -> a[0]).thenComparingInt((int[] b) -> b[1]));
+
+        // 2) new Comparator
+/*
         Arrays.sort(arr, new Comparator<int[]>() {
             @Override
             public int compare(int[] o1, int[] o2) {
-                if (o1 == o2) {
-                    return o2[1] - o1[1];
-                } else {
-                    return o1[1] - o2[1];
+                int cmp = Integer.compare(o1[0], o2[0]);
+                if (cmp != 0) {
+                    return cmp;
                 }
+                return Integer.compare(o1[1], o2[1]);
+            }
+        });
+*/
+        // 3)
+        Arrays.sort(arr, (x, y) -> {
+            if (x[0] == y[0]) {
+                return x[1] - y[1];
+            } else {
+                return x[0] - y[0];
             }
         });
 
-        StringBuilder sb = new StringBuilder();
+
         for (int i = 0; i < arr.length; i++) {
             sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
         }
