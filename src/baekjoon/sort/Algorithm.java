@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class Algorithm {
@@ -121,6 +122,7 @@ public class Algorithm {
      */
     public void baekjoon11650() throws IOException {
         int n = read();
+        int[] arrX = new int[n];
         int[][] arr = new int[n][2];
 
         // (0, 0) (1, 0) (2, 0) (3, 0) (4, 0)
@@ -129,6 +131,22 @@ public class Algorithm {
             arr[i][1] = read();
         }
 
+        Arrays.sort(arr, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                if (o1 == o2) {
+                    return o2[1] - o1[1];
+                } else {
+                    return o1[1] - o2[1];
+                }
+            }
+        });
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i][0]).append(" ").append(arr[i][1]).append("\n");
+        }
+        System.out.print(sb);
 //        System.out.println(Arrays.deepToString(arr));
     }
 
@@ -154,69 +172,10 @@ public class Algorithm {
     }
 
     /* 정렬 */
-    // merge sort (검사중)
-    /*private static int[] sortedArr;
-    public void sort1() throws IOException {
-        // 음수도 있음
-        // 선택, 삽입, 버블 등
-        // 퀵 혹은 병합
-        int n = read();
-        int[] arr = new int[n];
-        for (int i = 0; i < n; i++) {
-            arr[i] = read();
-        }
+    /* merge sort */
 
-        sortedArr = new int[n];
-        mergeSort(arr, 0, arr.length - 1);
-        System.out.println("arr : " + Arrays.toString(sortedArr));
-    }
 
-    private static void mergeSort(int[] arr, int left, int right) {
-        if (left >= right) {
-            return;
-        }
-
-        int mid = (left + right) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-
-        merge(arr, left, mid, right);
-    }
-
-    private static void merge(int[] arr, int left, int mid, int right) {
-        int l = left;
-        int m = mid + 1;
-        int idx = left;
-
-        while (l <= mid && m <= right) {
-            if (arr[l] < arr[m]) {
-                sortedArr[idx] = arr[l];
-                l++;
-            } else {
-                sortedArr[idx] = arr[m];
-                m++;
-            }
-            idx++;
-        }
-
-        if (l > mid) {
-            for (int i = m; i <= right; i++) {
-                sortedArr[idx] = arr[i];
-                idx++;
-            }
-        } else {
-            for (int i = l; i <= mid; i++) {
-                sortedArr[idx] = arr[i];
-                idx++;
-            }
-        }
-
-        for (int i = left; i <= right; i++) {
-            arr[i] = sortedArr[i];
-        }
-    }*/
-
-    // left pivot sort (quick sort)
+    /* left pivot sort (quick sort) */
     public void sort2() throws IOException {
         int n = read();
         int[] arr = new int[n];
