@@ -246,12 +246,10 @@ public class Algorithm {
         });
 */
 
-/*
-        for (int i = 0; i < arr.length; i++) {
-            sb.append(arr[i]).append("\n");
-        }
+//        for (int i = 0; i < arr.length; i++) {
+//            sb.append(arr[i]).append("\n");
+//        }
         System.out.print(sb);
-*/
     }
 
     private static int read() throws IOException {
