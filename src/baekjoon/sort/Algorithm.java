@@ -220,35 +220,33 @@ public class Algorithm {
     public void baekjoon1181() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-//        String[] arr = new String[n];
-        Set arr = new HashSet();
+        Set set = new HashSet();
         StringBuilder sb = new StringBuilder();
-        // 사전 순은... 알파벳 순?
+
         // 중복 제거하기
         for (int i = 0; i < n; i++) {
-//            arr[i] = br.readLine();
-            arr.add(br.readLine());
+            set.add(br.readLine());
         }
+        Object[] arr = set.toArray();
+        // 1) Comparator.comparing
+//        Arrays.sort(arr, Comparator.comparingInt(x -> x.toString().length()).thenComparing(x -> x.toString()));
 
-//        System.out.println(Arrays.toString(newArr));
-//        Arrays.sort(newArr, );
-//        Comparator.comparingInt(x -> x.length())
-/*
-        Arrays.sort(arr, new Comparator<String>() {
+        // 2) new Comparator
+        Arrays.sort(arr, new Comparator<Object>() {
             @Override
-            public int compare(String o1, String o2) {
-                if (o1.length() == o2.length()) {
-                    return o1.compareTo(o2);
+            public int compare(Object o1, Object o2) {
+                if (o1.toString().length() == o2.toString().length()) {
+                    return o1.toString().compareTo(o2.toString());
                 } else {
-                    return o1.length() - o2.length();
+                    return o1.toString().length() - o2.toString().length();
                 }
             }
         });
-*/
 
-//        for (int i = 0; i < arr.length; i++) {
-//            sb.append(arr[i]).append("\n");
-//        }
+
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]).append("\n");
+        }
         System.out.print(sb);
     }
 
