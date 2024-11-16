@@ -220,35 +220,64 @@ public class Algorithm {
     public void baekjoon1181() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
-//        String[] arr = new String[n];
-        Set arr = new HashSet();
+        Set set = new HashSet();
         StringBuilder sb = new StringBuilder();
-        // 사전 순은... 알파벳 순?
+
         // 중복 제거하기
         for (int i = 0; i < n; i++) {
-//            arr[i] = br.readLine();
-            arr.add(br.readLine());
+            set.add(br.readLine());
         }
+        Object[] arr = set.toArray();
+        // 1) Comparator.comparing
+//        Arrays.sort(arr, Comparator.comparingInt(x -> x.toString().length()).thenComparing(x -> x.toString()));
 
-//        System.out.println(Arrays.toString(newArr));
-//        Arrays.sort(newArr, );
-//        Comparator.comparingInt(x -> x.length())
-/*
-        Arrays.sort(arr, new Comparator<String>() {
+        // 2) new Comparator
+        Arrays.sort(arr, new Comparator<Object>() {
             @Override
-            public int compare(String o1, String o2) {
-                if (o1.length() == o2.length()) {
-                    return o1.compareTo(o2);
+            public int compare(Object o1, Object o2) {
+                if (o1.toString().length() == o2.toString().length()) {
+                    return o1.toString().compareTo(o2.toString());
                 } else {
-                    return o1.length() - o2.length();
+                    return o1.toString().length() - o2.toString().length();
                 }
             }
         });
-*/
 
-//        for (int i = 0; i < arr.length; i++) {
-//            sb.append(arr[i]).append("\n");
-//        }
+        for (int i = 0; i < arr.length; i++) {
+            sb.append(arr[i]).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    /**
+     * 온라인 저지에 가입한 사람들의 나이와 이름이 가입한 순서대로 주어진다.
+     * 이때, 회원들을 나이가 증가하는 순으로, 나이가 같으면 먼저 가입한 사람이 앞에 오는 순서로 정렬하는 프로그램을 작성하시오.
+     * 
+     * 다른방법으로 풀기
+     */
+    public void baekjoon10814() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        Object[][] objects = new Object[n][2];
+        StringBuilder sb = new StringBuilder();
+        StringTokenizer st;
+
+        for (int i = 0; i < n; i++) {
+            st = new StringTokenizer(br.readLine());
+            objects[i][0] = st.nextToken();
+            objects[i][1] = st.nextToken();
+        }
+
+        /*Arrays.sort(objects, new Comparator<Object[]>() {
+            @Override
+            public int compare(Object[] o1, Object[] o2) {
+                return Integer.parseInt(o1[0].toString()) - Integer.parseInt(o2[0].toString());
+            }
+        });*/
+
+        for (int i = 0; i < objects.length; i++) {
+            sb.append(objects[i][0]).append(" ").append(objects[i][1]).append("\n");
+        }
         System.out.print(sb);
     }
 

@@ -179,4 +179,33 @@ public class TSS {
             dfs(i + 1, num + numbers[i], depth + 1); // i+1로 인덱스 갱신
         }
     }
+
+    public static void sort() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        int n = Integer.parseInt(br.readLine());
+
+        TreeSet<String> treeSet = new TreeSet<>(new compareByLength());
+
+        for (int i = 0; i < n; i++) {
+            treeSet.add(br.readLine());
+        }
+
+        for (String str : treeSet) {
+            sb.append(str).append("\n");
+        }
+
+        System.out.print(sb);
+    }
+}
+
+class compareByLength implements Comparator<String> {
+    @Override
+    public int compare(String o1, String o2) {
+        if (o1.length() == o2.length()) {
+            return o1.compareTo(o2);
+        } else {
+            return o1.length() - o2.length();
+        }
+    }
 }
