@@ -9,11 +9,14 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new Algorithm().baekjoon10814();
+        new Algorithm().baekjoon18870();
 
         // 정렬 알고리즘 풀이 다시 확인
 //        new Algorithm().baekjoon2751();
 //        new Algorithm().baekjoon11650();
+
+        /* mergesort로 구현해서 시간 줄여보기 */
+//        new Algorithm().baekjoon18870();
 
         // 아래 다시 확인하기
         // new Algorithm1().baekjoon24267();
