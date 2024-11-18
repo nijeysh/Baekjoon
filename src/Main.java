@@ -10,6 +10,7 @@ import java.util.Comparator;
 public class Main {
     public static void main(String[] args) throws IOException {
         new Algorithm().baekjoon18870();
+    }
 
         // 정렬 알고리즘 풀이 다시 확인
 //        new Algorithm().baekjoon2751();
@@ -23,5 +24,4 @@ public class Main {
 
         // 아래 더 효율적으로 다시 풀기
 //        new Algorithm().baekjoon1436();
-    }
 }
