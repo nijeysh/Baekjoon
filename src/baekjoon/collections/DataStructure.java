@@ -1,11 +1,29 @@
 package baekjoon.collections;
 
 import java.io.IOException;
+import java.util.HashSet;
 
 public class DataStructure {
 
     public void baekjoon10815() throws IOException {
+        int n = read();
+        HashSet<Integer> set = new HashSet<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            set.add(read());
+        }
 
+        int m = read();
+        for (int i = 0; i < m; i++) {
+            int num = read();
+            if (set.contains(num)) {
+                sb.append("1");
+            } else {
+                sb.append("0");
+            }
+            sb.append(" ");
+        }
+        System.out.println(sb);
     }
 
     private int read() throws IOException {

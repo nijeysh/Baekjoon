@@ -1,4 +1,5 @@
 import baekjoon.*;
+import baekjoon.collections.DataStructure;
 import baekjoon.sort.Algorithm;
 import baekjoon.timecomplexity.Algorithm1;
 
@@ -9,7 +10,7 @@ import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new Algorithm().baekjoon18870();
+        new DataStructure().baekjoon10815();
     }
 
         // 정렬 알고리즘 풀이 다시 확인
