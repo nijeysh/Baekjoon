@@ -15,21 +15,20 @@ public class DataStructure {
 
         int m = read();
         for (int i = 0; i < m; i++) {
-            int num = read();
-            if (set.contains(num)) {
+            if (set.contains(read())) {
                 sb.append("1");
             } else {
                 sb.append("0");
             }
             sb.append(" ");
         }
-        System.out.println(sb);
+        System.out.print(sb);
     }
 
-    private int read() throws IOException {
+    private static int read() throws IOException {
         int n;
         int result = 0;
-        int operation = -1;
+        int operation = 1;
 
         while (true) {
             n = System.in.read();
@@ -38,13 +37,12 @@ public class DataStructure {
                 operation = -1;
                 continue;
             }
-
             if (n < '0' || n > '9') {
                 return result * operation;
             }
 
             result *= 10;
-            result += n;
+            result += n - '0';
         }
     }
 }

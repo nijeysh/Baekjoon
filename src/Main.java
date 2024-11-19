@@ -1,17 +1,12 @@
-import baekjoon.*;
 import baekjoon.collections.DataStructure;
-import baekjoon.sort.Algorithm;
-import baekjoon.timecomplexity.Algorithm1;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Comparator;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         new DataStructure().baekjoon10815();
     }
+}
 
         // 정렬 알고리즘 풀이 다시 확인
 //        new Algorithm().baekjoon2751();
@@ -25,4 +20,3 @@ public class Main {
 
         // 아래 더 효율적으로 다시 풀기
 //        new Algorithm().baekjoon1436();
-}
