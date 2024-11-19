@@ -4,7 +4,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new DataStructure().baekjoon10815();
+        new DataStructure().baekjoon1620();
     }
 }
 
