@@ -163,6 +163,61 @@ public class DataStructure {
         System.out.println(sb);
     }
 
+    /**
+     * 첫째 줄에 듣도 못한 사람의 수 N, 보도 못한 사람의 수 M이 주어진다.
+     *
+     * 이어서 둘째 줄부터 N개의 줄에 걸쳐 듣도 못한 사람의 이름과, N+2째 줄부터 보도 못한 사람의 이름이 순서대로 주어진다.
+     * 이름은 띄어쓰기 없이 알파벳 소문자로만 이루어지며, 그 길이는 20 이하이다.
+     *  N, M은 500,000 이하의 자연수이다.
+     *
+     *  듣보잡의 수와 그 명단을 사전순으로 출력한다.
+     *
+     *  String[]에 담아서 한번에 넣은 후 정렬 -> 이전 값이 현재 값이랑 같으면 count + 1과 동시에 sb에 append
+     *
+     *  StringBuilder sb = new StringBuilder();
+     * 	String person = people[0];
+     * 	int cnt = 0;
+     * 	for (int i = 1; i < N+M; i++) {
+     * 	  if(people[i].equals(person)) {
+     * 	    cnt++;
+     * 	    sb.append(person).append("\n");
+     *    }else {
+     * 	    person = people[i];
+     *    }*
+     *  }
+     *
+     */
+    public void baekjoon1764() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringBuilder sb = new StringBuilder();
+        int n = Integer.parseInt(st.nextToken());
+        int m = Integer.parseInt(st.nextToken());
+        HashSet<String> set = new HashSet<>();
+        TreeSet<String> newSet = new TreeSet<>(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        });
+
+        for (int i = 0; i < n; i++) {
+            set.add(br.readLine());
+        }
+        String name = "";
+        for (int i = 0; i < m; i++) {
+            name = br.readLine();
+            if (set.contains(name)) {
+                newSet.add(name);
+            }
+        }
+        sb.append(newSet.size()).append("\n");
+        for (String nm : newSet) {
+            sb.append(nm).append("\n");
+        }
+        System.out.print(sb);
+    }
+
     private static int read() throws IOException {
         int n;
         int result = 0;
