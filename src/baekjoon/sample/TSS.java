@@ -102,7 +102,7 @@ public class TSS {
     /**
      * 옥구슬(baekjoon9063) 아래 참조
      */
-    private static int inputInt() throws Exception{
+    private static int inputInt() throws IOException{
         int temp;
         int result = 0;
         int negative = 1;
@@ -194,6 +194,25 @@ public class TSS {
         }
 
         System.out.print(sb);
+    }
+
+    public void baekjoon1269() throws IOException {
+        int a = inputInt();
+        int b = inputInt();
+        int[] arr = new int[200_001];
+        int count = 0;
+        int val;
+        for (int i = 0; i < a + b; i++) {
+            val = arr[inputInt()];
+            arr[i] = val + 1;
+        }
+        for (int i = 0; i < arr.length; i++) {
+            val = arr[i];
+            if (val == 1) {
+                count++;
+            }
+        }
+        System.out.println(count);
     }
 }
 
