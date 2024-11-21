@@ -195,25 +195,6 @@ public class TSS {
 
         System.out.print(sb);
     }
-
-    public void baekjoon1269() throws IOException {
-        int a = inputInt();
-        int b = inputInt();
-        int[] arr = new int[200_001];
-        int count = 0;
-        int val;
-        for (int i = 0; i < a + b; i++) {
-            val = arr[inputInt()];
-            arr[i] = val + 1;
-        }
-        for (int i = 0; i < arr.length; i++) {
-            val = arr[i];
-            if (val == 1) {
-                count++;
-            }
-        }
-        System.out.println(count);
-    }
 }
 
 // byte IO 다시보기

@@ -5,8 +5,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new DataStructure().baekjoon1764();
-        new TSS().baekjoon1269();
+        new DataStructure().baekjoon1269();
     }
 }
 
