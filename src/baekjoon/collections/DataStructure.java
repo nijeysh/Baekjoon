@@ -243,6 +243,34 @@ public class DataStructure {
         System.out.print(set.size());
     }
 
+    /**
+     * 문자열 S가 주어졌을 때, S의 서로 다른 부분 문자열의 개수를 구하는 프로그램을 작성하시오.
+     *
+     * 부분 문자열은 S에서 연속된 일부분을 말하며, 길이가 1보다 크거나 같아야 한다.
+     */
+    public void baekjoon11478() throws IOException {
+        BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+        String str = br.readLine();
+        char[] arr = str.toCharArray();
+        // 경우의 수
+        Set<String> set = new HashSet<>();
+        String piece = "";
+        int start;
+        int len = 1;
+        // 연속
+        // 0,1  / 1,2 / 2,3 / 3,4 / 4,5 ..
+        // 0,2 / 1,3 / 2,4 / 3,5
+        while (true) {
+            start = 0;
+            for (int i = len; i <= str.length(); i++) {
+                System.out.println("start : " + start + ", i: " + i);
+                System.out.println(str.substring(start++, len));
+            }
+            len++;
+            if (len > str.length()) break;
+        }
+    }
+
     private static int read() throws IOException {
         int n;
         int result = 0;
