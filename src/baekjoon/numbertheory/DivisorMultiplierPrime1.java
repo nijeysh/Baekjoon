@@ -1,10 +1,10 @@
-package baekjoon;
+package baekjoon.numbertheory;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.StringJoiner;
 
-public class DivisorMultiplier {
+public class DivisorMultiplierPrime1 {
 
     public void baekjoon5086() throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
