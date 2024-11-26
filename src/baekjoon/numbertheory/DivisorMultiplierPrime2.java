@@ -4,6 +4,7 @@ import java.io.IOException;
 
 public class DivisorMultiplierPrime2 {
     public void baekjoon1934() throws IOException {
+/*
         int n = read();
         int result;
         StringBuilder sb = new StringBuilder();
@@ -26,6 +27,31 @@ public class DivisorMultiplierPrime2 {
             sb.append(result).append("\n");
         }
         System.out.print(sb);
+*/
+        // 유클리드 호제법
+        int n = read();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            int a = read();
+            int b = read();
+
+            sb.append(a * b / gcd(a, b)).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    private static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+
+    private static int lcm(int a, int b) {
+        int gcd = gcd(a, b);
+        return a * b / gcd;
     }
 
     private static int read() throws IOException {
