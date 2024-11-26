@@ -1,11 +1,12 @@
 import baekjoon.collections.DataStructure;
+import baekjoon.numbertheory.DivisorMultiplierPrime2;
 import baekjoon.sample.TSS;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new DataStructure().baekjoon11478();
+        new DivisorMultiplierPrime2().baekjoon1934();
     }
 }
 

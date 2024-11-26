@@ -5,21 +5,27 @@ import java.io.IOException;
 public class DivisorMultiplierPrime2 {
     public void baekjoon1934() throws IOException {
         int n = read();
+        int result;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             int a = read();
             int b = read();
-            for (int j = 2; j <= Math.sqrt(Math.max(a, b)); j++) {
-                while (a % j != 0 && b % j != 0) {
+            int max = Math.max(a, b);
+            result = 1;
+            for (int j = 2; j <= max; j++) {
+                while (a % j == 0 || b % j == 0) {
                     if (a % j == 0) {
                         a = a / j;
                     }
                     if (b % j == 0) {
                         b = b / j;
                     }
+                    result *= j;
                 }
             }
+            sb.append(result).append("\n");
         }
+        System.out.print(sb);
     }
 
     private static int read() throws IOException {
