@@ -40,6 +40,7 @@ public class DivisorMultiplierPrime2 {
         System.out.print(sb);
     }
 
+    // 최소 공배수
     private static int gcd(int a, int b) {
         while (b != 0) {
             int temp = b;
@@ -47,8 +48,12 @@ public class DivisorMultiplierPrime2 {
             a = temp;
         }
         return a;
+        // 재귀 형식
+//        if (b == 0) return a;
+//        return gcd(b, a % b);
     }
 
+    // 최대 공약수
     private static int lcm(int a, int b) {
         int gcd = gcd(a, b);
         return a * b / gcd;
