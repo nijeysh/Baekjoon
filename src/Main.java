@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new DivisorMultiplierPrime2().baekjoon1934();
+        new DivisorMultiplierPrime2().baekjoon13241();
     }
 }
 

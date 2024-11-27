@@ -40,7 +40,19 @@ public class DivisorMultiplierPrime2 {
         System.out.print(sb);
     }
 
-    // 최소 공배수
+    /**
+     * 한 줄에 두 정수 A와 B가 공백으로 분리되어 주어진다.
+     *
+     * 50%의 입력 중 A와 B는 1000(10^3)보다 작다. 다른 50%의 입력은 1000보다 크고 100000000(10^8)보다 작다.
+     */
+    public void baekjoon13241() throws IOException {
+        int a = read();
+        int b = read();
+        long min = ((long) a * b / gcd(a, b));
+        System.out.println(min);
+    }
+
+    // 최대 공약수
     private static int gcd(int a, int b) {
         while (b != 0) {
             int temp = b;
@@ -53,7 +65,7 @@ public class DivisorMultiplierPrime2 {
 //        return gcd(b, a % b);
     }
 
-    // 최대 공약수
+    // 최소 공배수
     private static int lcm(int a, int b) {
         int gcd = gcd(a, b);
         return a * b / gcd;
