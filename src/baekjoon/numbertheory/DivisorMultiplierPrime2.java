@@ -1,6 +1,7 @@
 package baekjoon.numbertheory;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 public class DivisorMultiplierPrime2 {
     public void baekjoon1934() throws IOException {
@@ -72,6 +73,37 @@ public class DivisorMultiplierPrime2 {
         sb.append(numerator / gcd2).append(" ").append(denominator / gcd2);
 
         System.out.println(sb);
+    }
+
+    public void baekjoon2485() throws IOException {
+        int n = read();
+        int[] arr = new int[n];
+        arr[0] = read();
+        arr[1] = read();
+        int gap = arr[1] - arr[0];
+        int gcd = gcd(arr[1], arr[0]);
+        int count = 0;
+
+        for (int i = 2; i < n; i++) {
+            arr[i] = read();
+            gcd = gcd(arr[i], gcd);
+            gap = arr[i] - arr[i - 1];
+        }
+
+        // 이거 맞는데..
+//        System.out.println(gcd(2, gcd(6, gcd(12, 18))));
+        int current = arr[0] + gcd;
+        int index = 1;
+        while (index < arr.length) {
+            if (arr[index] == current) {
+                index++;
+            } else {
+                count++;
+            }
+            current += gcd;
+        }
+        System.out.println(gcd);
+        System.out.println(count);
     }
 
     // 최대 공약수
