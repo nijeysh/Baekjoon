@@ -98,6 +98,42 @@ public class DivisorMultiplierPrime2 {
         System.out.print(((arr[n - 1] - arr[0]) / gcd) - (n - 1));
     }
 
+    /**
+     * 정수 n(0 ≤ n ≤ 4 * 10^9)가 주어졌을 때, n보다 크거나 같은 소수 중 가장 작은 소수 찾는 프로그램을 작성하시오.
+     * 첫째 줄에 테스트 케이스의 개수가 주어진다. 각 테스트 케이스는 한 줄로 이루어져 있고, 정수 n이 주어진다.
+     */
+    public void baekjoon4134() throws IOException {
+        int n = (int) readLong();
+        long arr[] = new long[n];
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            sb.append(prime(readLong())).append("\n");
+        }
+
+        System.out.print(sb);
+    }
+
+    // 가장 작은 소수 찾기
+    private static long prime(long num) {
+        boolean isPrime;
+        while (true) {
+            // 0과 1은 소수가 아님
+            isPrime = num < 2 ? false : true;
+            for (int i = 2; i <= Math.sqrt(num); i++) {
+                if (num % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                break;
+            } else {
+                num++;
+            }
+        }
+        return num;
+    }
+
     // 최대 공약수
     private static int gcd(int a, int b) {
         while (b != 0) {
@@ -120,6 +156,25 @@ public class DivisorMultiplierPrime2 {
     private static int read() throws IOException {
         int n;
         int result = 0;
+        int operation = 1;
+
+        while (true) {
+            n = System.in.read();
+            if (n == '-') {
+                operation = -1;
+            }
+            if (n < '0' || n > '9') {
+                return result * operation;
+            }
+
+            result *= 10;
+            result += n - '0';
+        }
+    }
+
+    private static long readLong() throws IOException {
+        int n;
+        long result = 0;
         int operation = 1;
 
         while (true) {
