@@ -134,6 +134,54 @@ public class DivisorMultiplierPrime2 {
         return num;
     }
 
+    /**
+     * 첫째 줄에 자연수 M과 N이 빈 칸을 사이에 두고 주어진다. (1 ≤ M ≤ N ≤ 1,000,000) M이상 N이하의 소수가 하나 이상 있는 입력만 주어진다.
+     *
+     */
+    public void baekjoon1929() throws IOException {
+        int m = read();
+        int n = read();
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            if (isPrime(m)) {
+                sb.append(m).append("\n");
+            }
+            if (m < n) {
+                m++;
+            } else {
+                break;
+            }
+        }
+        System.out.print(sb);
+    }
+
+    // 소수 판별
+    private static boolean isPrime(int num) {
+        boolean isPrime = num < 2 ? false : true;
+        for (int i = 2; i <= Math.sqrt(num); i++) {
+            if (num % i == 0) {
+                isPrime = false;
+                break;
+            }
+        }
+        return isPrime;
+    }
+
+/*
+    // 소수 판별
+    private static boolean isPrime(int num) {
+        if (num < 2) return false;
+        if (num == 2) return true; // 2는 소수
+        if (num % 2 == 0) return false; // 짝수는 소수가 아님
+
+        // 홀수만 검사 (3부터 시작, 2씩 증가)
+        for (int i = 3; i * i <= num; i += 2) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
+*/
+
     // 최대 공약수
     private static int gcd(int a, int b) {
         while (b != 0) {
