@@ -90,20 +90,25 @@ public class DivisorMultiplierPrime2 {
             gap = arr[i] - arr[i - 1];
         }
 
+        System.out.println(gcd);
+        System.out.println((arr[n - 1] - arr[0]) / gcd);
+        System.out.println(n - 1);
+        System.out.print(((arr[n - 1] - arr[0]) / gcd) - (n - 1));
+
         // 이거 맞는데..
 //        System.out.println(gcd(2, gcd(6, gcd(12, 18))));
-        int current = arr[0] + gcd;
-        int index = 1;
-        while (index < arr.length) {
-            if (arr[index] == current) {
-                index++;
-            } else {
-                count++;
-            }
-            current += gcd;
-        }
-        System.out.println(gcd);
-        System.out.println(count);
+//        int current = arr[0] + gcd;
+//        int index = 1;
+//        while (index < arr.length) {
+//            if (arr[index] == current) {
+//                index++;
+//            } else {
+//                count++;
+//            }
+//            current += gcd;
+//        }
+//        System.out.println(gcd);
+//        System.out.println(count);
     }
 
     // 최대 공약수
