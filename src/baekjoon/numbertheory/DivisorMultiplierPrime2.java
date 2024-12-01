@@ -113,6 +113,28 @@ public class DivisorMultiplierPrime2 {
         System.out.print(sb);
     }
 
+    /**
+     * 첫째 줄에 자연수 M과 N이 빈 칸을 사이에 두고 주어진다. (1 ≤ M ≤ N ≤ 1,000,000) M이상 N이하의 소수가 하나 이상 있는 입력만 주어진다.
+     *
+     */
+    public void baekjoon1929() throws IOException {
+        int m = read();
+        int n = read();
+        StringBuilder sb = new StringBuilder();
+        while (true) {
+            if (isPrime(m)) {
+                sb.append(m).append("\n");
+            }
+            if (m < n) {
+                m++;
+            } else {
+                break;
+            }
+        }
+        System.out.print(sb);
+    }
+
+
     // 가장 작은 소수 찾기
     private static long prime(long num) {
         boolean isPrime;
@@ -134,25 +156,51 @@ public class DivisorMultiplierPrime2 {
         return num;
     }
 
-    /**
-     * 첫째 줄에 자연수 M과 N이 빈 칸을 사이에 두고 주어진다. (1 ≤ M ≤ N ≤ 1,000,000) M이상 N이하의 소수가 하나 이상 있는 입력만 주어진다.
-     *
-     */
-    public void baekjoon1929() throws IOException {
-        int m = read();
-        int n = read();
-        StringBuilder sb = new StringBuilder();
-        while (true) {
-            if (isPrime(m)) {
-                sb.append(m).append("\n");
-            }
-            if (m < n) {
-                m++;
-            } else {
-                break;
+    public void baekjoon4948() throws IOException {
+//        int n = read();
+//        StringBuilder sb = new StringBuilder();
+//        while (n != 0) {
+//            sb.append(countPrime(n)).append("\n");
+//            n = read();
+//        }
+//        System.out.print(sb);
+
+        // false: 소수, true: 소수가 아님
+        boolean arr[] = new boolean[246_913];
+        for (int i = 2; i <= 246_912; i++) {
+            if (arr[i]) continue;
+            for (int j = i + i; j <= 246_912; j += i) {
+                arr[j] = true;
             }
         }
+
+        StringBuilder sb = new StringBuilder();
+        int n = read();
+        int start;
+        int end;
+        int count;
+        while (n != 0) {
+            start = n + 1;
+            end = n * 2;
+            count = 0;
+            for (int i = start; i <= end; i++) {
+                if (!arr[i]) {
+                    count++;
+                }
+            }
+            sb.append(count).append("\n");
+            n = read();
+        }
         System.out.print(sb);
+    }
+
+    private static int countPrime(int num) {
+        int count = 0;
+        int start = num + 1;
+        for (int i = start; i <= num * 2; i++) {
+            if (isPrime(i)) count++;
+        }
+        return count;
     }
 
     // 소수 판별
@@ -210,6 +258,7 @@ public class DivisorMultiplierPrime2 {
             n = System.in.read();
             if (n == '-') {
                 operation = -1;
+                continue;
             }
             if (n < '0' || n > '9') {
                 return result * operation;
