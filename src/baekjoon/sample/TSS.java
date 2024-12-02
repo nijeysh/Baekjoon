@@ -195,6 +195,26 @@ public class TSS {
 
         System.out.print(sb);
     }
+
+    // 소수 판별 함수
+    public static boolean isPrime(long n) {
+        // 2보다 작은 수는 소수가 아님
+        if (n < 2) {
+            return false;
+        }
+        // 2와 3은 소수
+        // 2나 3으로 나누어 떨어지는 경우 소수 아님
+        if (n % 2 == 0 || n % 3 == 0) {
+            return false;
+        }
+        // 6k ± 1 규칙을 사용하여 나누어 떨어지는지 확인
+        for (long i = 5; i * i <= n; i += 6) {
+            if (n % i == 0 || n % (i + 2) == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
 
 // byte IO 다시보기
