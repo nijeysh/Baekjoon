@@ -204,9 +204,10 @@ public class DivisorMultiplierPrime2 {
      * 각 테스트 케이스는 한 줄로 이루어져 있고, 정수 N은 짝수이고, 2 < N ≤ 1,000,000을 만족한다.
      *
      */
+    private static boolean notPrime[] = new boolean[1_000_001];
     public void baekjoon17103() throws IOException {
         int n = read();
-        boolean notPrime[] = new boolean[1_000_001];
+        StringBuilder sb = new StringBuilder();
         for (int i = 2; i < notPrime.length; i++) {
             if (notPrime[i]) continue;
             for (int j = i * i; j < notPrime.length; j++) {
@@ -214,11 +215,29 @@ public class DivisorMultiplierPrime2 {
             }
         }
 
-        System.out.println(notPrime[1]);
-        System.out.println(notPrime[2]);
-        System.out.println(notPrime[3]);
-        System.out.println(notPrime[31]);
-        System.out.println(notPrime[32]);
+        for (int i = 0; i < n; i++) {
+            sb.append(countPartition(read(), 0));
+        }
+    }
+
+    private static int countPartition(int num, int index) {
+        // 두 소수의 합이 짝수 N
+        // 경우의 수
+        // 재귀
+        // 여기는 2 ~ num까지
+        // 그 하위는 2 -> 2~num // 3 -> 2 ~ num
+        for (int i = 2; i <= num; i++) {
+            if (!notPrime[i]) {
+                if (index == 0) {
+                    countPartition(num, i);
+                } else if ((index + i) == num) {
+                    System.out.println("index: " + index + ", i: " + i);
+                }
+            }
+//            countPartition();
+        }
+
+        return 0;
     }
 
     private static int countPrime(int num) {
