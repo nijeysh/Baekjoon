@@ -1,6 +1,7 @@
 package baekjoon.numbertheory;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class DivisorMultiplierPrime2 {
     public void baekjoon1934() throws IOException {
@@ -205,40 +206,89 @@ public class DivisorMultiplierPrime2 {
      *
      */
     private static boolean notPrime[] = new boolean[1_000_001];
+    private static int[] prime;
+    private static int[] partitionCount;
+
     public void baekjoon17103() throws IOException {
         int n = read();
+        int count = 0;
         StringBuilder sb = new StringBuilder();
+        /* 1,000,000 루프 */
+//        for (int i = 2; i * i < notPrime.length; i++) {
+//            if (!notPrime[i]) {
+//                for (int j = i * i; j < notPrime.length; j += i) {
+//                    notPrime[j] = true;
+//                }
+//            }
+//        }
+
         for (int i = 2; i < notPrime.length; i++) {
             if (notPrime[i]) continue;
-            for (int j = i * i; j < notPrime.length; j++) {
+            for (int j = i + i; j < notPrime.length; j += i) {
                 notPrime[j] = true;
             }
-        }
 
-        for (int i = 0; i < n; i++) {
-            sb.append(countPartition(read(), 0));
-        }
-    }
-
-    private static int countPartition(int num, int index) {
-        // 두 소수의 합이 짝수 N
-        // 경우의 수
-        // 재귀
-        // 여기는 2 ~ num까지
-        // 그 하위는 2 -> 2~num // 3 -> 2 ~ num
-        for (int i = 2; i <= num; i++) {
+            // 소수 개수
             if (!notPrime[i]) {
-                if (index == 0) {
-                    countPartition(num, i);
-                } else if ((index + i) == num) {
-                    System.out.println("index: " + index + ", i: " + i);
-                }
+                count++;
             }
-//            countPartition();
+        }
+        // 소수의 집합
+        prime = new int[count];
+        int index = 0;
+        for (int i = 2; i < notPrime.length; i++) {
+            if (!notPrime[i]) prime[index++] = i;
         }
 
-        return 0;
+        partitionCount = new int[n];
+        for (int i = 0; i < n; i++) {
+            sb.append(countPartition(read())).append("\n");
+        }
+        System.out.print(sb);
     }
+
+    /* 이중 포인터 O(n) */
+    private static int countPartition(int num) {
+        int count = 0;
+        int left = 0;
+        int right = prime.length - 1;
+
+        while (left <= right) {
+            int sum = prime[left] + prime[right];
+            if (sum == num) {
+                count++;
+                left++;
+                right--;
+            } else if (sum < num) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return count;
+    }
+
+    private static int getPartitionCount(int n) {
+        int count = 0;
+        // n / 2 이상으로 넘어가면 중복 숫자 발생
+        for (int i = 2; i <= n / 2; i++) {
+            if (!notPrime[i] && !notPrime[n- i]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+//    private static void countPartition(int num, int index, int start, int depth) {
+//        if (depth > 1) return;
+//        if (start > prime.length - 2) return;
+//        for (int i = start; i < prime.length; i++) {
+//            if (prime[i] > (num - 2)) break;
+//            if (prime[start] + prime[i] == num) partitionCount[index]++;
+//            countPartition(num, index, i + 1, depth + 1);
+//        }
+//    }
 
     private static int countPrime(int num) {
         int count = 0;
