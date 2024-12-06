@@ -220,6 +220,20 @@ public class DivisorMultiplierPrime2 {
         }
     }
 
+    /**
+     * 1번째 사람은 1의 배수 번째 창문을 열려 있으면 닫고 닫혀 있으면 연다.
+     * 2번째 사람은 2의 배수 번째 창문을 열려 있으면 닫고 닫혀 있으면 연다.
+     */
+    public void baekjoon13909() throws IOException {
+        int n = read();
+        // 1번 -> 모두 오픈하ㅡㅁ로
+        boolean notOpen[] = new boolean[2_100_000_000];
+        // 소수는 무조건 열려있음
+//        for (int i = 2; i < notOpen.length; i++) {
+//            for (int j = i * i; i < )
+//        }
+    }
+
     private static int countPartition(int num, int index) {
         // 두 소수의 합이 짝수 N
         // 경우의 수
