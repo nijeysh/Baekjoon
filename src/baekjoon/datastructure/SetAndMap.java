@@ -1,9 +1,9 @@
-package baekjoon.collections;
+package baekjoon.datastructure;
 
 import java.io.*;
 import java.util.*;
 
-public class DataStructure {
+public class SetAndMap {
 
     public void baekjoon10815() throws IOException {
         int n = read();

@@ -1,7 +1,6 @@
 package baekjoon.numbertheory;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class DivisorMultiplierPrime2 {
     public void baekjoon1934() throws IOException {
@@ -245,6 +244,26 @@ public class DivisorMultiplierPrime2 {
             sb.append(countPartition(read())).append("\n");
         }
         System.out.print(sb);
+    }
+
+    /**
+     * 첫 번째 줄에는 창문의 개수와 사람의 수 N(1 ≤ N ≤ 2,100,000,000)이 주어진다.
+     *
+     * 1번째 사람은 1의 배수인 1,2,3번 창문을 연다. (1, 1, 1)
+     * 2번째 사람은 2의 배수인 2번 창문을 닫는다. (1, 0, 1)
+     * 3번째 사람은 3의 배수인 3번 창문을 닫는다. (1, 0, 0)
+     *
+     * 단, 처음에 모든 창문은 닫혀 있다.
+     */
+    public void baekjoon13909() throws IOException {
+        int n = read();
+        int count = 0;
+        // n번째 창문이 열려있는지 확인하기
+        // 약수의 개수가 홀수인 경우는 오직 제곱수에서만 발생한다.
+        for (int i = 1; i * i <= n; i++) {
+            count++;
+        }
+        System.out.println(count);
     }
 
     /* 이중 포인터 O(n) */
