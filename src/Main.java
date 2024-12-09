@@ -1,12 +1,10 @@
-import baekjoon.collections.DataStructure;
 import baekjoon.numbertheory.DivisorMultiplierPrime2;
-import baekjoon.sample.TSS;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new DivisorMultiplierPrime2().baekjoon17103();
+        new DivisorMultiplierPrime2().baekjoon13909();
     }
 }
 
@@ -22,3 +20,5 @@ public class Main {
 
         // 아래 더 효율적으로 다시 풀기
 //        new Algorithm().baekjoon1436();
+
+        // 약수, 배수, 소수 다시 풀기

@@ -205,54 +205,109 @@ public class DivisorMultiplierPrime2 {
      *
      */
     private static boolean notPrime[] = new boolean[1_000_001];
+    private static int[] prime;
+    private static int[] partitionCount;
+
     public void baekjoon17103() throws IOException {
         int n = read();
+        int count = 0;
         StringBuilder sb = new StringBuilder();
+        /* 1,000,000 루프 */
+//        for (int i = 2; i * i < notPrime.length; i++) {
+//            if (!notPrime[i]) {
+//                for (int j = i * i; j < notPrime.length; j += i) {
+//                    notPrime[j] = true;
+//                }
+//            }
+//        }
+
         for (int i = 2; i < notPrime.length; i++) {
             if (notPrime[i]) continue;
-            for (int j = i * i; j < notPrime.length; j++) {
+            for (int j = i + i; j < notPrime.length; j += i) {
                 notPrime[j] = true;
             }
+
+            // 소수 개수
+            if (!notPrime[i]) {
+                count++;
+            }
+        }
+        // 소수의 집합
+        prime = new int[count];
+        int index = 0;
+        for (int i = 2; i < notPrime.length; i++) {
+            if (!notPrime[i]) prime[index++] = i;
         }
 
+        partitionCount = new int[n];
         for (int i = 0; i < n; i++) {
-            sb.append(countPartition(read(), 0));
+            sb.append(countPartition(read())).append("\n");
         }
+        System.out.print(sb);
     }
 
     /**
-     * 1번째 사람은 1의 배수 번째 창문을 열려 있으면 닫고 닫혀 있으면 연다.
-     * 2번째 사람은 2의 배수 번째 창문을 열려 있으면 닫고 닫혀 있으면 연다.
+     * 첫 번째 줄에는 창문의 개수와 사람의 수 N(1 ≤ N ≤ 2,100,000,000)이 주어진다.
+     *
+     * 1번째 사람은 1의 배수인 1,2,3번 창문을 연다. (1, 1, 1)
+     * 2번째 사람은 2의 배수인 2번 창문을 닫는다. (1, 0, 1)
+     * 3번째 사람은 3의 배수인 3번 창문을 닫는다. (1, 0, 0)
+     *
+     * 단, 처음에 모든 창문은 닫혀 있다.
      */
     public void baekjoon13909() throws IOException {
         int n = read();
-        // 1번 -> 모두 오픈하ㅡㅁ로
-        boolean notOpen[] = new boolean[2_100_000_000];
-        // 소수는 무조건 열려있음
-//        for (int i = 2; i < notOpen.length; i++) {
-//            for (int j = i * i; i < )
-//        }
+        int count = 0;
+        // n번째 창문이 열려있는지 확인하기
+        // 약수의 개수가 홀수인 경우는 오직 제곱수에서만 발생한다.
+        for (int i = 1; i * i <= n; i++) {
+            count++;
+        }
+        System.out.println(count);
     }
 
-    private static int countPartition(int num, int index) {
-        // 두 소수의 합이 짝수 N
-        // 경우의 수
-        // 재귀
-        // 여기는 2 ~ num까지
-        // 그 하위는 2 -> 2~num // 3 -> 2 ~ num
-        for (int i = 2; i <= num; i++) {
-            if (!notPrime[i]) {
-                if (index == 0) {
-                    countPartition(num, i);
-                } else if ((index + i) == num) {
-                    System.out.println("index: " + index + ", i: " + i);
-                }
+    /* 이중 포인터 O(n) */
+    private static int countPartition(int num) {
+        int count = 0;
+        int left = 0;
+        int right = prime.length - 1;
+
+        while (left <= right) {
+            int sum = prime[left] + prime[right];
+            if (sum == num) {
+                count++;
+                left++;
+                right--;
+            } else if (sum < num) {
+                left++;
+            } else {
+                right--;
             }
-//            countPartition();
         }
 
-        return 0;
+        return count;
     }
+
+    private static int getPartitionCount(int n) {
+        int count = 0;
+        // n / 2 이상으로 넘어가면 중복 숫자 발생
+        for (int i = 2; i <= n / 2; i++) {
+            if (!notPrime[i] && !notPrime[n- i]) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+//    private static void countPartition(int num, int index, int start, int depth) {
+//        if (depth > 1) return;
+//        if (start > prime.length - 2) return;
+//        for (int i = start; i < prime.length; i++) {
+//            if (prime[i] > (num - 2)) break;
+//            if (prime[start] + prime[i] == num) partitionCount[index]++;
+//            countPartition(num, index, i + 1, depth + 1);
+//        }
+//    }
 
     private static int countPrime(int num) {
         int count = 0;

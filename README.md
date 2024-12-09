@@ -42,3 +42,11 @@
         <strong>해는 x = 1, y = 2</strong>
 </pre>
 <br>
+<br>
+<h3># 최소공배수와 최대공약수</h3>
+<ul>
+    <li>유클리드 호제법</li>
+    <span></span>
+</ul>
+<pre>
+</pre>
