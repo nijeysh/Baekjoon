@@ -1,10 +1,11 @@
+import baekjoon.datastructure.StackQueueDeque;
 import baekjoon.numbertheory.DivisorMultiplierPrime2;
 
 import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new DivisorMultiplierPrime2().baekjoon13909();
+        new StackQueueDeque().baekjoon28278();
     }
 }
 
