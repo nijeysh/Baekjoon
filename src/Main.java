@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new StackQueueDeque().baekjoon28278();
+        new StackQueueDeque().baekjoon9012();
     }
 }
 
