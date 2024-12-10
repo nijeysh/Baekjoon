@@ -86,25 +86,31 @@ public class StackQueueDeque {
         StringBuilder sb = new StringBuilder();
         int n = Integer.parseInt(br.readLine());
         String ps;
-        // ( -> 40 , ) -> 41
-        // ( 이게 먼저 나와야함. 0이 안됐는데 41이 나오면 탈락
         for (int i = 0; i < n; i++) {
             ps = br.readLine();
             char ch[] = ps.toCharArray();
-            sb.append(vps(ch));
+            sb.append(vps(ch)).append("\n");
         }
+        System.out.print(sb);
     }
 
-    private static boolean vps(char[] ch) throws IOException {
-        boolean result = true;
-        int sumLeft = 0;
-        int sumRight = 0;
-        int n;
+    private static String vps(char[] ch) throws IOException {
+        String value = "NO";
+        int count = 0;
+        if (ch[0] == ')') return value;
         for (int i = 0; i < ch.length; i++) {
-
+            if (ch[i] == '(') {
+                count++;
+            } else {
+                count--;
+                if (count < 0) {
+                    return value;
+                }
+            }
         }
 
-        return result;
+        if (count > 0) return value;
+        return value = "YES";
     }
 
     private static int program(int num) throws IOException {
