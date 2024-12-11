@@ -94,6 +94,40 @@ public class StackQueueDeque {
         System.out.print(sb);
     }
 
+    private static final char leftRound = '(';
+    private static final char leftSquare = '[';
+    private static final char rightRound = ')';
+    private static final char rightSquare = ']';
+
+    public void baekjoon4949() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String str = br.readLine();
+        while (!str.equals(".")) {
+            sb.append(balance(str.toCharArray())).append("\n");
+            str = br.readLine();
+        }
+        System.out.print(sb);
+    }
+
+    private static String balance(char[] ch) throws IOException {
+        Stack<Character> stack = new Stack<>();
+
+        // 짝을 맞추는 지 확인
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] == leftRound) {
+                stack.push(rightRound);
+            } else if (ch[i] == leftSquare) {
+                stack.push(rightSquare);
+            } else if (ch[i] == rightRound || ch[i] == rightSquare) {
+                if (stack.size() == 0) return "no";
+                if (stack.pop() != ch[i]) return "no";
+            }
+        }
+        if (stack.size() > 0) return "no";
+        return "yes";
+    }
+
     private static String vps(char[] ch) throws IOException {
         String value = "NO";
         int count = 0;
