@@ -3,6 +3,9 @@ package baekjoon.datastructure;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class StackQueueDeque {
@@ -108,6 +111,27 @@ public class StackQueueDeque {
             str = br.readLine();
         }
         System.out.print(sb);
+    }
+
+    /**
+     * 사람들은 현재 1열로 줄을 서있고, 맨 앞의 사람만 이동이 가능하다.
+     * 인규는 번호표 순서대로만 통과할 수 있는 라인을 만들어 두었다.
+     *
+     * 이 라인과 대기열의 맨 앞 사람 사이에는 한 사람씩 1열이 들어갈 수 있는 공간이 있다.
+     * 현재 대기열의 사람들은 이 공간으로 올 수 있지만 반대는 불가능하다.
+     *
+     */
+    private void baekjoon12789() throws IOException {
+        int n = read();
+        Queue<Integer> queue = new ArrayDeque<>();
+        Stack<Integer> stack = new Stack<>();
+        int number = read();
+        // 1부터~N까지 주는건지 중간숫자부터 주는것도 포함하는 건지..
+        for (int i = 0; i < n; i++) {
+            number = read();
+//            queue.add(number);
+//            if (queue.)
+        }
     }
 
     private static String balance(char[] ch) throws IOException {
