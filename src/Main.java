@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new StackQueueDeque().baekjoon18258();
+        new StackQueueDeque().baekjoon2164();
     }
 }
 
