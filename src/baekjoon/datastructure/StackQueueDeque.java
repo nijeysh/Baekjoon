@@ -121,17 +121,40 @@ public class StackQueueDeque {
      * 현재 대기열의 사람들은 이 공간으로 올 수 있지만 반대는 불가능하다.
      *
      */
-    private void baekjoon12789() throws IOException {
+    public void baekjoon12789() throws IOException {
         int n = read();
-        Queue<Integer> queue = new ArrayDeque<>();
         Stack<Integer> stack = new Stack<>();
-        int number = read();
+        Queue<Integer> queue = new ArrayDeque<>();
+        int count = 1;
         // 1부터~N까지 주는건지 중간숫자부터 주는것도 포함하는 건지..
         for (int i = 0; i < n; i++) {
-            number = read();
-//            queue.add(number);
-//            if (queue.)
+            queue.add(read());
         }
+
+        // queue 검사
+        while (!queue.isEmpty()) {
+            if (count == queue.peek()) {
+                queue.poll();
+                count++;
+            } else if (!stack.isEmpty() && count == stack.peek()) {
+                stack.pop();
+                count++;
+            } else {
+                stack.push(queue.poll());
+            }
+        }
+
+        // stack
+        while (!stack.isEmpty()) {
+            if (count == stack.peek()) {
+                stack.pop();
+                count++;
+            } else {
+                break;
+            }
+        }
+
+        System.out.print(stack.isEmpty() ? "Nice" : "Sad");
     }
 
     private static String balance(char[] ch) throws IOException {
