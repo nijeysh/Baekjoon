@@ -2,10 +2,12 @@ import baekjoon.datastructure.StackQueueDeque;
 import baekjoon.numbertheory.DivisorMultiplierPrime2;
 
 import java.io.IOException;
+import java.util.Deque;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new StackQueueDeque().baekjoon12789();
+        new StackQueueDeque().baekjoon18258();
     }
 }
 
