@@ -195,21 +195,63 @@ public class StackQueueDeque {
      * 3을 버리면 42가 되고, 4를 밑으로 옮기면 24가 된다.
      * 마지막으로 2를 버리고 나면, 남는 카드는 4가 된다.
      *
+     * !규칙 찾기 (2의 제곱수)
      */
     public void baekjoon2164() throws IOException {
         int n = read();
-        int arr[] = new int[n];
+        Queue<Integer> queue = new LinkedList<>();
         int temp = n;
         for (int i = 0; i < n; i++) {
-            arr[--temp] = i + 1;
+            queue.add(i + 1);
         }
 
         // 자리를 바꾸는게 아니라.. 그냥 맨 밑으로 가는거였다..
-        while (n > 1) {
-
+        while (queue.size() > 1) {
+            queue.poll();
+            queue.add(queue.poll());
         }
 
-        System.out.print(arr[0]);
+        System.out.print(queue.poll());
+    }
+
+    /**
+     * 비트 연산으로 구현
+     *
+     * 1. N이 2의 거듭제곱 수일 경우 : 마지막에 N이 남는다
+     * 2. 아닐 경우(2^(m-1) < N < 2^m일 경우)
+     *    N을 2배 한다. 이후 2^m - 1과 & 비트연산을 한 수가 남는다.
+     *
+     */
+//    public static void main(String[] args) throws Exception {
+//        int N = nextInt();
+//        int i = 1;
+//        while(i < N) i <<= 1;
+//        System.out.println(i == 1 ? 1 : (N - (i >> 1)) << 1);
+//    }
+//
+//    static int nextInt() throws Exception {
+//        int n = 0;
+//        int c = System.in.read();
+//        do n = (n << 3) + (n << 1) + (c & 15);
+//        while ((c = System.in.read()) > 47 && c < 58);
+//        return n;
+//    }
+//    private static int solve(int N) {
+//        int n = 1;
+//        while (n < N) {
+//            n <<= 1;
+//        }
+//
+//        return n - ((n-N) << 1);
+//    }
+
+    /**
+     * 요세푸스 순열
+     *
+     */
+    public void baekjoon11866() throws IOException {
+        int n = read();
+        int k = read();
     }
 
     private static void queueProgram(String str) throws IOException {
