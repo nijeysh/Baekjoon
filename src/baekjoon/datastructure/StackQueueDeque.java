@@ -252,6 +252,25 @@ public class StackQueueDeque {
     public void baekjoon11866() throws IOException {
         int n = read();
         int k = read();
+
+        Queue<Integer> queue = new LinkedList<>();
+        String[] arr = new String[n];
+        for (int i = 1; i <= n; i++) {
+            queue.add(i);
+        }
+
+        int count = 0;
+        int i = 0;
+        while (!queue.isEmpty()) {
+            ++count;
+            if (count == k) {
+                arr[i++] = queue.poll().toString();
+                count = 0;
+            } else {
+                queue.add(queue.poll());
+            }
+        }
+        System.out.println("<" + String.join(", ", arr) + ">");
     }
 
     private static void queueProgram(String str) throws IOException {
