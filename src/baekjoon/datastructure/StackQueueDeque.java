@@ -273,6 +273,60 @@ public class StackQueueDeque {
         System.out.println("<" + String.join(", ", arr) + ">");
     }
 
+    /**
+     *
+     * 정수를 저장하는 덱을 구현한 다음, 입력으로 주어지는 명령을 처리하는 프로그램을 작성하시오.
+     *
+     * 명령은 총 여덟 가지이다.
+     *
+     * 1 X: 정수 X를 덱의 앞에 넣는다. (1 ≤ X ≤ 100,000)
+     * 2 X: 정수 X를 덱의 뒤에 넣는다. (1 ≤ X ≤ 100,000)
+     * 3: 덱에 정수가 있다면 맨 앞의 정수를 빼고 출력한다. 없다면 -1을 대신 출력한다.
+     * 4: 덱에 정수가 있다면 맨 뒤의 정수를 빼고 출력한다. 없다면 -1을 대신 출력한다.
+     * 5: 덱에 들어있는 정수의 개수를 출력한다.
+     * 6: 덱이 비어있으면 1, 아니면 0을 출력한다.
+     * 7: 덱에 정수가 있다면 맨 앞의 정수를 출력한다. 없다면 -1을 대신 출력한다.
+     * 8: 덱에 정수가 있다면 맨 뒤의 정수를 출력한다. 없다면 -1을 대신 출력한다.
+     */
+    private static Deque<Integer> deque = new LinkedList<>();
+    private static StringBuilder result = new StringBuilder();
+    public void baekjoon28279() throws IOException {
+        int n = read();
+        for (int i = 0; i < n; i++) {
+            dequeProgram(read());
+        }
+        System.out.print(result);
+    }
+
+    private static void dequeProgram(int x) throws IOException {
+        switch (x) {
+            case 1:
+                deque.push(read());
+                break;
+            case 2:
+                deque.add(read());
+                break;
+            case 3:
+                result.append(deque.isEmpty() ? -1 : deque.poll()).append("\n");
+                break;
+            case 4:
+                result.append(deque.isEmpty() ? -1 : deque.pollLast()).append("\n");
+                break;
+            case 5:
+                result.append(deque.size()).append("\n");
+                break;
+            case 6:
+                result.append(deque.isEmpty() ? 1 : 0).append("\n");
+                break;
+            case 7:
+                result.append(deque.isEmpty() ? -1 : deque.peek()).append("\n");
+                break;
+            case 8:
+                result.append(deque.isEmpty() ? -1 : deque.peekLast()).append("\n");
+                break;
+        }
+    }
+
     private static void queueProgram(String str) throws IOException {
         switch (str) {
             case "push":
