@@ -298,6 +298,38 @@ public class StackQueueDeque {
         System.out.print(result);
     }
 
+    /**
+     * 우선, 제일 처음에는 1번 풍선을 터뜨린다.
+     * 다음에는 풍선 안에 있는 종이를 꺼내어 그 종이에 적혀있는 값만큼 이동하여 다음 풍선을 터뜨린다.
+     * 양수가 적혀 있을 경우에는 오른쪽으로, 음수가 적혀 있을 때는 왼쪽으로 이동한다.
+     * 이동할 때에는 이미 터진 풍선은 빼고 이동한다.
+     *
+     * 첫째 줄에 터진 풍선의 번호를 차례로 나열한다.
+     *
+     */
+    public void baekjoon2346() throws IOException {
+        int n = read();
+        Deque<Integer> deque = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= n; i++) {
+            deque.add(i);
+        }
+
+        while (!deque.isEmpty()) {
+            int num = read();
+            int count = Math.abs(num);
+            for (int i = 0; i < count; i++) {
+                if (num < 0) {
+                    deque.push(deque.pollLast());
+                } else {
+                    deque.add(deque.poll());
+                }
+            }
+            sb.append(deque.poll()).append("\n");
+        }
+        System.out.print(sb);
+    }
+
     private static void dequeProgram(int x) throws IOException {
         switch (x) {
             case 1:
