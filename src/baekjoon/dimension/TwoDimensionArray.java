@@ -1,4 +1,4 @@
-package baekjoon;
+package baekjoon.dimension;
 
 import java.io.BufferedReader;
 import java.io.IOException;

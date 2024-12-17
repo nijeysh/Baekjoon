@@ -1,4 +1,5 @@
 import baekjoon.datastructure.StackQueueDeque;
+import baekjoon.math.Combix;
 import baekjoon.numbertheory.DivisorMultiplierPrime2;
 
 import java.io.IOException;
@@ -7,7 +8,8 @@ import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        new StackQueueDeque().baekjoon2346();
+//        new StackQueueDeque().baekjoon2346();
+        new Combix().baekjoon15439();
     }
 }
 
