@@ -50,3 +50,12 @@
 </ul>
 <pre>
 </pre>
+<br>
+<br>
+<h3># 이항계수</h3>
+<ul>
+    <li>이항계수</li>
+    <span></span>
+</ul>
+<pre>
+</pre>
