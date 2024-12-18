@@ -9,7 +9,7 @@ import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) throws IOException {
 //        new StackQueueDeque().baekjoon2346();
-        new Combix().baekjoon15439();
+        new Combix().baekjoon11050();
     }
 }
 
