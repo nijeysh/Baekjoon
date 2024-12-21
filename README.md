@@ -55,7 +55,7 @@
 <h3># 이항계수</h3>
 <ul>
     <li>이항계수</li>
-    <span></span>
+    <span><img width="674" alt="image" src="https://github.com/user-attachments/assets/5d06afa8-275b-48d5-912b-1c7e8aa05323" /></span>
 </ul>
 <pre>
 </pre>
