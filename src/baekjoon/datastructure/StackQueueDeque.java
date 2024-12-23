@@ -310,22 +310,37 @@ public class StackQueueDeque {
     public void baekjoon2346() throws IOException {
         int n = read();
         Deque<Integer> deque = new LinkedList<>();
+        List<Integer> list = new ArrayList<>();
+        int[] step = new int[n + 1];
         StringBuilder sb = new StringBuilder();
         for (int i = 1; i <= n; i++) {
             deque.add(i);
+            list.add(i);
+            step[i] = read();
         }
 
-        while (!deque.isEmpty()) {
-            int num = read();
-            int count = Math.abs(num);
-            for (int i = 0; i < count; i++) {
-                if (num < 0) {
-                    deque.push(deque.pollLast());
-                } else {
-                    deque.add(deque.poll());
-                }
+        int number;
+        int index = 0;
+        int count = 0;
+
+        while (true) {
+            number = list.get(index);
+            list.remove(index);
+
+            sb.append(number).append(" ");
+
+            if (list.isEmpty()) {
+                break;
             }
-            sb.append(deque.poll()).append("\n");
+
+            count = step[number];
+
+            // 다음 인덱스 계산 (현재 리스트 크기를 고려하여 조정)
+            if (count > 0) {
+                index = (index + (count - 1)) % list.size();
+            } else {
+                index = (index + count + list.size()) % list.size();
+            }
         }
         System.out.print(sb);
     }
