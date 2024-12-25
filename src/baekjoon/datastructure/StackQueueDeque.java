@@ -320,8 +320,8 @@ public class StackQueueDeque {
         }
 
         int number;
+        int count;
         int index = 0;
-        int count = 0;
 
         while (true) {
             number = list.get(index);
@@ -335,7 +335,6 @@ public class StackQueueDeque {
 
             count = step[number];
 
-            // 다음 인덱스 계산 (현재 리스트 크기를 고려하여 조정)
             if (count > 0) {
                 index = (index + (count - 1)) % list.size();
             } else {
@@ -343,6 +342,21 @@ public class StackQueueDeque {
             }
         }
         System.out.print(sb);
+    }
+
+    /**
+     *
+     * 첫째 줄에 queuestack을 구성하는 자료구조의 개수 N이 주어진다. (1 <= N <= 100,000)
+     * 둘째 줄에 길이 N의 수열 A가 주어진다. i번 자료구조가 큐라면 Ai = 0, 스택이라면 Ai = 1이다.
+     * 셋째 줄에 길이 N의 수열 B가 주어진다. Bi는 i번 자료구조에 들어 있는 원소이다. (1 <= Bi <= 1,000,000,000)
+     * 넷째 줄에 삽입할 수열의 길이 M이 주어진다. (1 <= M <= 100,000)
+     * 다섯째 줄에 queuestack에 삽입할 원소를 담고 있는 길이 M의 수열 C가 주어진다. (1 <= Ci <= 1,000,000,000)
+     *
+     */
+    public void baekjoon24511() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
     }
 
     private static void dequeProgram(int x) throws IOException {
