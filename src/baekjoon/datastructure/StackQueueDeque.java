@@ -354,9 +354,38 @@ public class StackQueueDeque {
      *
      */
     public void baekjoon24511() throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+//        Deque<Integer> queueStack = new LinkedList<>();
+        StringBuilder sb = new StringBuilder();
+        int n = read();
+        int[] type = new int[n];
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            // 큐, 스택 구분 (0은 큐, 1은 스택)
+            type[i] = read();
+        }
 
+        for (int i = 0; i < n; i++) {
+            // 초기 원소 넣기
+            arr[i] = read();
+        }
+
+        int m = read();
+        int number;
+        // 100,000
+        for (int i = 0; i < m; i++) {
+            number = read();
+            for (int j = 0; j < arr.length; j++) {
+                // queue
+                if (type[j] == 0) {
+                    int temp = arr[j];
+                    arr[j] = number;
+                    number = temp;
+                }
+            }
+            sb.append(number).append(" ");
+        }
+
+        System.out.print(sb);
     }
 
     private static void dequeProgram(int x) throws IOException {
