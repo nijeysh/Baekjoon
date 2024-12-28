@@ -354,35 +354,25 @@ public class StackQueueDeque {
      *
      */
     public void baekjoon24511() throws IOException {
-//        Deque<Integer> queueStack = new LinkedList<>();
-        StringBuilder sb = new StringBuilder();
+        Deque<Integer> queue = new LinkedList<>();
         int n = read();
-        int[] type = new int[n];
-        int[] arr = new int[n];
+        boolean isQueue[] = new boolean[n];
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < n; i++) {
             // 큐, 스택 구분 (0은 큐, 1은 스택)
-            type[i] = read();
+            if (read() == 0) isQueue[i] = true;
         }
 
         for (int i = 0; i < n; i++) {
-            // 초기 원소 넣기
-            arr[i] = read();
+            int k = read();
+            if (isQueue[i]) queue.add(k);
         }
 
         int m = read();
-        int number;
-        // 100,000
+        // 숫자가 한칸씩 밀린다
         for (int i = 0; i < m; i++) {
-            number = read();
-            for (int j = 0; j < arr.length; j++) {
-                // queue
-                if (type[j] == 0) {
-                    int temp = arr[j];
-                    arr[j] = number;
-                    number = temp;
-                }
-            }
-            sb.append(number).append(" ");
+            queue.push(read());
+            sb.append(queue.pollLast()).append(" ");
         }
 
         System.out.print(sb);
