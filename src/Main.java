@@ -7,8 +7,9 @@ import java.util.Deque;
 import java.util.LinkedList;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        new StackQueueDeque().baekjoon24511();
+    public static void main(String[] args) throws Exception {
+//        new StackQueueDeque().baekjoon24511();
+        new Combix().baekjoon10872();
     }
 }
 
