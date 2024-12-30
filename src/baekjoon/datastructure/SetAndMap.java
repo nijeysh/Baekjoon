@@ -251,25 +251,40 @@ public class SetAndMap {
     public void baekjoon11478() throws IOException {
         BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
         String str = br.readLine();
-        char[] arr = str.toCharArray();
-        // 경우의 수
         Set<String> set = new HashSet<>();
-        String piece = "";
-        int start;
-        int len = 1;
-        // 연속
-        // 0,1  / 1,2 / 2,3 / 3,4 / 4,5 ..
-        // 0,2 / 1,3 / 2,4 / 3,5
-        while (true) {
-            start = 0;
-            for (int i = len; i <= str.length(); i++) {
-                System.out.println("start : " + start + ", i: " + i);
-                System.out.println(str.substring(start++, len));
+        int start = 0;
+        while (start < str.length()) {
+            for (int i = start + 1; i <= str.length(); i++) {
+                set.add(str.substring(start, i));
             }
-            len++;
-            if (len > str.length()) break;
+            start++;
         }
+        System.out.print(set.size());
     }
+
+//    public static void baekjoon11478() throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        String str = br.readLine();
+//        int length = str.length();
+//
+//        String[] suffix = new String[length];
+//        for(int i = 0; i < length; i++) {
+//            suffix[i] = str.substring(i);
+//        }
+//
+//        Arrays.sort(suffix);
+//        int dupl = 0;
+//
+//        for(int i = 1; i < length; i++) {
+//            for(int j = 0; j < Math.min(suffix[i].length(), suffix[i - 1].length()); j++) {
+//                if(suffix[i].charAt(j) == suffix[i - 1].charAt(j)) {
+//                    dupl++;
+//                } else break;
+//            }
+//        }
+//
+//        System.out.println((1 + length) * length / 2 - dupl);
+//    }
 
     private static int read() throws IOException {
         int n;
