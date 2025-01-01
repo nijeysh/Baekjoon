@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class Main {
     public static void main(String[] args) throws Exception {
 //        new StackQueueDeque().baekjoon24511();
-//        new Combix().baekjoon11050();
+        new Combix().baekjoon1010();
     }
 }
 

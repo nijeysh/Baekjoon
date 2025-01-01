@@ -44,6 +44,22 @@ public class Combix {
         System.out.println(bc(n, k));
     }
 
+    /**
+     * 다리 놓기
+     *
+     */
+    public void baekjoon1010() throws Exception {
+        int t = read();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < t; i++) {
+            int n = read();
+            int m = read();
+            int min = Math.min(n, m);
+
+        }
+
+    }
+
     private static int bc(int n, int k) throws Exception {
         if (dp[n][k] > 0) {
             return dp[n][k];
