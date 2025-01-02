@@ -66,14 +66,15 @@
         <span><img width="45px" alt="image" src="https://github.com/user-attachments/assets/0181d328-a177-41ca-a274-f5ece685fd0b" /></span>
         n!은 전체 n개의 팩토리얼이고, 뒤에 남는 (n - k)!는 나눠서 제거한 것이다.
     <br>
-    2) 중복 제거 (순서를 고려하지 않을 경우)
-    k명을 뽑을 때 순서를 고려하지 않는다면, 중복된 경우를 제거해야 한다.
-    예를 들어, A와 B를 뽑을 때 A → B와 B → A는 같은 경우이기 때문이다.
-    순서를 고려한 경우는 k!개가 있다.
-    즉, k명을 뽑는 순서의 모든 조합을 제거하려면 나누기 k!를 해야한다.
+        2) 중복 제거 (순서를 고려하지 않을 경우)
+        k명을 뽑을 때 순서를 고려하지 않는다면, 중복된 경우를 제거해야 한다.
+        예를 들어, A와 B를 뽑을 때 A → B와 B → A는 같은 경우이기 때문이다.
+        순서를 고려한 경우는 k!개가 있다.
+        즉, k명을 뽑는 순서의 모든 조합을 제거하려면 나누기 k!를 해야한다.
+        <img style="margin-top:5px" width="150" src="https://github.com/user-attachments/assets/c92aabec-3fbc-4714-bb2d-5526e12b1d98" />
     <br>
-    
-```math
-\binom{n}{k} = \frac{n!}{k!(n-k)!}
-```
+    정리) * <strong>k명만 뽑은 순서 없는 조합의 경우의 수</strong>
+        1. 분자: n!로 n명 중 k명을 뽑는 모든 경우를 계산
+        2. 첫 번째 나누기: (n - k)!로 남은 사람은 제거
+        3. 두 번째 나누기: k!로 중복된 순서를 제거
 </pre>
