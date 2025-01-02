@@ -71,6 +71,9 @@
     예를 들어, A와 B를 뽑을 때 A → B와 B → A는 같은 경우이기 때문이다.
     순서를 고려한 경우는 k!개가 있다.
     즉, k명을 뽑는 순서의 모든 조합을 제거하려면 나누기 k!를 해야한다.
-    $`\binom{n}{k} = \frac{n!}{k!(n-k)!}`$
+    <br>
+    
+```math
+\binom{n}{k} = \frac{n!}{k!(n-k)!}
+```
 </pre>
-$$\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$
