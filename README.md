@@ -26,7 +26,7 @@
         4x - y = 2
     <br>
     2) 행렬로 표현
-        <img style="margin-top:5px;" width="110px" alt="image" src="https://github.com/user-attachments/assets/aa3639ea-d2a7-4473-9708-9fa2b51aeeb4" />
+        <img width="110px" alt="image" src="https://github.com/user-attachments/assets/aa3639ea-d2a7-4473-9708-9fa2b51aeeb4" />
     <br>
     3) x와 y 구하기
         D = (2 x -1) - (4 x 3) = -14
@@ -53,7 +53,7 @@
 <h3># 이항계수</h3>
 <ul>
     <li>이항계수</li>
-    <span><img width="674" alt="image" src="https://github.com/user-attachments/assets/5d06afa8-275b-48d5-912b-1c7e8aa05323" /></span>
+    <div style="text-align:center"><img width="674" alt="image" src="https://github.com/user-attachments/assets/5d06afa8-275b-48d5-912b-1c7e8aa05323" /></div>
 </ul>
 <pre>
     이항계수(또는 이항 계수, Binomial Coefficient)는 주어진 두 정수 n과 k에 대해, n개의 항목 중에서 k개를 선택하는 방법의 수를 나타낸다.
@@ -71,10 +71,21 @@
         예를 들어, A와 B를 뽑을 때 A → B와 B → A는 같은 경우이기 때문이다.
         순서를 고려한 경우는 k!개가 있다.
         즉, k명을 뽑는 순서의 모든 조합을 제거하려면 나누기 k!를 해야한다.
-        <img style="margin-top:5px" width="150" src="https://github.com/user-attachments/assets/c92aabec-3fbc-4714-bb2d-5526e12b1d98" />
+        <img width="150" src="https://github.com/user-attachments/assets/c92aabec-3fbc-4714-bb2d-5526e12b1d98" />
     <br>
     정리) * <strong>k명만 뽑은 순서 없는 조합의 경우의 수</strong>
         1. 분자: n!로 n명 중 k명을 뽑는 모든 경우를 계산
         2. 첫 번째 나누기: (n - k)!로 남은 사람은 제거
         3. 두 번째 나누기: k!로 중복된 순서를 제거
+</pre>
+<ul>
+    <li>파스칼의 삼각형</li>
+    <div style="text-align:center;"><img width="300" alt="image" src="https://github.com/user-attachments/assets/eda5af3e-41bc-41f0-93f7-15dc1bb5ac4c" /></div>
+    <div style="display:none;text-align:center;"><img width="150" alt="image" src="https://github.com/user-attachments/assets/4679c010-8930-4fb4-a988-a301b5600d26" /></div>
+</ul>
+<pre>
+    <img width="200" src="https://github.com/user-attachments/assets/ddf3420a-b121-4e4a-a531-e0c3882e592b" />
+    <br>
+    <span>nCr의 이항계수는 아래와 같이 표현할 수 있다.</span>
+    <img style="margin-top:5px;" width="150" src="https://github.com/user-attachments/assets/ba1a9c06-6079-4a34-8c2c-5421cd5acd6e" />
 </pre>

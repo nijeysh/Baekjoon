@@ -39,10 +39,24 @@ public class Combix {
     public void baekjoon11050() throws Exception {
         int n = read();
         int k = read();
-        dp = new int[n + 1][k + 1];
 
-        System.out.println(bc(n, k));
+        System.out.print(factorial(n) / (factorial(k) * factorial(n - k)));
     }
+
+    private static int factorial(int n) throws Exception {
+        if (n <= 1) {
+            return 1;
+        }
+        return n * factorial(n - 1);
+    }
+
+//    public void baekjoon11050() throws Exception {
+//        int n = read();
+//        int k = read();
+//        dp = new int[n + 1][k + 1];
+//
+//        System.out.println(bc(n, k));
+//    }
 
     /**
      * 다리 놓기
