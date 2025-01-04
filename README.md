@@ -88,4 +88,6 @@
     <br>
     <span>nCr의 이항계수는 아래와 같이 표현할 수 있다.</span>
     <img style="margin-top:5px;" width="150" src="https://github.com/user-attachments/assets/ba1a9c06-6079-4a34-8c2c-5421cd5acd6e" />
+    <br>
+    <span>n과 r이 같거나 r이 0이라면 1이다.</span>
 </pre>
