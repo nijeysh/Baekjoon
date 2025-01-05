@@ -1,16 +1,8 @@
-import baekjoon.datastructure.SetAndMap;
-import baekjoon.datastructure.StackQueueDeque;
 import baekjoon.math.Combix;
-import baekjoon.numbertheory.DivisorMultiplierPrime2;
-
-import java.io.IOException;
-import java.util.Deque;
-import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Combix().baekjoon11050();
-//        new Combix().baekjoon1010();
+        new Combix().baekjoon1010();
     }
 }
 
