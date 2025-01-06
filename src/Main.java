@@ -1,8 +1,8 @@
-import baekjoon.math.Combix;
+import baekjoon.AdvancedLevel2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Combix().baekjoon1010();
+        new AdvancedLevel2().baekjoon1037();
     }
 }
 
@@ -23,3 +23,5 @@ public class Main {
 
         //  집합과 맵
         //  new SetAndMap().baekjoon11478();
+
+        // 조합론 다시 풀기 (dp기초 nCr)
