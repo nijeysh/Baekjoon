@@ -2,7 +2,7 @@ import baekjoon.AdvancedLevel2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new AdvancedLevel2().baekjoon1037();
+        new AdvancedLevel2().baekjoon25192();
     }
 }
 
