@@ -3,6 +3,8 @@ package baekjoon;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.HashSet;
+import java.util.Set;
+import java.util.StringTokenizer;
 
 public class AdvancedLevel2 {
     /**
@@ -58,6 +60,28 @@ public class AdvancedLevel2 {
         }
         count += set.size();
         System.out.print(count);
+    }
+
+    /**
+     * 사람들이 만난 기록이 시간 순서대로 N개 주어진다.
+     * 무지개 댄스를 추지 않고 있던 사람이 무지개 댄스를 추고 있던 사람을 만나게 된다면, 만난 시점 이후로 무지개 댄스를 추게 된다.
+     * 기록이 시작되기 이전 무지개 댄스를 추고 있는 사람은 총총이 뿐이라고 할 때, 마지막 기록 이후 무지개 댄스를 추는 사람이 몇 명인지 구해보자!
+     *
+     */
+    public void baekjoon26069() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(br.readLine());
+        HashSet<String> set = new HashSet<>();
+        set.add("ChongChong");
+
+        for (int i = 0; i < n; i++) {
+            String[] person = br.readLine().split(" ");
+            if (set.contains(person[0]) || set.contains(person[1])) {
+                set.add(person[0]);
+                set.add(person[1]);
+            }
+        }
+        System.out.print(set.size());
     }
 
     private static int read() throws Exception {
