@@ -2,9 +2,7 @@ package baekjoon;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.StringTokenizer;
+import java.util.*;
 
 public class AdvancedLevel2 {
     /**
@@ -82,6 +80,57 @@ public class AdvancedLevel2 {
             }
         }
         System.out.print(set.size());
+    }
+
+    /**
+     *
+     * 수를 처리하는 것은 통계학에서 상당히 중요한 일이다. 통계학에서 N개의 수를 대표하는 기본 통계값에는 다음과 같은 것들이 있다. 단, N은 홀수라고 가정하자.
+     *
+     * 산술평균 : N개의 수들의 합을 N으로 나눈 값
+     * 중앙값 : N개의 수들을 증가하는 순서로 나열했을 경우 그 중앙에 위치하는 값
+     * 최빈값 : N개의 수들 중 가장 많이 나타나는 값
+     * 범위 : N개의 수들 중 최댓값과 최솟값의 차이
+     *
+     * N개의 수가 주어졌을 때, 네 가지 기본 통계값을 구하는 프로그램을 작성하시오.
+     *
+     */
+    public void baekjoon2108() throws Exception {
+        // n은 홀수
+        int n = read();
+        int[] arr = new int[n];
+        StringBuilder sb = new StringBuilder();
+        HashMap<Integer, Integer> countMap = new HashMap<>();
+        HashMap<Integer, TreeSet> setMap = new HashMap<>();
+
+
+        int sum = 0;
+        int mode = 0;
+        int mid = n / 2;
+        for (int i = 0; i < n; i++) {
+            arr[i] = read();
+            sum += arr[i];
+            int count = countMap.getOrDefault(arr[i], 0) + 1;
+            countMap.put(arr[i], count);
+            mode = Math.max(count, mode);
+
+            TreeSet countSet = setMap.getOrDefault(count, new TreeSet());
+            countSet.add(arr[i]);
+            setMap.put(count, countSet);
+        }
+        Arrays.sort(arr);
+
+        // div 음수일때, 0일때,
+        int div = sum / n;
+        System.out.println(div);
+        System.out.println(arr[mid]);
+        if (setMap.get(mode).size() > 1) {
+            setMap.get(mode).pollFirst();
+        }
+        int min = arr[0];
+        int max = arr[n - 1];
+        System.out.println(setMap.get(mode).pollFirst());
+        System.out.println(max - min);
+//        sb.append()
     }
 
     private static int read() throws Exception {
