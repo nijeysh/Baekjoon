@@ -102,7 +102,6 @@ public class AdvancedLevel2 {
         HashMap<Integer, Integer> countMap = new HashMap<>();
         HashMap<Integer, TreeSet> setMap = new HashMap<>();
 
-
         int sum = 0;
         int mode = 0;
         int mid = n / 2;
@@ -120,17 +119,18 @@ public class AdvancedLevel2 {
         Arrays.sort(arr);
 
         // div 음수일때, 0일때,
-        int div = sum / n;
-        System.out.println(div);
-        System.out.println(arr[mid]);
+        double div = (double) sum / n;
         if (setMap.get(mode).size() > 1) {
             setMap.get(mode).pollFirst();
         }
         int min = arr[0];
         int max = arr[n - 1];
-        System.out.println(setMap.get(mode).pollFirst());
-        System.out.println(max - min);
-//        sb.append()
+        sb.append(Math.round(div)).append("\n");
+        sb.append(arr[mid]).append("\n");
+        sb.append(setMap.get(mode).pollFirst()).append("\n");
+        sb.append(max-min);
+
+        System.out.print(sb);
     }
 
     private static int read() throws Exception {
