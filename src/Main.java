@@ -2,7 +2,7 @@ import baekjoon.AdvancedLevel2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new AdvancedLevel2().baekjoon2108();
+        new AdvancedLevel2().baekjoon20920();
     }
 }
 
@@ -25,3 +25,6 @@ public class Main {
         //  new SetAndMap().baekjoon11478();
 
         // 조합론 다시 풀기 (dp기초 nCr)
+
+        // 시간개선 (arr[8001]로)
+        // new AdvancedLevel2().baekjoon2108();

@@ -1,6 +1,7 @@
 package baekjoon;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.*;
 
@@ -132,6 +133,115 @@ public class AdvancedLevel2 {
 
         System.out.print(sb);
     }
+
+    /**
+     * 화은이는 이번 영어 시험에서 틀린 문제를 바탕으로 영어 단어 암기를 하려고 한다.
+     * 그 과정에서 효율적으로 영어 단어를 외우기 위해 영어 단어장을 만들려 하고 있다.
+     * 화은이가 만들고자 하는 단어장의 단어 순서는 다음과 같은 우선순위를 차례로 적용하여 만들어진다.
+     *
+     * 1. 자주 나오는 단어일수록 앞에 배치한다.
+     * 2. 해당 단어의 길이가 길수록 앞에 배치한다.
+     * 3. 알파벳 사전 순으로 앞에 있는 단어일수록 앞에 배치한다
+     *
+     * M보다 짧은 길이의 단어의 경우 읽는 것만으로도 외울 수 있기 때문에 길이가 M이상인 단어들만 외운다고 한다.
+     * 화은이가 괴로운 영단어 암기를 효율적으로 할 수 있도록 단어장을 만들어 주자.
+     *
+     */
+    public void baekjoon20920() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        // 개수 N, 길이 M
+        String[] nm = br.readLine().split(" ");
+        int n = Integer.parseInt(nm[0]);
+        int m = Integer.parseInt(nm[1]);
+        StringBuilder sb = new StringBuilder();
+        LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
+
+        for (int i = 0; i < n; i++) {
+            String word = br.readLine();
+            if (word.length() < m) continue;
+
+            map.put(word, map.getOrDefault(word, 0) + 1);
+        }
+
+        int i = 0;
+        String[] arr = new String[map.size()];
+        for (String k : map.keySet()) {
+            arr[i++] = k;
+        }
+        Arrays.sort(arr, new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if (map.get(o1) == map.get(o2)) {
+                    if (o1.length() == o2.length()) {
+                        return o1.compareTo(o2);
+                    } else {
+                        return o2.length() - o1.length();
+                    }
+                } else {
+                    return map.get(o2) - map.get(o1);
+                }
+            }
+        });
+
+        for (String str : arr) {
+            sb.append(str).append("\n");
+        }
+
+         System.out.print(sb);
+    }
+
+    // 다른 코드
+//    public static void main(String[] args) throws IOException {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        StringTokenizer st = new StringTokenizer(br.readLine());
+//
+//        int N = Integer.parseInt(st.nextToken());
+//        int M = Integer.parseInt(st.nextToken());
+//        Map<String, Node> map = new HashMap<>();
+//
+//        for (int i = 0; i < N; i++) {
+//            String str = br.readLine();
+//            int len = str.length();
+//            if (len < M) {
+//                continue;
+//            }
+//
+//            Node node = map.getOrDefault(str, new Node(str, 0, len));
+//            node.num++;
+//            map.put(str, node);
+//        }
+//        PriorityQueue<Node> pq = new PriorityQueue<>(map.values());
+//
+//        StringBuilder sb = new StringBuilder();
+//        while (!pq.isEmpty()) {
+//            sb.append(pq.poll().str).append('\n');
+//        }
+//        System.out.println(sb);
+//
+//    }
+//
+//    private static class Node implements Comparable<Node> {
+//        String str;
+//        int num;
+//        int size;
+//
+//        public Node(String str, int num, int size) {
+//            this.str = str;
+//            this.num = num;
+//            this.size = size;
+//        }
+//
+//        @Override
+//        public int compareTo(Node o) {
+//            if (this.num == o.num) {
+//                if (this.size == o.size) {
+//                    return String.CASE_INSENSITIVE_ORDER.compare(this.str, o.str);
+//                }
+//                return o.size - this.size;
+//            }
+//            return o.num - this.num;
+//        }
+//    }
 
     private static int read() throws Exception {
         int n;
