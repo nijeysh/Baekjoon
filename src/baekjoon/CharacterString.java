@@ -217,4 +217,18 @@ public class CharacterString {
         }
         System.out.println(sb);
     }
+
+    public void baekjoon11721() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
+        String str = br.readLine();
+
+        while (str.length() > 0) {
+            int split = str.length() > 10 ? 10 : str.length();
+            sb.append(str.substring(0, split)).append("\n");
+            str = str.substring(split, str.length());
+        }
+
+        System.out.print(sb);
+    }
 }
