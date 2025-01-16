@@ -79,16 +79,28 @@ public class Recursion {
      *
      * 배열 A에 K 번째 저장 되는 수를 출력한다. 저장 횟수가 K 보다 작으면 -1을 출력한다.
      */
+    static int sortArr[] = new int[Integer.MAX_VALUE];
     public void baekjoon24060() throws Exception {
         int N = read(); // 배열의 크기
         int K = read(); // 저장 횟수
+
+        int arr[] = new int[N];
+
+    }
+
+    private void merge_sort(int[] arr, int left, int right) {
+        int mid;
+
+        if (left < right) {
+            mid = (left + right) / 2;
+            merge_sort(arr, left, mid);
+
+            merge_sort(arr, mid + 1, right);
+            merge(left, mid, right);
+        }
     }
 
     private void merge(int p, int q, int r) {
-
-    }
-
-    private void merge_sort() {
 
     }
 
