@@ -2,7 +2,6 @@ package baekjoon.algorithm;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class Recursion {
     public void baekjoon27433() throws Exception {
@@ -79,28 +78,76 @@ public class Recursion {
      *
      * 배열 A에 K 번째 저장 되는 수를 출력한다. 저장 횟수가 K 보다 작으면 -1을 출력한다.
      */
-    static int sortArr[] = new int[Integer.MAX_VALUE];
+    static int sortedArr[];
+    static int index;
+    static int K;
+    static int RESULT = -1;
     public void baekjoon24060() throws Exception {
         int N = read(); // 배열의 크기
-        int K = read(); // 저장 횟수
+        K = read(); // 저장 횟수
 
         int arr[] = new int[N];
+        sortedArr = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = read();
+        }
 
+        merge_sort(arr, 0, arr.length - 1);
+        System.out.print(RESULT);
     }
 
-    private void merge_sort(int[] arr, int left, int right) {
+    private static void merge_sort(int[] arr, int left, int right) {
         int mid;
 
         if (left < right) {
             mid = (left + right) / 2;
-            merge_sort(arr, left, mid);
-
-            merge_sort(arr, mid + 1, right);
-            merge(left, mid, right);
+            
+            merge_sort(arr, left, mid);              // 왼쪽
+            merge_sort(arr, mid + 1, right);    // 오른쪽
+            
+            merge(arr, left, mid, right);    // 병합 작업
         }
     }
 
-    private void merge(int p, int q, int r) {
+    private static void merge(int[] arr, int left, int mid, int right) {
+        int i = left;
+        int j = mid + 1;
+        int t = left;
+
+        while (i <= mid && j <= right) {
+            // 왼쪽 arr[i]가 arr[j]보다 작거나 같을 경우 왼쪽 arr[i]를 sortedArr[t]에 넣는다 (t증가, i증가)
+            if (arr[i] <= arr[j]) {
+                sortedArr[t++] = arr[i++];
+            } else {
+                sortedArr[t++] = arr[j++];
+            }
+        }
+
+        // 왼쪽 배열 부분이 남은 경우
+        while (i <= mid) {
+            sortedArr[t++] = arr[i++];
+        }
+
+        while (j <= right) {
+            sortedArr[t++] = arr[j++];
+        }
+
+        // 정렬된 배열을 기존의 배열에 복사
+        for (int p = left; p <= right; p++) {
+            index++;
+            arr[p] = sortedArr[p];
+            if (index == K) {
+                RESULT = arr[p];
+                return;
+            }
+        }
+    }
+
+    /**
+     * 칸토어 집합
+     *
+     */
+    public void baekjoon4779() throws Exception {
 
     }
 

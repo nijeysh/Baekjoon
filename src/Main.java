@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Recursion().baekjoon25501();
+        new Recursion().baekjoon4779();
     }
 }
 
@@ -32,3 +32,6 @@ public class Main {
 
         // 시간개선 (arr[8001]로)
         // new AdvancedLevel2().baekjoon2108();
+
+        // merge_sort 다시보기
+        // new Recursion().baekjoon24060();
