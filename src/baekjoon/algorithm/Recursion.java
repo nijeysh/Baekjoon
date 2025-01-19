@@ -1,7 +1,9 @@
 package baekjoon.algorithm;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class Recursion {
     public void baekjoon27433() throws Exception {
@@ -148,7 +150,52 @@ public class Recursion {
      *
      */
     public void baekjoon4779() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuilder sb = new StringBuilder();
 
+        String line;
+        while ((line = br.readLine()) != null) {
+            int n = (int) Math.pow(3, Integer.parseInt(line));
+            boolean[] arr = new boolean[n];
+            cantor(arr, 0, arr.length);
+
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i]) {
+                    sb.append(" ");
+                } else {
+                    sb.append("-");
+                }
+            }
+            sb.append("\n");
+        }
+
+        br.close();
+        bw.write(sb.toString());
+        bw.close();
+    }
+
+    private static void cantor(boolean[] arr, int left, int right) {
+        int mid;
+        int midL;
+        int midR;
+
+        // 3등분하기
+        // true는 공백으로
+        // 왼쪽과 오른쪽
+        if (left < right) {
+            mid = (right - left) / 3;
+            midL = left + mid;
+            midR = right - mid;
+            if (mid >= 1) {
+                for (int i = midL; i < midR; i++) {
+                    arr[i] = true;
+                }
+
+                cantor(arr, left, midL);      // 왼쪽
+                cantor(arr, midR, right);    // 오른쪽
+            }
+        }
     }
 
     private static int read() throws Exception {

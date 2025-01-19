@@ -35,3 +35,6 @@ public class Main {
 
         // merge_sort 다시보기
         // new Recursion().baekjoon24060();
+
+        // 시간 개선하기 (현재 0.28 -> 0.1초대로 개선하기)
+        // new Recursion().baekjoon4779();
