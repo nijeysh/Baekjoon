@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 
 public class Recursion {
     public void baekjoon27433() throws Exception {
@@ -196,6 +197,94 @@ public class Recursion {
                 cantor(arr, midR, right);    // 오른쪽
             }
         }
+    }
+
+//    static int N;
+//    public static void main(String[] args) throws Exception {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//
+//        String[] s = new String[13];
+//        String[] b = new String[13];
+//        s[0] = "-";
+//        b[0] = " ";
+//
+          // 재귀
+//        for (int i = 1; i <= 12; i++) {
+//            s[i] = s[i - 1] + b[i - 1] + s[i - 1];
+//            b[i] = b[i - 1] + b[i - 1] + b[i - 1];
+//        }
+//
+//        while (true) {
+//            try {
+//                int n = Integer.parseInt(br.readLine());
+//                bw.write(s[n] + "\n");
+//            } catch (Exception e) {
+//                break;
+//            }
+//        }
+//
+//        bw.flush();
+//        bw.close();
+//        br.close();
+//    }
+
+    /**
+     * 별 찍기 - 10 (재귀)
+     *
+     * 재귀적인 패턴으로 별을 찍어 보자. N이 3의 거듭제곱(3, 9, 27, ...)이라고 할 때, 크기 N의 패턴은 N×N 정사각형 모양이다.
+     * 크기 3의 패턴은 가운데에 공백이 있고, 가운데를 제외한 모든 칸에 별이 하나씩 있는 패턴이다.
+     *
+     * N이 3보다 클 경우, 크기 N의 패턴은 공백으로 채워진 가운데의 (N/3)×(N/3) 정사각형을 크기 N/3의 패턴으로 둘러싼 형태이다.
+     *
+     * 첫째 줄에 N이 주어진다. N은 3의 거듭제곱이다. 즉 어떤 정수 k에 대해 N=3k이며, 이때 1 ≤ k < 8이다.
+     */
+    static String pattern[][];
+    public void baekjoon2447() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+        int N = Integer.parseInt(br.readLine());
+
+        // 9일때
+        // 가운데는 3 x 3의 공백
+        // 왼쪽 3, 오른쪽 3은 3의 패턴으로
+        // 3 x 3은 구역
+        // 2차원 배열
+//        String[][] pattern = new String[3][3];
+        pattern = new String[3][3];
+        for (int i = 0; i < pattern.length; i++) {
+            for (int j = 0; j < pattern[i].length; j++) {
+                if (i == 1 && i == j) {
+                    pattern[i][j] = " ";
+                } else {
+                    pattern[i][j] = "*";
+                }
+                System.out.print(pattern[i][j]);
+            }
+            System.out.println();
+        }
+//        System.out.println();
+//
+//        int emptyLeft = N / 3;
+//        int emptyRight = emptyLeft * 2;
+//        for (int i = 0; i < N; i++) {
+//            for (int j = 0; j < N; j++) {
+//                // 0, 0이 3 x 3의 0, 0 // 3단위로 반복됨
+//                if (i >= emptyLeft && i < emptyRight && j >= emptyLeft && j < emptyRight) {
+//                    System.out.print(" ");
+//                } else {
+//                    System.out.print(pattern[i % 3][j % 3]);
+//                }
+//            }
+//            System.out.println();
+//        }
+
+    }
+
+    // 3, 9, 27의 패턴을 먼저 만들기
+    private static void pattern(String[][] arr, int left, int right, int depth) throws Exception {
+
+
     }
 
     private static int read() throws Exception {
