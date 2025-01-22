@@ -289,15 +289,30 @@ public class Recursion {
             }
         }
 
+        // 3, 9, 27, 81, ...
+        int standard = 1;
         int count = 0;
         for (int i = 0; i < array.length; i++) {
-            int current = (int) Math.pow(3, count);
+            int startE = (int) Math.pow(3, count);
+            System.out.println("startE: " + startE);
             for (int j = 0; j < array[i].length; j++) {
-//                if (i == j && current == i)
-                array[i][j] = array[i % 3][j % 3];
+                if (startE <= i && i < startE * 2 && startE <= j && j < startE * 2) {
+                    array[i][j] = " ";
+                } else {
+                    array[i][j] = array[i % 3][j % 3];
+//                    if (i >= 9 || j >= 9) {
+//                        array[i][j] = array[i % 9][j  % 9];
+//                    } else {
+//                        array[i][j] = array[i % 3][j % 3];
+//                    }
+                }
                 System.out.print(array[i][j]);
             }
             System.out.println();
+
+            if (i >= startE * 2) {
+                count++;
+            }
         }
     }
 
