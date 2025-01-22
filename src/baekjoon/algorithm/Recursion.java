@@ -239,7 +239,6 @@ public class Recursion {
      *
      * 첫째 줄에 N이 주어진다. N은 3의 거듭제곱이다. 즉 어떤 정수 k에 대해 N=3k이며, 이때 1 ≤ k < 8이다.
      */
-    static String pattern[][];
     public void baekjoon2447() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -250,34 +249,6 @@ public class Recursion {
         // 왼쪽 3, 오른쪽 3은 3의 패턴으로
         // 3 x 3은 구역
         // 2차원 배열
-//        String[][] pattern = new String[3][3];
-//        pattern = new String[3][3];
-//        for (int i = 0; i < pattern.length; i++) {
-//            for (int j = 0; j < pattern[i].length; j++) {
-//                if (i == 1 && i == j) {
-//                    pattern[i][j] = " ";
-//                } else {
-//                    pattern[i][j] = "*";
-//                }
-//                System.out.print(pattern[i][j]);
-//            }
-//            System.out.println();
-//        }
-//        System.out.println();
-//
-//        int emptyLeft = N / 3;
-//        int emptyRight = emptyLeft * 2;
-//        for (int i = 0; i < N; i++) {
-//            for (int j = 0; j < N; j++) {
-//                // 0, 0이 3 x 3의 0, 0 // 3단위로 반복됨
-//                if (i >= emptyLeft && i < emptyRight && j >= emptyLeft && j < emptyRight) {
-//                    System.out.print(" ");
-//                } else {
-//                    System.out.print(pattern[i % 3][j % 3]);
-//                }
-//            }
-//            System.out.println();
-//        }
         String[][] array = new String[N][N];
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
@@ -290,35 +261,78 @@ public class Recursion {
         }
 
         // 3, 9, 27, 81, ...
-        int standard = 1;
         int count = 0;
         for (int i = 0; i < array.length; i++) {
             int startE = (int) Math.pow(3, count);
-            System.out.println("startE: " + startE);
+            int standard = 1;
             for (int j = 0; j < array[i].length; j++) {
                 if (startE <= i && i < startE * 2 && startE <= j && j < startE * 2) {
                     array[i][j] = " ";
                 } else {
-                    array[i][j] = array[i % 3][j % 3];
-//                    if (i >= 9 || j >= 9) {
-//                        array[i][j] = array[i % 9][j  % 9];
-//                    } else {
-//                        array[i][j] = array[i % 3][j % 3];
-//                    }
+                    if (j >= standard * 3 || i >= standard * 3) {
+                        standard *= 3;
+                    }
+                    array[i][j] = array[i % standard][j % standard];
                 }
-                System.out.print(array[i][j]);
+                bw.write(array[i][j]);
             }
-            System.out.println();
-
+            bw.write("\n");
             if (i >= startE * 2) {
                 count++;
             }
         }
+        bw.flush();
+        bw.close();
     }
 
-    private static void pattern(String[][] array, int left, int right, int depth) throws Exception {
+    // 시간 단축 예시
+//    public class Main {
+//        static char[][] arr;
+//        public static void main(String[] args) throws IOException {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//            int N = Integer.parseInt(br.readLine());
+//            arr = new char[N][N];
+//            star(0, 0, N, false);
+//            for (int i = 0; i < N; i++) {
+//                bw.write(arr[i]);
+//                bw.write("\n");
+//            }
+//            bw.flush();
+//            bw.close();
+//        }
+//        static void star(int x, int y, int N, boolean space) {
+//
+//            // 공백 출력
+//            if (space) {
+//                for (int i = x; i < x + N; i++) {
+//                    for (int j = y; j < y + N; j++) {
+//                        arr[i][j] = ' ';
+//                    }
+//                }
+//                return;
+//            }
+//            // 최대 내부일 경우
+//            if (N == 1) {
+//                arr[x][y] = '*';
+//                return;
+//            }
+//            //count=5인 경우 공백 출력
+//            int size = N / 3;
+//            int count = 0;
+//            for (int i = x; i < x + N; i += size) {
+//                for (int j = y; j < y + N; j += size) {
+//                    count++;
+//                    if (count == 5) { // 공백 칸일 경우
+//                        star(i, j, size, true);
+//                    } else {
+//                        star(i, j, size, false);
+//                    }
+//                }
+//            }
+//        }
+//    }
 
-    }
 
     private static int read() throws Exception {
         int n;
