@@ -251,18 +251,18 @@ public class Recursion {
         // 3 x 3은 구역
         // 2차원 배열
 //        String[][] pattern = new String[3][3];
-        pattern = new String[3][3];
-        for (int i = 0; i < pattern.length; i++) {
-            for (int j = 0; j < pattern[i].length; j++) {
-                if (i == 1 && i == j) {
-                    pattern[i][j] = " ";
-                } else {
-                    pattern[i][j] = "*";
-                }
-                System.out.print(pattern[i][j]);
-            }
-            System.out.println();
-        }
+//        pattern = new String[3][3];
+//        for (int i = 0; i < pattern.length; i++) {
+//            for (int j = 0; j < pattern[i].length; j++) {
+//                if (i == 1 && i == j) {
+//                    pattern[i][j] = " ";
+//                } else {
+//                    pattern[i][j] = "*";
+//                }
+//                System.out.print(pattern[i][j]);
+//            }
+//            System.out.println();
+//        }
 //        System.out.println();
 //
 //        int emptyLeft = N / 3;
@@ -278,12 +278,30 @@ public class Recursion {
 //            }
 //            System.out.println();
 //        }
+        String[][] array = new String[N][N];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (i == 1 && i == j) {
+                    array[i][j] = " ";
+                } else {
+                    array[i][j] = "*";
+                }
+            }
+        }
 
+        int count = 0;
+        for (int i = 0; i < array.length; i++) {
+            int current = (int) Math.pow(3, count);
+            for (int j = 0; j < array[i].length; j++) {
+//                if (i == j && current == i)
+                array[i][j] = array[i % 3][j % 3];
+                System.out.print(array[i][j]);
+            }
+            System.out.println();
+        }
     }
 
-    // 3, 9, 27의 패턴을 먼저 만들기
-    private static void pattern(String[][] arr, int left, int right, int depth) throws Exception {
-
+    private static void pattern(String[][] array, int left, int right, int depth) throws Exception {
 
     }
 
