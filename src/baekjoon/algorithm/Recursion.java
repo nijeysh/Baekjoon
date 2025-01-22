@@ -238,6 +238,7 @@ public class Recursion {
      * N이 3보다 클 경우, 크기 N의 패턴은 공백으로 채워진 가운데의 (N/3)×(N/3) 정사각형을 크기 N/3의 패턴으로 둘러싼 형태이다.
      *
      * 첫째 줄에 N이 주어진다. N은 3의 거듭제곱이다. 즉 어떤 정수 k에 대해 N=3k이며, 이때 1 ≤ k < 8이다.
+     *
      */
     public void baekjoon2447() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -285,7 +286,7 @@ public class Recursion {
         bw.close();
     }
 
-    // 시간 단축 예시
+    // 시간 단축 예시 (참고용)
 //    public class Main {
 //        static char[][] arr;
 //        public static void main(String[] args) throws IOException {
@@ -333,6 +334,53 @@ public class Recursion {
 //        }
 //    }
 
+    // 예시코드 2 (참고용)
+//    public class Main {
+//
+//        static final char star = '*';
+//        static final char space = ' ';
+//        static boolean[][] map;
+//        static int N;
+//
+//        public static void main (String[] args) {
+//            Scanner sc = new Scanner(System.in);
+//            N = sc.nextInt();
+//            map = new boolean[N][N];
+//            makeStar(0, 0, N);
+//            StringBuilder sb = new StringBuilder();
+//
+//            for (boolean[] row : map) {
+//                for (boolean col : row) {
+//                    if (col)
+//                        sb.append(star);
+//                    else
+//                        sb.append(space);
+//                }
+//                sb.append("\n");
+//            }
+//
+//            System.out.println(sb);
+//            sc.close();
+//        }
+//
+//        static void makeStar (int y, int x, int size) {
+//            if (size == 1) {
+//                map[y][x] = true;
+//                return;
+//            }
+//
+//            int ns = size/3;
+//            int cycle = 1;
+//
+//            for (int i=y; i<y+size; i+=ns) {
+//                for (int j=x; j<x+size; j+=ns) {
+//                    if (cycle++ == 5)
+//                        continue;
+//                    makeStar(i, j, ns);
+//                }
+//            }
+//        }
+//    }
 
     private static int read() throws Exception {
         int n;
