@@ -240,50 +240,94 @@ public class Recursion {
      * 첫째 줄에 N이 주어진다. N은 3의 거듭제곱이다. 즉 어떤 정수 k에 대해 N=3k이며, 이때 1 ≤ k < 8이다.
      *
      */
+//    public void baekjoon2447() throws Exception {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//        int N = Integer.parseInt(br.readLine());
+//
+//        // 9일때
+//        // 가운데는 3 x 3의 공백
+//        // 왼쪽 3, 오른쪽 3은 3의 패턴으로
+//        // 3 x 3은 구역
+//        // 2차원 배열
+//        String[][] array = new String[N][N];
+//        for (int i = 0; i < 3; i++) {
+//            for (int j = 0; j < 3; j++) {
+//                if (i == 1 && i == j) {
+//                    array[i][j] = " ";
+//                } else {
+//                    array[i][j] = "*";
+//                }
+//            }
+//        }
+//
+//        // 3, 9, 27, 81, ...
+//        int count = 0;
+//        for (int i = 0; i < array.length; i++) {
+//            int startE = (int) Math.pow(3, count);
+//            int standard = 1;
+//            for (int j = 0; j < array[i].length; j++) {
+//                if (startE <= i && i < startE * 2 && startE <= j && j < startE * 2) {
+//                    array[i][j] = " ";
+//                } else {
+//                    if (j >= standard * 3 || i >= standard * 3) {
+//                        standard *= 3;
+//                    }
+//                    array[i][j] = array[i % standard][j % standard];
+//                }
+//                bw.write(array[i][j]);
+//            }
+//            bw.write("\n");
+//            if (i >= startE * 2) {
+//                count++;
+//            }
+//        }
+//        bw.flush();
+//        bw.close();
+//    }
+
+    private static char[][] array;
     public void baekjoon2447() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         int N = Integer.parseInt(br.readLine());
+        array = new char[N][N];
 
-        // 9일때
-        // 가운데는 3 x 3의 공백
-        // 왼쪽 3, 오른쪽 3은 3의 패턴으로
-        // 3 x 3은 구역
-        // 2차원 배열
-        String[][] array = new String[N][N];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (i == 1 && i == j) {
-                    array[i][j] = " ";
-                } else {
-                    array[i][j] = "*";
-                }
-            }
-        }
+        pattern(0, 0, N, true);
 
-        // 3, 9, 27, 81, ...
-        int count = 0;
-        for (int i = 0; i < array.length; i++) {
-            int startE = (int) Math.pow(3, count);
-            int standard = 1;
-            for (int j = 0; j < array[i].length; j++) {
-                if (startE <= i && i < startE * 2 && startE <= j && j < startE * 2) {
-                    array[i][j] = " ";
-                } else {
-                    if (j >= standard * 3 || i >= standard * 3) {
-                        standard *= 3;
-                    }
-                    array[i][j] = array[i % standard][j % standard];
-                }
-                bw.write(array[i][j]);
-            }
+        for (int i = 0; i < N; i++) {
+            bw.write(array[i]);
             bw.write("\n");
-            if (i >= startE * 2) {
-                count++;
-            }
         }
+
         bw.flush();
         bw.close();
+    }
+
+    private static void pattern(int x, int y, int N, boolean star) {
+        if (!star) {
+            for (int i = x; i < x + N; i++) {
+                for (int j = y; j < y + N; j++) {
+                    array[i][j] = ' ';
+                }
+            }
+            return;
+        }
+
+        if (N == 1) {
+            array[x][y] = '*';
+            return;
+        }
+
+        int size = N / 3;
+        int count = 0;
+        for (int i = x; i < x + N; i += size) {
+            for (int j = y; j < y + N; j += size) {
+                count++;
+                pattern(i, j, size, count != 5);    // 5번째 칸은 공백이다.
+            }
+        }
+
     }
 
     // 시간 단축 예시 (참고용)
@@ -380,6 +424,48 @@ public class Recursion {
 //                }
 //            }
 //        }
+//    }
+
+    // 예시 3 (공백으로 배열을 채운 후 *을 입력하는 방식)
+//    public class Main {
+//        static char[][] star;
+//
+//        public static void main(String[] args) throws Exception {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+//            int no = Integer.parseInt(br.readLine());
+//            star = new char[no][no];
+//
+//            for (int i = 0; i < no; i++) {
+//                Arrays.fill(star[i], ' ');
+//            }
+//
+//            cv(no, 0, 0);
+//            for (int k = 0; k < no; k++){
+//                //System.out.println(star[k]);
+//                bw.write(star[k]);
+//                bw.write("\n");
+//            }
+//            bw.flush();
+//        }
+//
+//        private static void cv(int n, int a, int b) {
+//            if (n == 1){
+//                star[a][b] = '*';
+//                return;
+//            }
+//            int o = (n / 3);
+//
+//            for (int i = 0; i < 3; i++) {
+//                for (int j = 0; j < 3; j++) {
+//                    if (i == 1 && j == 1)continue;
+//                    cv(o, a + (o * i), b + (o * j));
+//                }
+//
+//            }
+//
+//        }
+//
 //    }
 
     private static int read() throws Exception {
