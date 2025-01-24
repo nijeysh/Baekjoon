@@ -38,3 +38,6 @@ public class Main {
 
         // 시간 개선하기 (현재 0.28 -> 0.1초대로 개선하기)
         // new Recursion().baekjoon4779();
+
+        // 다시 풀기
+        // baekjoon10870

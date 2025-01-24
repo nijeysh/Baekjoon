@@ -468,6 +468,10 @@ public class Recursion {
 //
 //    }
 
+    public void baekjoon11729() throws Exception {
+
+    }
+
     private static int read() throws Exception {
         int n;
         int result = 0;
