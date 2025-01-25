@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Recursion().baekjoon2447();
+        new Recursion().baekjoon11729();
     }
 }
 

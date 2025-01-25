@@ -5,6 +5,7 @@ import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.Arrays;
+import java.util.Stack;
 
 public class Recursion {
     public void baekjoon27433() throws Exception {
@@ -328,6 +329,7 @@ public class Recursion {
             }
         }
 
+
     }
 
     // 시간 단축 예시 (참고용)
@@ -469,7 +471,22 @@ public class Recursion {
 //    }
 
     public void baekjoon11729() throws Exception {
+        int N = read();
+        int[] arr1 = new int[N];
+        int[] arr2 = new int[N];
+        int[] arr3 = new int[N];
+        for (int i = 1; i <= N; i++) {
+            arr1[i - 1] = i;
+        }
 
+        if (N % 2 == 0) {
+            hanoi(arr1, arr2, arr3, 0);
+        } else {
+            hanoi(arr1, arr2, arr3, 0);
+        }
+    }
+
+    private static void hanoi(int[] arr1, int[] arr2, int[] arr3, int depth) throws Exception {
     }
 
     private static int read() throws Exception {
