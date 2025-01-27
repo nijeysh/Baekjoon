@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 public class Main {
     public static void main(String[] args) throws Exception {
         new Recursion().baekjoon11729();
+//        String str = "12";
+//        System.out.println(str.charAt(str.length() - 1) - 48);
     }
 }
 

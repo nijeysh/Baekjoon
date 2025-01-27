@@ -105,10 +105,10 @@ public class Recursion {
 
         if (left < right) {
             mid = (left + right) / 2;
-            
+
             merge_sort(arr, left, mid);              // 왼쪽
             merge_sort(arr, mid + 1, right);    // 오른쪽
-            
+
             merge(arr, left, mid, right);    // 병합 작업
         }
     }
@@ -470,24 +470,57 @@ public class Recursion {
 //
 //    }
 
+    static StringBuilder sb = new StringBuilder();
+    static int cnt = 0;
     public void baekjoon11729() throws Exception {
         int N = read();
-        int[] arr1 = new int[N];
-        int[] arr2 = new int[N];
-        int[] arr3 = new int[N];
-        for (int i = 1; i <= N; i++) {
-            arr1[i - 1] = i;
-        }
 
-        if (N % 2 == 0) {
-            hanoi(arr1, arr2, arr3, 0);
-        } else {
-            hanoi(arr1, arr2, arr3, 0);
-        }
+        hanoi(N, 1, 3, 2);
+        System.out.println(cnt);
+        System.out.print(sb);
     }
 
-    private static void hanoi(int[] arr1, int[] arr2, int[] arr3, int depth) throws Exception {
+    // main, sub 기둥을 나누기
+    private static void hanoi(int N, int start, int end, int aux) throws Exception {
+        if (N == 0) {
+            return;
+        }
+
+        hanoi(N - 1, start, aux, end);
+        sb.append(start).append(" ").append(end).append("\n");
+        hanoi(N - 1, aux, end, start);
+        cnt++;
     }
+
+    // 하노이탑 예시코드 1
+//    public class Main {
+//        static StringBuilder sb = new StringBuilder();
+//        static final String[][] answer = {
+//                {"", "1 2\n", "1 3\n"},
+//                {"2 1\n", "", "2 3\n"},
+//                {"3 1\n", "3 2\n"}
+//        };
+//
+//        public static void main(String[] args) throws IOException {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            int N = Integer.parseInt(br.readLine());
+//
+//            sb.append((1 << N) - 1).append('\n');
+//
+//            hanoi(N, 1, 3, 2);
+//
+//            System.out.println(sb);
+//        }
+//
+//        private static void hanoi(int n, int from, int to, int mid) {
+//            if (n == 0) return;
+//
+//            hanoi(n - 1, from, mid, to);
+//            sb.append(answer[from - 1][to - 1]);
+//            hanoi(n - 1, mid, to, from);
+//        }
+//    }
+
 
     private static int read() throws Exception {
         int n;
