@@ -30,21 +30,34 @@ public class Recursion {
      * n이 주어졌을 때, n번째 피보나치 수를 구하는 프로그램을 작성하시오.
      *
      */
-    static int arr[];
+    static int[] arr;
     public void baekjoon10870() throws Exception {
         int n = read();
+
         arr = new int[n + 2];
         arr[1] = 1;
-        System.out.print(fibonacci(2, n));
+
+        if (n == 0 || n == 1) {
+            System.out.print(arr[n]);
+        } else {
+            System.out.println(fibonacci(2, n));
+        }
     }
 
+    // O(n)
     private static long fibonacci(int number, int end) throws Exception {
         arr[number] = arr[number - 1] + arr[number - 2];
-        if (number <= end) {
+        if (number >= end) {
             return arr[number];
         }
-
         return fibonacci(number + 1, end);
+    }
+
+    // O(n^2)
+    private static long fibonacci(int number) throws Exception {
+        if (number <= 1) return number;
+
+        return fibonacci(number - 1) + fibonacci(number - 2);
     }
 
     private static int count;

@@ -6,9 +6,7 @@ import java.io.InputStreamReader;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Recursion().baekjoon11729();
-//        String str = "12";
-//        System.out.println(str.charAt(str.length() - 1) - 48);
+        new Recursion().baekjoon10870();
     }
 }
 
@@ -40,6 +38,3 @@ public class Main {
 
         // 시간 개선하기 (현재 0.28 -> 0.1초대로 개선하기)
         // new Recursion().baekjoon4779();
-
-        // 다시 풀기
-        // baekjoon10870
