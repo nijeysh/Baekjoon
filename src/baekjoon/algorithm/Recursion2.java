@@ -313,7 +313,7 @@ public class Recursion2 {
         }
     }
 
-    static void combination() throws Exception {
+    static void combination(int left, int right) throws Exception {
 
     }
 
