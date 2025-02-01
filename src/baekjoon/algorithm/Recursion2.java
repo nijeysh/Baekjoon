@@ -314,6 +314,9 @@ public class Recursion2 {
     }
 
     static void combination(int left, int right) throws Exception {
+        // 뒤에서부터 0, 1, 2, 3, 4, ..
+        // 앞에서는 6, 5, 4, 3 ...
+        // 중복은 걸러야함
 
     }
 
