@@ -4,11 +4,9 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.nio.Buffer;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Recursion2 {
+public class RecursionPage1 {
 
     /**
      * 이진 트리를 입력받아 전위 순회(preorder traversal), 중위 순회(inorder traversal), 후위 순회(postorder traversal)한 결과를 출력하는 프로그램을 작성하시오.
@@ -296,8 +294,7 @@ public class Recursion2 {
      * 각 테스트 케이스마다 수를 고르는 모든 방법을 출력한다. 이때, 사전 순으로 출력한다.
      *
      */
-    static boolean[] lotto;
-    static char[] arr;
+    static int[] lotto;
     public void baekjoon6603() throws Exception {
         // static buffered
         StringTokenizer st;
@@ -306,29 +303,112 @@ public class Recursion2 {
             st = new StringTokenizer(br.readLine());
             int k = Integer.parseInt(st.nextToken());
             if (k == 0) break;
-            arr = new char[k];
-            lotto = new boolean[k];
+            lotto = new int[k];
 
             for (int i = 0; i < k; i++) {
-                arr[i] = st.nextToken().charAt(0);
+                lotto[i] = Integer.parseInt(st.nextToken());
             }
-            combination(0, 6);
+            combination(0, k, 0, "");
+            bw.newLine();
         }
         bw.flush();
         bw.close();
     }
 
-    static void combination(int start, int end) throws Exception {
-        // X 이후로 O의 경우의 수
-        // X이전 O를 6에서 뺀 나머지가 X 이후 나머지 배열의 경우의 수
+    // end는 없어도 됨 (lotto.lenght로 바꿔서 사용 가능)
+    static void combination(int start, int end, int depth, String str) throws Exception {
+        if (depth >= 6) {
+            bw.write(str);
+            return;
+        }
+        for (int i = start; i < end; i++) {
+            if (depth == 5) {
+                combination(i + 1, end, depth + 1, str + lotto[i] + "\n");
+            } else {
+                combination(i + 1, end, depth + 1, str + lotto[i] + " ");
+            }
+        }
+    }
 
+    // boolean을 하나 더 추가하여 true인 것만 추출하여 문자열로 생성
+//    public static void dfs(int start, int depth) {
+//        if(depth == 6) {
+//            for(int i = 0; i < arr.length; i++) {
+//                if(visited[i]) {
+//                    sb.append(arr[i]).append(" ");
+//                }
+//            }
+//            sb.append("\n");
+//            return;
+//        }
+//
+//        for(int i = start; i < arr.length; i++) {
+//            visited[i] = true;
+//            dfs(i + 1, depth + 1);
+//            visited[i] = false;
+//        }
+//    }
 
+    /**
+     *
+     * N×N크기의 행렬로 표현되는 종이가 있다. 종이의 각 칸에는 -1, 0, 1 중 하나가 저장되어 있다.
+     * 우리는 이 행렬을 다음과 같은 규칙에 따라 적절한 크기로 자르려고 한다.
+     *
+     * 1. 만약 종이가 모두 같은 수로 되어 있다면 이 종이를 그대로 사용한다.
+     * 2. (1)이 아닌 경우에는 종이를 같은 크기의 종이 9개로 자르고, 각각의 잘린 종이에 대해서 (1)의 과정을 반복한다.
+     *
+     * 이와 같이 종이를 잘랐을 때, -1로만 채워진 종이의 개수, 0으로만 채워진 종이의 개수, 1로만 채워진 종이의 개수를 구해내는 프로그램을 작성하시오.
+     *
+     */
+    static int[] count = new int[3];
+    public void baekjoon1780() throws Exception {
+        int N = read();
+
+        paper = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                paper[i][j] = read();
+            }
+        }
+
+        cutting(0, 0, N);
+
+        for (int i = 0; i < count.length; i++) {
+            System.out.println(count[i]);
+        }
+    }
+
+    static void cutting(int left, int right, int N) throws Exception {
+        if (checking(left, right, N)) {
+            int index = paper[left][right] + 1;
+            count[index]++;
+        } else {
+            int size = N / 3;
+            for (int i = left; i < left + N; i+=size) {
+                for (int j = right; j < right + N; j+=size) {
+                    cutting(i, j, size);
+                }
+            }
+        }
+    }
+
+    static boolean checking(int left, int right, int size) throws Exception {
+        int standard = paper[left][right];
+        for (int i = left; i < left + size; i++) {
+            for (int j = right; j < right + size; j++) {
+                if (standard != paper[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     static int read() throws Exception {
-        int c, n = System.in.read() & 15;
+        int c, n = 0, sign = 1;
+        if ((c = System.in.read()) == '-') sign = -1;
+        else n = c & 15;
         while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
-        if (c == 13) System.in.read();
-        return n;
+        return n * sign;
     }
 }

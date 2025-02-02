@@ -1,14 +1,8 @@
-import baekjoon.AdvancedLevel2;
-import baekjoon.algorithm.Recursion;
-import baekjoon.algorithm.Recursion2;
-import baekjoon.math.Mathematics;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import baekjoon.algorithm.RecursionPage1;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Recursion2().baekjoon6603();
+        new RecursionPage1().baekjoon1780();
     }
 }
 
