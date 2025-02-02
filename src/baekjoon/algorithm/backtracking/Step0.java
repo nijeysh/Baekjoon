@@ -1,6 +1,6 @@
-package baekjoon.algorithm;
+package baekjoon.algorithm.backtracking;
 
-public class Backtracking {
+public class Step0 {
 
     /**
      * 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.

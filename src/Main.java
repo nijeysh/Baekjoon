@@ -1,8 +1,9 @@
-import baekjoon.algorithm.RecursionPage1;
+import baekjoon.algorithm.recursion.Step1;
+import baekjoon.algorithm.recursion.Step2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new RecursionPage1().baekjoon1780();
+        new Step2().baekjoon2448();
     }
 }
 

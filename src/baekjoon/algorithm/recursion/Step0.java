@@ -1,11 +1,11 @@
-package baekjoon.algorithm;
+package baekjoon.algorithm.recursion;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
-public class Recursion {
+public class Step0 {
     public void baekjoon27433() throws Exception {
         int n = read();
         System.out.print(factorial(n));

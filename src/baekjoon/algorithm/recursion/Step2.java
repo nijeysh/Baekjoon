@@ -1,0 +1,55 @@
+package baekjoon.algorithm.recursion;
+
+public class Step2 {
+    /**
+     * 재귀함수가 뭔가요?
+     *
+     * JH 교수님이 만들 챗봇의 응답을 출력하는 프로그램을 만들어보자.
+     * 재귀 횟수 N(1 ≤ N ≤ 50)이 주어진다.
+     *
+     */
+    static StringBuilder sb = new StringBuilder();
+    public void baekjoon17478() throws Exception {
+        int N = read();
+        sb.append("어느 한 컴퓨터공학과 학생이 유명한 교수님을 찾아가 물었다.").append("\n");
+        chatBot(0, N, "");
+
+        System.out.print(sb);
+    }
+
+    static void chatBot(int depth, int N, String hyphen) throws Exception {
+        sb.append(hyphen).append("\"재귀함수가 뭔가요?\"").append("\n");
+        if (depth >= N) {
+            sb.append(hyphen).append("\"재귀함수는 자기 자신을 호출하는 함수라네\"").append("\n");
+            sb.append(hyphen).append("라고 답변하였지.").append("\n");
+            return;
+        }
+
+        sb.append(hyphen).append("\"잘 들어보게. 옛날옛날 한 산 꼭대기에 이세상 모든 지식을 통달한 선인이 있었어.").append("\n");
+        sb.append(hyphen).append("마을 사람들은 모두 그 선인에게 수많은 질문을 했고, 모두 지혜롭게 대답해 주었지.").append("\n");
+        sb.append(hyphen).append("그의 답은 대부분 옳았다고 하네. 그런데 어느 날, 그 선인에게 한 선비가 찾아와서 물었어.\"").append("\n");
+
+        chatBot(depth + 1, N, hyphen + "____");
+        sb.append(hyphen).append("라고 답변하였지.").append("\n");
+    }
+
+    /**
+     * 별 찍기 - 11
+     *
+     */
+    public void baekjoon2448() throws Exception {
+
+    }
+
+    static void star() throws Exception {
+
+    }
+
+    static int read() throws Exception {
+        int c, n = 0, sign = 1;
+        if ((c = System.in.read()) == '-') sign = -1;
+        else n = c & 15;
+        while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
+        return n * sign;
+    }
+}
