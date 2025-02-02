@@ -296,6 +296,7 @@ public class Recursion2 {
      * 각 테스트 케이스마다 수를 고르는 모든 방법을 출력한다. 이때, 사전 순으로 출력한다.
      *
      */
+    static boolean[] lotto;
     static char[] arr;
     public void baekjoon6603() throws Exception {
         // static buffered
@@ -306,17 +307,21 @@ public class Recursion2 {
             int k = Integer.parseInt(st.nextToken());
             if (k == 0) break;
             arr = new char[k];
+            lotto = new boolean[k];
 
             for (int i = 0; i < k; i++) {
                 arr[i] = st.nextToken().charAt(0);
             }
+            combination(0, 6);
         }
+        bw.flush();
+        bw.close();
     }
 
-    static void combination(int left, int right) throws Exception {
-        // 뒤에서부터 0, 1, 2, 3, 4, ..
-        // 앞에서는 6, 5, 4, 3 ...
-        // 중복은 걸러야함
+    static void combination(int start, int end) throws Exception {
+        // X 이후로 O의 경우의 수
+        // X이전 O를 6에서 뺀 나머지가 X 이후 나머지 배열의 경우의 수
+
 
     }
 
