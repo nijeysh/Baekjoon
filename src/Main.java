@@ -1,9 +1,11 @@
+import baekjoon.algorithm.backtracking.Step0;
 import baekjoon.algorithm.recursion.Step1;
 import baekjoon.algorithm.recursion.Step2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        new Step2().baekjoon2448();
+//        new Step2().baekjoon2448();
+        new Step0().baekjoon15649();
     }
 }
 

@@ -34,7 +34,51 @@ public class Step2 {
     }
 
     /**
+     * 신나는 함수 실행
+     *
+     */
+    public void baekjoon9184() throws Exception {
+        while (true) {
+            int a = read();
+            int b = read();
+            int c = read();
+
+            if (a == b && b == c && a == -1) break;
+
+            w(a, b, c);
+        }
+
+    }
+
+    // 바꾸기
+    static int w(int a, int b, int c) throws Exception {
+        // 첫 번째 조건: a, b, c가 0 이하인 경우
+        if (a <= 0 || b <= 0 || c <= 0) {
+            return 1;
+        }
+
+        // 두 번째 조건: a, b, c가 20보다 큰 경우
+        if (a > 20 || b > 20 || c > 20) {
+            return w(20, 20, 20);
+        }
+
+        // 세 번째 조건: a < b < c인 경우
+        if (a < b && b < c) {
+            return w(a, b, c - 1) + w(a, b - 1, c - 1) - w(a, b - 1, c);
+        }
+
+        // 나머지 경우
+        return w(a - 1, b, c) + w(a - 1, b - 1, c) + w(a - 1, b, c - 1) - w(a - 1, b - 1, c - 1);
+    }
+
+    /**
      * 별 찍기 - 11
+     *
+     * 첫째 줄에 N이 주어진다. N은 항상 3×2k 수이다. (3, 6, 12, 24, 48, ...) (0 ≤ k ≤ 10, k는 정수)
+     *
+     *    *
+     *   * *
+     *  *****
      *
      */
     public void baekjoon2448() throws Exception {

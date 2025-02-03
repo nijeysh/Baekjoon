@@ -1,5 +1,10 @@
 package baekjoon.algorithm.backtracking;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Step0 {
 
     /**
@@ -13,20 +18,65 @@ public class Step0 {
      * 수열은 사전 순으로 증가하는 순서로 출력해야 한다.
      *
      */
-    static int cnt = 0;
+    static StringBuilder sb = new StringBuilder();
     public void baekjoon15649() throws Exception {
         int N = read(); // 1부터 N까지 자연수
         int M = read(); // 개수
+        boolean[] numbers = new boolean[N + 1];
+        String str = "";
 
-
+        sequence(N, M, 0, numbers, str);
+        System.out.print(sb);
     }
 
-    private static void sequence(int N, int M, int depth) throws Exception {
-        // 중복제거
+    private static void sequence(int N, int M, int depth, boolean[] numbers, String str) throws Exception {
+        if (depth >= M) {
+            sb.append(str).append("\n");
+            return;
+        }
         for (int i = 1; i <= N; i++) {
-            sequence(N, M, depth + 1);
+            if (numbers[i]) continue;
+            numbers[i] = true;
+
+            if (M - 1 == depth) {
+                sequence(N, M, depth + 1, numbers, str + i);
+            } else {
+                sequence(N, M, depth + 1, numbers, str + i + " ");
+            }
+            numbers[i] = false;
         }
     }
+
+    // 속도 개선 참고용
+//    static char[] answer;
+//    static boolean[] c;
+//    static StringBuilder sb = new StringBuilder();
+//    public static void main(String[] args) throws Exception{
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        String[] st = br.readLine().split(" ");
+//        int n=Integer.parseInt(st[0]), r=Integer.parseInt(st[1]);
+//
+//        answer = new char[2 * r];
+//        for (int i=1;i<r;i++) answer[2*i-1] = ' ';
+//        answer[2*r -1] = '\n';
+//        c = new boolean[n+1];
+//
+//        permutations(n,r,0);
+//        System.out.println(sb);
+//    }
+//
+//    public static void permutations(int n, int r, int m) {
+//        if (r==m) {sb.append(answer); return;}
+//
+//        for (int i=1; i<=n; i++) {
+//            if (!c[i]) {
+//                c[i] = true;
+//                answer[2*m] = (char) (i+'0');
+//                permutations(n,r,m+1);
+//                c[i] = false;
+//            }
+//        }
+//    }
 
     public void baekjoon15650() throws Exception {
 
