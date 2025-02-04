@@ -79,7 +79,6 @@ public class Step0 {
 //    }
 
     /**
-     *
      * 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
      *
      * 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열
@@ -102,11 +101,11 @@ public class Step0 {
         // 마지막은 개행
         result[2 * M - 1] = '\n';
 
-        sequence2(N, M, 1, 0);
+        sequence(N, M, 1, 0);
         System.out.print(sb);
     }
 
-    static void sequence2(int N, int M, int start, int depth) throws Exception {
+    static void sequence(int N, int M, int start, int depth) throws Exception {
         if (M == depth) {
             sb.append(result);
             return;
@@ -118,9 +117,44 @@ public class Step0 {
             }
             numbers[i] = true;
             result[2 * depth] = (char) (i + '0');
-            sequence2(N, M, i, depth + 1);
+            sequence(N, M, i, depth + 1);
 
             numbers[i] = false;
+        }
+    }
+
+    /**
+     * 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
+     *
+     * 1부터 N까지 자연수 중에서 M개를 고른 수열
+     * 같은 수를 여러 번 골라도 된다.
+     *
+     * 첫째 줄에 자연수 N과 M이 주어진다. (1 ≤ M ≤ N ≤ 7)
+     *
+     */
+    public void baekjoon15651() throws Exception {
+        int N = read();
+        int M = read();
+
+        result = new char[2 * M];
+        for (int i = 1; i < M; i++) {
+            result[2 * i - 1] = ' ';
+        }
+        result[2 * M - 1] = '\n';
+
+        permutation(N, M, 0);
+        System.out.print(sb);
+    }
+
+    static void permutation(int N, int M, int depth) throws Exception {
+        if (M == depth) {
+            sb.append(result);
+            return;
+        }
+
+        for (int i = 1; i <= N; i++) {
+            result[2 * depth] = (char) (i + '0');
+            permutation(N, M, depth + 1);
         }
     }
 
