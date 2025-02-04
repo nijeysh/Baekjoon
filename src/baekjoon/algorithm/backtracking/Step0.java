@@ -78,8 +78,50 @@ public class Step0 {
 //        }
 //    }
 
-    public void baekjoon15650() throws Exception {
+    /**
+     *
+     * 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
+     *
+     * 1부터 N까지 자연수 중에서 중복 없이 M개를 고른 수열
+     * 고른 수열은 오름차순이어야 한다.
+     *
+     */
 
+    static boolean numbers[];
+    static char result[];
+    public void baekjoon15650() throws Exception {
+        int N = read();
+        int M = read();
+
+        numbers = new boolean[N + 1];
+        result = new char[M * 2];
+        for (int i = 1; i < M; i++) {
+            result[2 * i - 1] = ' ';
+        }
+
+        // 마지막은 개행
+        result[2 * M - 1] = '\n';
+
+        sequence2(N, M, 1, 0);
+        System.out.print(sb);
+    }
+
+    static void sequence2(int N, int M, int start, int depth) throws Exception {
+        if (M == depth) {
+            sb.append(result);
+            return;
+        }
+
+        for (int i = start; i <= N; i++) {
+            if (numbers[i]) {
+                continue;
+            }
+            numbers[i] = true;
+            result[2 * depth] = (char) (i + '0');
+            sequence2(N, M, i, depth + 1);
+
+            numbers[i] = false;
+        }
     }
 
     private static int read() throws Exception {
