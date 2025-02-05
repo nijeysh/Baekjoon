@@ -208,132 +208,54 @@ public class Step0 {
      * 첫째 줄에 N이 주어진다. (1 ≤ N < 15)
      *
      */
-    // 규칙
-//    퀸은 같은 행(row)에 있으면 안 됨
-//    퀸은 같은 열(column)에 있으면 안 됨
-//    퀸은 대각선에 있으면 안 됨
-    static boolean[][] chess;
+    static int[][] chess;
     static int N;
     static int count;
+    // 시간 개선하기
     public void baekjoon9663() throws Exception {
         N = read();
-        chess = new boolean[N][N];
+        chess = new int[N][N];
 
-        chessboard(0, 0, 0);
+        chessboard(0, 0, 1);
         System.out.println(count);
     }
 
     static void chessboard(int r, int c, int depth) throws Exception {
-        System.out.println("r: " + r + ", c: " + c + ", depth: " + depth);
-        System.out.println(Arrays.deepToString(chess));
-        if (N == depth) {
+        if ((N + 1) == depth) {
             count++;
             return;
         }
 
-        for (int i = r; i < N; i++) {
-            for (int j = c; j < N; j++) {
-                if (!chess[i][j]) {
-                    NQueen(i, j, true);
-                    chessboard(i + 1, j + 1, depth + 1);
-                    NQueen(i, j, false);
-                } else {
-                    chessboard(i + 1, j + 1, depth);
-                }
-//                if (chess[i][j]) continue;
-//                    NQueen(i, j, true);
-//                    chessboard(i + 1, j + 1, depth + 1);
-//                    NQueen(i, j, false);
+        // 한 줄에 하나는 고정으로 있어야 함
+        for (int j = 0; j < N; j++) {
+            if (chess[r][j] != 0) {
+                continue;
             }
+            NQueen(r, j, depth, 0);
+            chessboard(r + 1, 0, depth + 1);
+            NQueen(r, j, 0, depth);
         }
     }
 
-    static void NQueen(int r, int c, boolean path) throws Exception {
-        for (int i = r; i < N; i++) {
-            chess[i][c] = path;
-        }
-        for (int i = c; i < N; i++) {
-            chess[r][i] = path;
-        }
-        int num = 0;
-        for (int i = r; i < N; i++) {
-            if ((c + num) >= N) {
-                break;
-            }
-            chess[i][c + num++] = path;
+    static void NQueen(int r, int c, int depth, int target) throws Exception {
+        for (int i = 0; i < N; i++) {
+            if (chess[i][c] == target) chess[i][c] = depth;
+            if (chess[r][i] == target) chess[r][i] = depth;
         }
 
-        num = -1;
-        if (r > 0) {
-            for (int i = r; i >= 0; i--) {
-                if ((c + num) < 0) {
-                    break;
-                }
-                chess[i][c + num--] = path;
+        int right = 0;
+        int left = 0;
+        for (int i = r; i < N; i++) {
+            if ((c + right) < N && chess[i][c + right] == target) {
+                chess[i][c + right] = depth;
             }
+            if ((c + left) >= 0 && chess[i][c + left] == target) {
+                chess[i][c + left] = depth;
+            }
+            right++;
+            left--;
         }
     }
-
-    /*static void chessboard(int x, int y, int depth) throws Exception {
-        System.out.println("x: " + x + ", y: " + y);
-        System.out.println("depth: " + depth);
-        if (N == depth) {
-            System.out.println(Arrays.deepToString(chess));
-            count++;
-            return;
-        }
-        if (x >= N) {
-            return;
-        }
-        if (y >= N) {
-            chessboard(x + 1, 0, depth);
-            return;
-        }
-
-        for (int i = x; i < N; i++) {
-            for (int j = y; j < N; j++) {
-                if (checkNeighbors(i, j)) {
-                    chess[i][j] = true;
-                    chessboard(i, j + 1, depth + 1);
-                } else {
-                    chessboard(i, j + 1, depth);
-                }
-
-//                System.out.println("depth: " + depth);
-
-                chess[i][j] = false;
-            }
-        }
-    }*/
-
-    /*static boolean checkNeighbors(int x, int y) throws Exception {
-        if (x > 0) {
-            if (chess[x - 1][y]) return false;
-        }
-        if (y > 0) {
-            if (chess[x][y - 1]) return false;
-        }
-        if (x < N - 1) {
-            if (chess[x + 1][y]) return false;
-        }
-        if (y < N - 1) {
-            if (chess[x][y + 1]) return false;
-        }
-        if (x > 0 && y > 0) {
-            if (chess[x - 1][y - 1]) return false;
-        }
-        if (x < N - 1 && y < N - 1) {
-            if (chess[x + 1][y + 1]) return false;
-        }
-        if (x > 0 && y < N - 1) {
-            if (chess[x - 1][y + 1]) return false;
-        }
-        if (x < N - 1 && y > 0 ) {
-            if (chess[x + 1][y - 1]) return false;
-        }
-
-        return true;
-    }*/
 
     private static int read() throws Exception {
         int n;
