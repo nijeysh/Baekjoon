@@ -158,6 +158,44 @@ public class Step0 {
         }
     }
 
+    /**
+     *
+     * 자연수 N과 M이 주어졌을 때, 아래 조건을 만족하는 길이가 M인 수열을 모두 구하는 프로그램을 작성하시오.
+     *
+     * 1부터 N까지 자연수 중에서 M개를 고른 수열
+     * 같은 수를 여러 번 골라도 된다.
+     * 고른 수열은 비내림차순이어야 한다.
+     * 길이가 K인 수열 A가 A1 ≤ A2 ≤ ... ≤ AK-1 ≤ AK를 만족하면, 비내림차순이라고 한다.
+     *
+     * 첫째 줄에 자연수 N과 M이 주어진다. (1 ≤ M ≤ N ≤ 8)
+     *
+     */
+    public void baekjoon15652() throws Exception {
+        int N = read();
+        int M = read();
+
+        result = new char[2 * M];
+        for (int i = 1; i < M; i++) {
+            result[2 * i - 1] = ' ';
+        }
+        result[2 * M - 1] = '\n';
+
+        permutation(N, M, 1, 0);
+        System.out.print(sb);
+    }
+
+    static void permutation(int N, int M, int start, int depth) throws Exception {
+        if (M == depth) {
+            sb.append(result);
+            return;
+        }
+
+        for (int i = start; i <= N; i++) {
+            result[2 * depth] = (char) (i + '0');
+            permutation(N, M, i, depth + 1);
+        }
+    }
+
     private static int read() throws Exception {
         int n;
         int result = 0;
