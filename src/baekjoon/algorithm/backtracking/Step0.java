@@ -218,9 +218,60 @@ public class Step0 {
     public void baekjoon9663() throws Exception {
         N = read();
         chess = new boolean[N][N];
-//        chessboard(0, 0, 0);
 
+        chessboard(0, 0, 0);
         System.out.println(count);
+    }
+
+    static void chessboard(int r, int c, int depth) throws Exception {
+        System.out.println("r: " + r + ", c: " + c + ", depth: " + depth);
+        System.out.println(Arrays.deepToString(chess));
+        if (N == depth) {
+            count++;
+            return;
+        }
+
+        for (int i = r; i < N; i++) {
+            for (int j = c; j < N; j++) {
+                if (!chess[i][j]) {
+                    NQueen(i, j, true);
+                    chessboard(i + 1, j + 1, depth + 1);
+                    NQueen(i, j, false);
+                } else {
+                    chessboard(i + 1, j + 1, depth);
+                }
+//                if (chess[i][j]) continue;
+//                    NQueen(i, j, true);
+//                    chessboard(i + 1, j + 1, depth + 1);
+//                    NQueen(i, j, false);
+            }
+        }
+    }
+
+    static void NQueen(int r, int c, boolean path) throws Exception {
+        for (int i = r; i < N; i++) {
+            chess[i][c] = path;
+        }
+        for (int i = c; i < N; i++) {
+            chess[r][i] = path;
+        }
+        int num = 0;
+        for (int i = r; i < N; i++) {
+            if ((c + num) >= N) {
+                break;
+            }
+            chess[i][c + num++] = path;
+        }
+
+        num = -1;
+        if (r > 0) {
+            for (int i = r; i >= 0; i--) {
+                if ((c + num) < 0) {
+                    break;
+                }
+                chess[i][c + num--] = path;
+            }
+        }
     }
 
     /*static void chessboard(int x, int y, int depth) throws Exception {
