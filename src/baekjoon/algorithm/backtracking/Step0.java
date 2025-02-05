@@ -3,6 +3,7 @@ package baekjoon.algorithm.backtracking;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Step0 {
@@ -195,6 +196,93 @@ public class Step0 {
             permutation(N, M, i, depth + 1);
         }
     }
+
+    /**
+     *
+     * N-Queen
+     *
+     * N-Queen 문제는 크기가 N × N인 체스판 위에 퀸 N개를 서로 공격할 수 없게 놓는 문제이다.
+     *
+     * N이 주어졌을 때, 퀸을 놓는 방법의 수를 구하는 프로그램을 작성하시오.
+     *
+     * 첫째 줄에 N이 주어진다. (1 ≤ N < 15)
+     *
+     */
+    // 규칙
+//    퀸은 같은 행(row)에 있으면 안 됨
+//    퀸은 같은 열(column)에 있으면 안 됨
+//    퀸은 대각선에 있으면 안 됨
+    static boolean[][] chess;
+    static int N;
+    static int count;
+    public void baekjoon9663() throws Exception {
+        N = read();
+        chess = new boolean[N][N];
+//        chessboard(0, 0, 0);
+
+        System.out.println(count);
+    }
+
+    /*static void chessboard(int x, int y, int depth) throws Exception {
+        System.out.println("x: " + x + ", y: " + y);
+        System.out.println("depth: " + depth);
+        if (N == depth) {
+            System.out.println(Arrays.deepToString(chess));
+            count++;
+            return;
+        }
+        if (x >= N) {
+            return;
+        }
+        if (y >= N) {
+            chessboard(x + 1, 0, depth);
+            return;
+        }
+
+        for (int i = x; i < N; i++) {
+            for (int j = y; j < N; j++) {
+                if (checkNeighbors(i, j)) {
+                    chess[i][j] = true;
+                    chessboard(i, j + 1, depth + 1);
+                } else {
+                    chessboard(i, j + 1, depth);
+                }
+
+//                System.out.println("depth: " + depth);
+
+                chess[i][j] = false;
+            }
+        }
+    }*/
+
+    /*static boolean checkNeighbors(int x, int y) throws Exception {
+        if (x > 0) {
+            if (chess[x - 1][y]) return false;
+        }
+        if (y > 0) {
+            if (chess[x][y - 1]) return false;
+        }
+        if (x < N - 1) {
+            if (chess[x + 1][y]) return false;
+        }
+        if (y < N - 1) {
+            if (chess[x][y + 1]) return false;
+        }
+        if (x > 0 && y > 0) {
+            if (chess[x - 1][y - 1]) return false;
+        }
+        if (x < N - 1 && y < N - 1) {
+            if (chess[x + 1][y + 1]) return false;
+        }
+        if (x > 0 && y < N - 1) {
+            if (chess[x - 1][y + 1]) return false;
+        }
+        if (x < N - 1 && y > 0 ) {
+            if (chess[x + 1][y - 1]) return false;
+        }
+
+        return true;
+    }*/
 
     private static int read() throws Exception {
         int n;
