@@ -208,52 +208,50 @@ public class Step0 {
      * 첫째 줄에 N이 주어진다. (1 ≤ N < 15)
      *
      */
-    static int[][] chess;
+    static boolean chess[];
+    static boolean left[];
+    static boolean right[];
     static int N;
     static int count;
-    // 시간 개선하기
     public void baekjoon9663() throws Exception {
         N = read();
-        chess = new int[N][N];
+        int size = N * N;
+        chess = new boolean[size];
+        left = new boolean[size];
+        right = new boolean[size];
 
-        chessboard(0, 0, 1);
-        System.out.println(count);
+        chessboard(0);
+        System.out.print(count);
     }
 
-    static void chessboard(int r, int c, int depth) throws Exception {
-        if ((N + 1) == depth) {
+    static void chessboard(int depth) throws Exception {
+        if (N == depth) {
             count++;
             return;
         }
+        int start = depth * N;
+        int end = start + N;
 
-        // 한 줄에 하나는 고정으로 있어야 함
-        for (int j = 0; j < N; j++) {
-            if (chess[r][j] != 0) {
-                continue;
+        for (int i = start; i < end; i++) {
+            // 1) 열, 왼, 오 전부 false여야 하는 case
+            // 2) int타입 하나로 사용하는 case
+            if (!chess[i] && !left[i] && !right[i]) {
+                NQueen(i, depth, true);
+                chessboard(depth + 1);
+                NQueen(i, depth, false);
             }
-            NQueen(r, j, depth, 0);
-            chessboard(r + 1, 0, depth + 1);
-            NQueen(r, j, 0, depth);
         }
     }
 
-    static void NQueen(int r, int c, int depth, int target) throws Exception {
-        for (int i = 0; i < N; i++) {
-            if (chess[i][c] == target) chess[i][c] = depth;
-            if (chess[r][i] == target) chess[r][i] = depth;
-        }
-
-        int right = 0;
-        int left = 0;
-        for (int i = r; i < N; i++) {
-            if ((c + right) < N && chess[i][c + right] == target) {
-                chess[i][c + right] = depth;
-            }
-            if ((c + left) >= 0 && chess[i][c + left] == target) {
-                chess[i][c + left] = depth;
-            }
-            right++;
-            left--;
+    static void NQueen(int k, int depth, boolean path) throws Exception {
+        int l = k % N;
+        int r = N - l;
+        int step = 0;
+        for (int i = k; i < N * N; i+=N) {
+            chess[i] = path;
+            if (step <= l) left[i - step] = path;
+            if (step < r) right[i + step] = path;
+            step++;
         }
     }
 
