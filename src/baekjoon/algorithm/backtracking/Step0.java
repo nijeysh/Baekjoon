@@ -1,10 +1,12 @@
 package baekjoon.algorithm.backtracking;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class Step0 {
 
@@ -233,17 +235,15 @@ public class Step0 {
         int end = start + N;
 
         for (int i = start; i < end; i++) {
-            // 1) 열, 왼, 오 전부 false여야 하는 case
-            // 2) int타입 하나로 사용하는 case
             if (!chess[i] && !left[i] && !right[i]) {
-                NQueen(i, depth, true);
+                NQueen(i, true);
                 chessboard(depth + 1);
-                NQueen(i, depth, false);
+                NQueen(i, false);
             }
         }
     }
 
-    static void NQueen(int k, int depth, boolean path) throws Exception {
+    static void NQueen(int k, boolean path) throws Exception {
         int l = k % N;
         int r = N - l;
         int step = 0;
@@ -254,6 +254,106 @@ public class Step0 {
             step++;
         }
     }
+
+    // 예시) 개선 1
+//    public class Main {
+//        static int max;
+//        static int count;
+//        public static void main(String[] args) throws Exception {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            int n = Integer.parseInt(br.readLine());
+//            max = (1 << n) - 1;
+//            backtracking(0, 0, 0);
+//            System.out.println(count);
+//        }
+//
+//        private static void backtracking(int col, int dia, int adia) {
+//            if (col == max) {
+//                count++;
+//                return;
+//            }
+//            int flag = max & ~(col | dia | adia);
+//            while (flag > 0) {
+//                int curr = flag & (-flag);
+//                flag -= curr;
+//                backtracking(col | curr, (dia | curr) >> 1, (adia | curr) << 1);
+//            }
+//        }
+//    }
+
+    // 예시) 개선 2
+//    public class Main {
+//        static int totalCount; // 총 퀸 배치 방법 수
+//
+//        public static void main(String[] args) throws IOException {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            int N = Integer.parseInt(br.readLine());
+//
+//            totalCount = 0;
+//
+//            // 비트마스킹 기반 DFS 탐색
+//            dfs(0, N, 0, 0, 0);
+//
+//            // 결과 출력
+//            System.out.println(totalCount);
+//        }
+//
+//        static void dfs(int row, int N, int cols, int d1, int d2) {
+//            // 모든 퀸을 배치한 경우
+//            if (row == N) {
+//                totalCount++;
+//                return;
+//            }
+//
+//            // 가능한 위치 계산
+//            int availablePositions = (~(cols | d1 | d2)) & ((1 << N) - 1);
+//
+//            while (availablePositions != 0) {
+//                // 가장 오른쪽 비트를 선택
+//                int position = availablePositions & -availablePositions;
+//
+//                // 해당 위치에 퀸 배치
+//                dfs(row + 1, N, cols | position, (d1 | position) << 1, (d2 | position) >> 1);
+//
+//                // 상태 복원
+//                availablePositions &= (availablePositions - 1);
+//            }
+//        }
+//    }
+
+    // 가지치기 예시
+//    static int N, count;
+//    static boolean[] col, leftDiag, rightDiag;
+//
+//    public void baekjoonTest() throws Exception {
+//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//        N = Integer.parseInt(br.readLine());
+//
+//        col = new boolean[N];
+//        leftDiag = new boolean[2 * N - 1];  // 왼쪽 대각선 (row - col)
+//        rightDiag = new boolean[2 * N - 1]; // 오른쪽 대각선 (row + col)
+//
+//
+//        solve(0); // N-Queen 실행
+//
+//        System.out.println(count);
+//    }
+//
+//    static void solve(int row) {
+//        if (row == N) {  // 모든 행에 퀸을 배치하면 해결
+//            count++;
+//            return;
+//        }
+//
+//        for (int c = 0; c < N; c++) {
+//            if (col[c] || leftDiag[row - c + N - 1] || rightDiag[row + c])
+//                continue;  // 가지치기: 퀸을 놓을 수 없는 경우
+//
+//            col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = true;
+//            solve(row + 1);
+//            col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = false;  // 백트래킹
+//        }
+//    }
 
     private static int read() throws Exception {
         int n;
