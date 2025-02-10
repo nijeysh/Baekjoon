@@ -5,7 +5,13 @@ import baekjoon.algorithm.recursion.Step2;
 public class Main {
     public static void main(String[] args) throws Exception {
 //        new Step2().baekjoon2448();
-        new Step0().baekjoonTest();
+//        new Step0().baekjoonTest();
+        new Step0().baekjoon14888();
+//        int num1 = 5;
+//        int num2 = 9;
+//        System.out.println(num1 & num2);
+//        System.out.println(num1 | num2);
+//        System.out.println(num1 ^ num2);
     }
 }
 

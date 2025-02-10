@@ -1,12 +1,8 @@
 package baekjoon.algorithm.backtracking;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 public class Step0 {
 
@@ -210,50 +206,50 @@ public class Step0 {
      * 첫째 줄에 N이 주어진다. (1 ≤ N < 15)
      *
      */
-    static boolean chess[];
-    static boolean left[];
-    static boolean right[];
-    static int N;
-    static int count;
-    public void baekjoon9663() throws Exception {
-        N = read();
-        int size = N * N;
-        chess = new boolean[size];
-        left = new boolean[size];
-        right = new boolean[size];
-
-        chessboard(0);
-        System.out.print(count);
-    }
-
-    static void chessboard(int depth) throws Exception {
-        if (N == depth) {
-            count++;
-            return;
-        }
-        int start = depth * N;
-        int end = start + N;
-
-        for (int i = start; i < end; i++) {
-            if (!chess[i] && !left[i] && !right[i]) {
-                NQueen(i, true);
-                chessboard(depth + 1);
-                NQueen(i, false);
-            }
-        }
-    }
-
-    static void NQueen(int k, boolean path) throws Exception {
-        int l = k % N;
-        int r = N - l;
-        int step = 0;
-        for (int i = k; i < N * N; i+=N) {
-            chess[i] = path;
-            if (step <= l) left[i - step] = path;
-            if (step < r) right[i + step] = path;
-            step++;
-        }
-    }
+//    static boolean chess[];
+//    static boolean left[];
+//    static boolean right[];
+//    static int N;
+//    static int count;
+//    public void baekjoon9663() throws Exception {
+//        N = read();
+//        int size = N * N;
+//        chess = new boolean[size];
+//        left = new boolean[size];
+//        right = new boolean[size];
+//
+//        chessboard(0);
+//        System.out.print(count);
+//    }
+//
+//    static void chessboard(int depth) throws Exception {
+//        if (N == depth) {
+//            count++;
+//            return;
+//        }
+//        int start = depth * N;
+//        int end = start + N;
+//
+//        for (int i = start; i < end; i++) {
+//            if (!chess[i] && !left[i] && !right[i]) {
+//                NQueen(i, true);
+//                chessboard(depth + 1);
+//                NQueen(i, false);
+//            }
+//        }
+//    }
+//
+//    static void NQueen(int k, boolean path) throws Exception {
+//        int l = k % N;
+//        int r = N - l;
+//        int step = 0;
+//        for (int i = k; i < N * N; i+=N) {
+//            chess[i] = path;
+//            if (step <= l) left[i - step] = path;
+//            if (step < r) right[i + step] = path;
+//            step++;
+//        }
+//    }
 
     // 예시) 개선 1
 //    public class Main {
@@ -322,38 +318,108 @@ public class Step0 {
 //    }
 
     // 가지치기 예시
-//    static int N, count;
-//    static boolean[] col, leftDiag, rightDiag;
-//
-//    public void baekjoonTest() throws Exception {
-//        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-//        N = Integer.parseInt(br.readLine());
-//
-//        col = new boolean[N];
-//        leftDiag = new boolean[2 * N - 1];  // 왼쪽 대각선 (row - col)
-//        rightDiag = new boolean[2 * N - 1]; // 오른쪽 대각선 (row + col)
-//
-//
-//        solve(0); // N-Queen 실행
-//
-//        System.out.println(count);
-//    }
-//
-//    static void solve(int row) {
-//        if (row == N) {  // 모든 행에 퀸을 배치하면 해결
-//            count++;
-//            return;
-//        }
-//
-//        for (int c = 0; c < N; c++) {
-//            if (col[c] || leftDiag[row - c + N - 1] || rightDiag[row + c])
-//                continue;  // 가지치기: 퀸을 놓을 수 없는 경우
-//
-//            col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = true;
-//            solve(row + 1);
-//            col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = false;  // 백트래킹
-//        }
-//    }
+    static int N, count;
+    static boolean[] col, leftDiag, rightDiag;
+
+    public void baekjoonTest() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+
+        col = new boolean[N];
+        leftDiag = new boolean[2 * N - 1];  // 왼쪽 대각선 (row - col)
+        rightDiag = new boolean[2 * N - 1]; // 오른쪽 대각선 (row + col)
+
+
+        solve(0); // N-Queen 실행
+
+        System.out.println(count);
+    }
+
+    static void solve(int row) {
+        if (row == N) {  // 모든 행에 퀸을 배치하면 해결
+            count++;
+            return;
+        }
+
+        for (int c = 0; c < N; c++) {
+            if (col[c] || leftDiag[row - c + N - 1] || rightDiag[row + c])
+                continue;  // 가지치기: 퀸을 놓을 수 없는 경우
+
+            col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = true;
+            solve(row + 1);
+            col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = false;  // 백트래킹
+        }
+    }
+
+    /**
+     * 연산자 끼워넣기
+     *
+     * N개의 수로 이루어진 수열 A1, A2, ..., AN이 주어진다.
+     * 또, 수와 수 사이에 끼워넣을 수 있는 N-1개의 연산자가 주어진다.
+     * 연산자는 덧셈(+), 뺄셈(-), 곱셈(×), 나눗셈(÷)으로만 이루어져 있다.
+     *
+     * 우리는 수와 수 사이에 연산자를 하나씩 넣어서, 수식을 하나 만들 수 있다. 이때, 주어진 수의 순서를 바꾸면 안 된다.
+     *
+     * 식의 계산은 연산자 우선 순위를 무시하고 앞에서부터 진행해야 한다.
+     * 또, 나눗셈은 정수 나눗셈으로 몫만 취한다.
+     * 음수를 양수로 나눌 때는 C++14의 기준을 따른다.
+     * 즉, 양수로 바꾼 뒤 몫을 취하고, 그 몫을 음수로 바꾼 것과 같다.
+     *
+     * 첫째 줄에 수의 개수 N(2 ≤ N ≤ 11)가 주어진다.
+     * 둘째 줄에는 A1, A2, ..., AN이 주어진다. (1 ≤ Ai ≤ 100)
+     * 셋째 줄에는 합이 N-1인 4개의 정수가 주어지는데, 차례대로 덧셈(+)의 개수, 뺄셈(-)의 개수, 곱셈(×)의 개수, 나눗셈(÷)의 개수이다.
+     *
+     */
+    static int[] arr1;
+    static int[] arr2;
+    static int max = Integer.MIN_VALUE;
+    static int min = Integer.MAX_VALUE;
+    public void baekjoon14888() throws Exception {
+        N = read();
+        arr1 = new int[N];
+        for (int i = 0; i < N; i++) {
+            arr1[i] = read();
+        }
+
+        // +, -, x, /
+        arr2 = new int[4];
+        for (int i = 0; i < 4; i++) {
+            arr2[i] = read();
+        }
+
+        combinations(0, arr1[0], 0);
+        System.out.println(max);
+        System.out.print(min);
+    }
+
+    static void combinations(int index, int value, int depth) throws Exception {
+        if (N - 1 == depth) {
+            max = Math.max(max, value);
+            min = Math.min(min, value);
+            return;
+        }
+
+        for (int i = 0; i < 4; i++) {
+            if (arr2[i] > 0) {
+                arr2[i] -= 1;
+                combinations(index + 1, calculation(index + 1, i, value), depth + 1);
+                arr2[i] += 1;
+            }
+        }
+    }
+
+    static int calculation(int index, int i, int value) {
+        switch (i) {
+            case 0:
+                return value + arr1[index];
+            case 1:
+                return value - arr1[index];
+            case 2:
+                return value * arr1[index];
+            default:
+                return value / arr1[index];
+        }
+    }
 
     private static int read() throws Exception {
         int n;
