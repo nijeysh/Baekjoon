@@ -421,6 +421,59 @@ public class Step0 {
         }
     }
 
+    static int[][] capacity;
+    static boolean[] team;
+    static int size;
+
+    static int sum_A = 0;
+    static int sum_B = 0;
+    public void baekjoon14889() throws Exception {
+        N = read(); // N은 짝수
+        size = N / 2;
+
+        // 0, 1, 2, 3
+        capacity = new int[N][N];
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                capacity[i][j] = read();
+            }
+        }
+
+        team = new boolean[N];
+        divide(0, size, 0);
+    }
+
+    static void divide(int start, int end, int depth) {
+        if (depth == size) {
+            System.out.println("team: " + Arrays.toString(team));
+            synergy();
+            sum_A = 0;
+            return;
+        }
+
+        // 두 팀으로 나눈다.
+        for (int i = start; i < N - end; i++) {
+            team[i] = true;
+            divide(i + 1, end - 1, depth + 1);
+            team[i] = false;
+        }
+    }
+
+    static void synergy(int left, int right, int depth) throws Exception {
+        if (depth == 2) {
+
+            return;
+        }
+
+        // 0, 1, 2 -> 0,1 / 0,2 / 1,2
+        for (int i = left; i < N; i++) {
+            // true
+            if (team[i]) {
+
+            }
+        }
+    }
+
     private static int read() throws Exception {
         int n;
         int result = 0;
