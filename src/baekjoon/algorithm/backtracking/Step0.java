@@ -446,7 +446,7 @@ public class Step0 {
     static void divide(int start, int end, int depth) {
         if (depth == size) {
             System.out.println("team: " + Arrays.toString(team));
-            synergy();
+//            synergy();
             sum_A = 0;
             return;
         }
