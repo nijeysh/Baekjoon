@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Step0 {
 
@@ -498,49 +499,131 @@ public class Step0 {
 
     // 14889번 개선 예시 1
 //    public class Main {
-//        static int n;
-//        static int t;
-//        static int totalSum;
-//        static int[] rowSum, colSum;
-//        static int min;
-//        public static void main(String[] args) throws Exception {
-//            n = readInt();
-//            t = n/2;
-//            rowSum = new int[n];
-//            colSum = new int[n];
-//            int x;
-//            for (int i=0; i<n; i++) {
-//                for (int j=0; j<n; j++) {
-//                    x = readInt();
-//                    totalSum += x;
-//                    rowSum[i] += x;
-//                    colSum[j] += x;
+//        static int N, sum, min;
+//        static int[] sumRow, sumCol;
+//        static int visit;
+//
+//        public static void main(String[] args) throws IOException {
+//            Reader reader = new Reader();
+//            N = reader.nextInt();
+//            sum = 0;
+//            sumRow = new int[N];
+//            sumCol = new int[N];
+//            for (int i = 0; i < N; i++) {
+//                for (int j = 0; j < N; j++) {
+//                    int stat = reader.nextInt();
+//                    sum += stat;
+//                    sumRow[j] += stat;
+//                    sumCol[i] += stat;
 //                }
 //            }
-//            min = Integer.MAX_VALUE;
-//            solve(1, 0, totalSum - rowSum[0] - colSum[0]);
-//            System.out.print(min);
+//            visit = 0;
+//            min = 10000;
+//            comb(0, 1, sum);
+//            System.out.println(min);
 //        }
-//        static void solve(int count, int last, int sum) {
-//            if (count == t) {
-//                min = Math.min(Math.abs(sum), min);
+//
+//        private static void comb(int cnt, int start, int diff) {
+//            if (cnt == N / 2) {
+//                // 능력치 차 계산
+//                min = Math.min(min, Math.abs(diff));
 //                return;
 //            }
-//            for (int i=last+1; i<n; i++) {
-//                solve(count + 1, i, sum - rowSum[i] - colSum[i]);
+//            for (int i = start; i < N; i++) {
+//                visit = visit | (1 << i);
+//                comb(cnt + 1, i + 1, diff - sumCol[i] - sumRow[i]);
+//                visit = visit & ~(1 << i);
 //            }
 //        }
-//        static int readInt() throws IOException {
-//            int n = System.in.read() & 15;
-//            int c = System.in.read();
-//            while (c > 47) {
-//                n = (n << 3) + (n << 1) + (c & 15);
-//                c = System.in.read();
+//
+//        static class Reader {
+//            final int SIZE = 1 << 15;
+//            byte[] buffer = new byte[SIZE];
+//            int index, size;
+//
+//            int nextInt() throws IOException {
+//                int n = 0;
+//                byte c;
+//                while ((c = read()) <= 32)
+//                    ;
+//                boolean neg = c == '-';
+//                if (neg)
+//                    c = read();
+//                do
+//                    n = (n << 3) + (n << 1) + (c & 15); while (isNumber(c = read()));
+//                return neg ? -n : n;
 //            }
-//            return n;
+//
+//            boolean isNumber(byte c) {
+//                return 47 < c && c < 58;
+//            }
+//
+//            byte read() throws IOException {
+//                if (index == size) {
+//                    size = System.in.read(buffer, index = 0, SIZE);
+//                    if (size < 0)
+//                        buffer[0] = -1;
+//                }
+//                return buffer[index++];
+//            }
 //        }
 //    }
 
+
+    // 개선 예시 2
+//    public class Main {
+//        static int N, S[], A[][];
+//        static boolean[] check;
+//
+//        static int answer = Integer.MAX_VALUE, total;
+//
+//        public static void main(String[] args) throws IOException {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//
+//            N = Integer.parseInt(br.readLine());
+//
+//            A = new int[N][N];
+//
+//            for(int i = 0; i < N; i++) {
+//                StringTokenizer st = new StringTokenizer(br.readLine());
+//
+//                for(int j = 0; j < N; j++)
+//                    total += (A[i][j] = Integer.parseInt(st.nextToken()));
+//            }
+//
+//            S = new int[N];
+//
+//            for(int i = 0; i < N; i++)
+//                for(int j = 0; j < N; j++)
+//                    S[i] += A[i][j] + A[j][i];
+//
+//            check = new boolean[N];
+//
+//            dfs(-1, 0);
+//
+//            System.out.println(answer);
+//        }
+//
+//        static void dfs(int n, int m) {
+//            if(m == N / 2) {
+//                int temp = 0;
+//
+//                for(int i = 0; i < N; i++)
+//                    if(check[i])
+//                        temp += S[i];
+//
+//                answer = Math.min(answer, Math.abs(total - temp));
+//
+//                return;
+//            }
+//
+//            for(int i = n + 1, j = N / 2 + m; i <= j; i++) {
+//                check[i] = true;
+//                dfs(i, m + 1);
+//                check[i] = false;
+//            }
+//        }
+//    }
     private static int read() throws Exception {
         int n;
         int result = 0;
