@@ -1,6 +1,7 @@
 package baekjoon.algorithm.backtracking;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
@@ -452,7 +453,7 @@ public class Step0 {
 
     static void divide(int start, int end, int depth) throws Exception {
         if (depth == size) {
-            System.out.println("team: " + Arrays.toString(team));
+//            System.out.println("team: " + Arrays.toString(team));
             int index1 = 0;
             int index2 = 0;
             sum1 = 0;
@@ -461,10 +462,10 @@ public class Step0 {
                 if (team[i]) startTeam[index1++] = i;
                 else linkedTeam[index2++] = i;
             }
+
             synergy(startTeam, 0, 0,0, true);
             synergy(linkedTeam, 0, 0,0, false);
 
-            System.out.println("sum1: " + sum1 + ", sum2: " + sum2);
             min = Math.min(min, Math.abs(sum1 - sum2));
             return;
         }
@@ -479,17 +480,14 @@ public class Step0 {
 
     static void synergy(int[] arr, int left, int right, int depth, boolean t) throws Exception {
         if (depth == 2) {
-            System.out.println("left: " + left + ", right: " + right);
             int a = arr[left];
             int b = arr[right];
             if (t) {
-                sum1 = sum1 + capacity[a][b];
+                sum1 += capacity[a][b];
             } else {
-                sum2 = sum2 + capacity[a][b];
+                sum2 += capacity[a][b];
             }
 
-//            System.out.println("a: " + a + ", b: " + b);
-            System.out.println("capacity[a][b]: " + capacity[a][b] + ", sum1: " + sum1 + ", sum2: " + sum2);
             return;
         }
         // 0, 1, 2 -> 0,1 / 0,2 / 1,2 // 1,0 / 2,0 / 2,1
@@ -497,6 +495,51 @@ public class Step0 {
             synergy(arr, right, i, depth + 1, t);
         }
     }
+
+    // 14889번 개선 예시 1
+//    public class Main {
+//        static int n;
+//        static int t;
+//        static int totalSum;
+//        static int[] rowSum, colSum;
+//        static int min;
+//        public static void main(String[] args) throws Exception {
+//            n = readInt();
+//            t = n/2;
+//            rowSum = new int[n];
+//            colSum = new int[n];
+//            int x;
+//            for (int i=0; i<n; i++) {
+//                for (int j=0; j<n; j++) {
+//                    x = readInt();
+//                    totalSum += x;
+//                    rowSum[i] += x;
+//                    colSum[j] += x;
+//                }
+//            }
+//            min = Integer.MAX_VALUE;
+//            solve(1, 0, totalSum - rowSum[0] - colSum[0]);
+//            System.out.print(min);
+//        }
+//        static void solve(int count, int last, int sum) {
+//            if (count == t) {
+//                min = Math.min(Math.abs(sum), min);
+//                return;
+//            }
+//            for (int i=last+1; i<n; i++) {
+//                solve(count + 1, i, sum - rowSum[i] - colSum[i]);
+//            }
+//        }
+//        static int readInt() throws IOException {
+//            int n = System.in.read() & 15;
+//            int c = System.in.read();
+//            while (c > 47) {
+//                n = (n << 3) + (n << 1) + (c & 15);
+//                c = System.in.read();
+//            }
+//            return n;
+//        }
+//    }
 
     private static int read() throws Exception {
         int n;
