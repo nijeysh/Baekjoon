@@ -425,8 +425,11 @@ public class Step0 {
     static boolean[] team;
     static int size;
 
-    static int sum_A = 0;
-    static int sum_B = 0;
+    static int[] startTeam;
+    static int[] linkedTeam;
+
+    static int sum1 = 0;
+    static int sum2 = 0;
     public void baekjoon14889() throws Exception {
         N = read(); // N은 짝수
         size = N / 2;
@@ -440,14 +443,29 @@ public class Step0 {
         }
 
         team = new boolean[N];
+        startTeam = new int[size];
+        linkedTeam = new int[size];
+
         divide(0, size, 0);
+        System.out.println(min);
     }
 
-    static void divide(int start, int end, int depth) {
+    static void divide(int start, int end, int depth) throws Exception {
         if (depth == size) {
             System.out.println("team: " + Arrays.toString(team));
-//            synergy();
-            sum_A = 0;
+            int index1 = 0;
+            int index2 = 0;
+            sum1 = 0;
+            sum2 = 0;
+            for (int i = 0; i < team.length; i++) {
+                if (team[i]) startTeam[index1++] = i;
+                else linkedTeam[index2++] = i;
+            }
+            synergy(startTeam, 0, 0,0, true);
+            synergy(linkedTeam, 0, 0,0, false);
+
+            System.out.println("sum1: " + sum1 + ", sum2: " + sum2);
+            min = Math.min(min, Math.abs(sum1 - sum2));
             return;
         }
 
@@ -459,18 +477,24 @@ public class Step0 {
         }
     }
 
-    static void synergy(int left, int right, int depth) throws Exception {
+    static void synergy(int[] arr, int left, int right, int depth, boolean t) throws Exception {
         if (depth == 2) {
+            System.out.println("left: " + left + ", right: " + right);
+            int a = arr[left];
+            int b = arr[right];
+            if (t) {
+                sum1 = sum1 + capacity[a][b];
+            } else {
+                sum2 = sum2 + capacity[a][b];
+            }
 
+//            System.out.println("a: " + a + ", b: " + b);
+            System.out.println("capacity[a][b]: " + capacity[a][b] + ", sum1: " + sum1 + ", sum2: " + sum2);
             return;
         }
-
-        // 0, 1, 2 -> 0,1 / 0,2 / 1,2
-        for (int i = left; i < N; i++) {
-            // true
-            if (team[i]) {
-
-            }
+        // 0, 1, 2 -> 0,1 / 0,2 / 1,2 // 1,0 / 2,0 / 2,1
+        for (int i = 0; i < arr.length; i++) {
+            synergy(arr, right, i, depth + 1, t);
         }
     }
 
