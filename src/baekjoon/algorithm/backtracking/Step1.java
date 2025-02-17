@@ -7,6 +7,9 @@ import java.util.Collections;
 import java.util.Comparator;
 
 public class Step1 {
+    static int N;
+    static int M;
+    static int min = Integer.MAX_VALUE;
 
     /**
      * N과 M (5)
@@ -14,7 +17,6 @@ public class Step1 {
      * N개의 자연수 중에서 M개를 고른 수열
      */
     static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-    static int M;
     static int[] arr;
     static boolean[] bfs;
     public void baekjoon15654() throws Exception {
@@ -48,6 +50,85 @@ public class Step1 {
             }
         }
     }
+
+    static int[] home;
+    static int[] chicken;
+    static int[] distance;
+    static boolean[] restaurant;
+    public void baekjoon15686() throws Exception {
+        N = read();
+        M = read();
+
+        int homeIndex = 0;
+        int chickenIndex = 0;
+        home = new int[2 * N];
+        chicken = new int[13];
+
+        // 1 - 집, 2 - 치킨집
+        for (int i = 0; i < N * N; i++) {
+            int city = read();
+            if (city == 0) {
+                continue;
+            }
+
+            if (city == 1) {
+                home[homeIndex++] = i;
+                continue;
+            }
+
+            if (city == 2) {
+                chicken[chickenIndex++] = i;
+                continue;
+            }
+        }
+
+        distance = new int[homeIndex];
+        restaurant = new boolean[chickenIndex];
+
+        closed(0, 0);
+        System.out.print(min);
+    }
+
+    static void closed(int start, int depth) throws Exception {
+        if (depth == M) {
+            Arrays.fill(distance, 100);
+            int diff = 0;
+            // 치킨집과의 최소거리를 구함
+            for (int i = 0; i < restaurant.length; i++) {
+                if (!restaurant[i]) continue;
+
+                int y1 = chicken[i] / N;
+                int x1 = chicken[i] % N;
+
+                // 집 마다 거리 차이
+                // 합을 구해야함..
+                for (int j = 0; j < distance.length; j++) {
+
+                    int y2 = home[j] / N;
+                    int x2 = home[j] % N;
+
+                    int len = Math.abs(y1 - y2) + Math.abs(x1 - x2);
+                    if (distance[j] > len) {
+                        distance[j] = len;
+                    }
+                }
+            }
+
+            for (int i = 0; i < distance.length; i++) {
+                diff += distance[i];
+            }
+            min = Math.min(min, diff);
+
+            return;
+        }
+
+        for (int i = start; i < restaurant.length; i++) {
+            restaurant[i] = true;
+            closed(i + 1, depth + 1);
+            restaurant[i] = false;
+        }
+    }
+
 
     static int read() throws Exception {
         int n;
