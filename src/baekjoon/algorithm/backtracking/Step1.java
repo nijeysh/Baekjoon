@@ -51,6 +51,9 @@ public class Step1 {
         }
     }
 
+    /**
+     * 치킨 배달
+     */
     static int[] home;
     static int[] chicken;
     static int[] distance;

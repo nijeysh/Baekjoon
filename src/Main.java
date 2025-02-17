@@ -1,12 +1,12 @@
 import baekjoon.algorithm.backtracking.Step0;
-import baekjoon.algorithm.recursion.Step1;
+import baekjoon.algorithm.backtracking.Step1;
 import baekjoon.algorithm.recursion.Step2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 //        new Step2().baekjoon2448();
-//        new Step0().baekjoonTest();
-        new Step0().baekjoon14889();
+        new Step0().baekjoon2580();
+        // 비트 연산자
 //        int num1 = 5;
 //        int num2 = 9;
 //        System.out.println(num1 & num2);
@@ -43,3 +43,5 @@ public class Main {
 
         // 시간 개선하기 (현재 0.28 -> 0.1초대로 개선하기)
         // new Recursion().baekjoon4779();
+
+        // backtracking => 9663(N-Queen), 14889(스타트와 링크) 다시 풀기

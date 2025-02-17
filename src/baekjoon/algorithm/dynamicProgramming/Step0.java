@@ -6,18 +6,18 @@ public class Step0 {
      * 알고리즘 수업 - 피보나치 수 1
      *
      */
-    static int[] f;
+    static int[] f = new int[41];
     static int count = 0;
     public void baekjoon24416() throws Exception {
         int n = read();
+        f[1] = f[2] = 1;
 
-        fib(n);
-        System.out.println(count + " " + (n - 2));
+        System.out.print(fibonacci(n) + " " + (n - 2));
     }
 
     static int fib(long n) {
-        count++;
         if (n == 1 || n == 2) {
+            count++;
             return 1;
         }
         return fib(n - 1) + fib(n - 2);
@@ -29,6 +29,15 @@ public class Step0 {
         }
         return f[n];
     }
+
+    /**
+     * 신나는 함수 실행
+     *
+     */
+    public void baekjoon9184() throws Exception {
+
+    }
+
 
     private static int read() throws Exception {
         int n;

@@ -1,8 +1,6 @@
 package baekjoon.algorithm.backtracking;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
@@ -319,7 +317,7 @@ public class Step0 {
 //        }
 //    }
 
-    // 가지치기 예시
+    // N-Queen 가지치기 예시
     static int N, count;
     static boolean[] col, leftDiag, rightDiag;
 
@@ -351,6 +349,97 @@ public class Step0 {
             solve(row + 1);
             col[c] = leftDiag[row - c + N - 1] = rightDiag[row + c] = false;  // 백트래킹
         }
+    }
+
+    /**
+     * 스도쿠
+     *
+     * 이 게임은 아래 그림과 같이 가로, 세로 각각 9개씩 총 81개의 작은 칸으로 이루어진 정사각형 판 위에서 이뤄지는데, 게임 시작 전 일부 칸에는 1부터 9까지의 숫자 중 하나가 쓰여 있다.
+     *
+     * 나머지 빈 칸을 채우는 방식은 다음과 같다.
+     * 1. 각각의 가로줄과 세로줄에는 1부터 9까지의 숫자가 한 번씩만 나타나야 한다.
+     * 2. 굵은 선으로 구분되어 있는 3x3 정사각형 안에도 1부터 9까지의 숫자가 한 번씩만 나타나야 한다.
+     *
+     * 게임 시작 전 스도쿠 판에 쓰여 있는 숫자들의 정보가 주어질 때 모든 빈 칸이 채워진 최종 모습을 출력하는 프로그램을 작성하시오.
+     *
+     * 아홉 줄에 걸쳐 한 줄에 9개씩 게임 시작 전 스도쿠판 각 줄에 쓰여 있는 숫자가 한 칸씩 띄워서 차례로 주어진다. 스도쿠 판의 빈 칸의 경우에는 0이 주어진다.
+     * 스도쿠 판을 규칙대로 채울 수 없는 경우의 입력은 주어지지 않는다.
+     *
+     */
+    static int[][] square;
+    static int[] blank;
+    static int index;
+    public void baekjoon2580() throws Exception {
+        index = 0;
+        square = new int[9][9];
+        blank = new int[81];
+        int count = 0;
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                square[i][j] = read();
+                if (square[i][j] == 0) {
+                    blank[index++] = count;
+                }
+                count++;
+            }
+        }
+
+        sudoku(0);
+        System.out.print(sb);
+    }
+
+    static void sudoku(int depth) throws Exception {
+        if (depth == index) {
+            for (int i = 0; i < 9; i++) {
+                for (int j = 0; j < 9; j++) {
+                    if (j == 8) {
+                        sb.append(square[i][j]);
+                    } else {
+                        sb.append(square[i][j]).append(" ");
+                    }
+                }
+                sb.append("\n");
+            }
+            return;
+        }
+
+        for (int j = 1; j <= 9; j++) {
+            if (sb.length() != 0) break;
+            int idx = blank[depth];
+            int row = idx / 9;
+            int col = idx % 9;
+            if (check(row, col, j)) {
+                square[row][col] = j;
+                sudoku(depth + 1);
+                square[row][col] = 0;
+            }
+        }
+    }
+
+    static boolean check(int row, int col, int num) throws Exception {
+        int squareRow = (row / 3) * 3;
+        int squareCol = col < 3 ? 0 : col < 6 ? 3 : 6;
+
+        // 1) square
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 3; j++) {
+                if (square[squareRow + i][squareCol + j] == num) {
+                    return false;
+                }
+            }
+        }
+
+        // 2) row
+        for (int i = 0; i < 9; i++) {
+            if (square[i][col] == num) return false;
+        }
+
+        // 3) column
+        for (int i = 0; i < 9; i++) {
+            if (square[row][i] == num) return false;
+        }
+
+        return true;
     }
 
     /**
