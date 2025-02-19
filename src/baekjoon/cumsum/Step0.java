@@ -1,11 +1,16 @@
 package baekjoon.cumsum;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Arrays;
+import java.util.StringTokenizer;
 
 public class Step0 {
 
     static int N;
     static int M;
+    static int cumsum[];
+    static int max = Integer.MIN_VALUE;
     /**
      * 수 N개가 주어졌을 때, i번째 수부터 j번째 수까지 합을 구하는 프로그램을 작성하시오.
      *
@@ -33,6 +38,37 @@ public class Step0 {
             sb.append(sumArr[end] - sumArr[start]).append("\n");
         }
         System.out.print(sb);
+    }
+
+    /**
+     * 매일 아침 9시에 학교에서 측정한 온도가 어떤 정수의 수열로 주어졌을 때, 연속적인 며칠 동안의 온도의 합이 가장 큰 값을 알아보고자 한다.
+     *
+     * 매일 측정한 온도가 정수의 수열로 주어졌을 때, 연속적인 며칠 동안의 온도의 합이 가장 큰 값을 계산하는 프로그램을 작성하시오.
+     * 2 <= N <= 100,000
+     * 1 <= K <= N
+     *
+     */
+    public void baekjoon2559() throws Exception {
+        N = read();
+        M = read();
+
+        cumsum = new int[N + 1];
+        int period[] = new int[N + 1];
+
+        for (int i = 1; i <= N; i++) {
+            cumsum[i] = cumsum[i - 1] + read();
+            if (i >= M) {
+                period[i] = cumsum[i] - cumsum[i - M];
+            }
+        }
+
+        for (int i = M; i < period.length; i++) {
+            if (max < period[i]) {
+                max = period[i];
+            }
+        }
+
+        System.out.println(max);
     }
 
     private static int read() throws Exception {

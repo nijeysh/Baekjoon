@@ -327,11 +327,11 @@ public class StackQueueDeque {
             number = list.get(index);
             list.remove(index);
 
-            sb.append(number).append(" ");
-
             if (list.isEmpty()) {
+                sb.append(number);
                 break;
             }
+            sb.append(number).append(" ");
 
             count = step[number];
 

@@ -1,11 +1,20 @@
-import baekjoon.algorithm.backtracking.Step0;
 import baekjoon.algorithm.backtracking.Step1;
 import baekjoon.algorithm.recursion.Step2;
+import baekjoon.cumsum.Step0;
+import baekjoon.datastructure.StackQueueDeque;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        new Step0().baekjoon2559();
+
 //        new Step2().baekjoon2448();
-        new Step0().baekjoon2580();
+
+        // dp 보류..
+//        new Step0().baekjoon1932();
+
+        // 풍선 터뜨리기
+//        new StackQueueDeque().baekjoon2346();
+
         // 비트 연산자
 //        int num1 = 5;
 //        int num2 = 9;
@@ -44,4 +53,6 @@ public class Main {
         // 시간 개선하기 (현재 0.28 -> 0.1초대로 개선하기)
         // new Recursion().baekjoon4779();
 
-        // backtracking => 9663(N-Queen), 14889(스타트와 링크) 다시 풀기
+        // backtracking => 9663(N-Queen, 비스마스크), 14889(스타트와 링크) 다시 풀기
+        
+        // 스도쿠 다시 보기
