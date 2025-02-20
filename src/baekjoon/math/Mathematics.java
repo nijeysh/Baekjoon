@@ -3,7 +3,20 @@ package baekjoon.math;
 
 public class Mathematics {
     public void baekjoon1110() throws Exception {
+        int N = read();
 
+        int curr = N;
+        int count = 0;
+
+        while (true) {
+            int a = curr / 10;
+            int b = curr % 10;
+
+            curr = (b * 10) + ((a + b) % 10);
+            count++;
+            if (curr == N) break;
+        }
+        System.out.print(count);
     }
 
     public void baekjoon2577() throws Exception {
