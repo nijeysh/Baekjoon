@@ -39,6 +39,31 @@ public class Mathematics {
         System.out.print(sb);
     }
 
+    public void baekjoon4344() throws Exception {
+        int c = read();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < c; i++) {
+            int k = read();
+            int[] arr = new int[k];
+            double sum = 0;
+            for (int j = 0; j < k; j++) {
+                arr[j] = read();
+                sum += arr[j];
+            }
+
+            double avg = sum / arr.length;
+            double count = 0;
+            for (int j = 0; j < k; j++) {
+                if (arr[j] > avg) {
+                    count++;
+                }
+            }
+//            System.out.println("avg: " + avg + ", sum: " + sum + ", count: " + count);
+            System.out.printf("%.3f%s%n", count / arr.length * 100, "%");
+        }
+    }
+
     static int read() throws Exception {
         int c, n = System.in.read() & 15;
         while ((c = System.in.read()) > 32) n = (n << 3) + (n << 1) + (c & 15);
