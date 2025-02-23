@@ -33,23 +33,6 @@ public class Step2 {
         sb.append(hyphen).append("라고 답변하였지.").append("\n");
     }
 
-    /**
-     * 신나는 함수 실행
-     *
-     */
-    public void baekjoon9184() throws Exception {
-        while (true) {
-            int a = read();
-            int b = read();
-            int c = read();
-
-            if (a == b && b == c && a == -1) break;
-
-            w(a, b, c);
-        }
-
-    }
-
     // 바꾸기
     static int w(int a, int b, int c) throws Exception {
         // 첫 번째 조건: a, b, c가 0 이하인 경우
