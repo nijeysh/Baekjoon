@@ -10,7 +10,7 @@ public class Main {
 
 //        new Step2().baekjoon2448();
 
-        new Step0().baekjoon1932();
+        new Step0().baekjoon9184();
 
         // 풍선 터뜨리기
 //        new StackQueueDeque().baekjoon2346();
