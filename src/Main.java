@@ -1,16 +1,15 @@
-import baekjoon.algorithm.backtracking.Step1;
 import baekjoon.algorithm.dynamicProgramming.Step0;
+import baekjoon.algorithm.dynamicProgramming.Step1;
 import baekjoon.algorithm.recursion.Step2;
 import baekjoon.datastructure.StackQueueDeque;
 import baekjoon.math.Mathematics;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-//        new Step0().baekjoon2559();
-
+        // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0().baekjoon9184();
+        new Step1().baekjoon1463();
 
         // 풍선 터뜨리기
 //        new StackQueueDeque().baekjoon2346();
