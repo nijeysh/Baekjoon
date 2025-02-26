@@ -1,5 +1,5 @@
-import baekjoon.algorithm.dynamicProgramming.Step0;
 import baekjoon.algorithm.dynamicProgramming.Step1;
+import baekjoon.algorithm.graph.Step0;
 import baekjoon.algorithm.recursion.Step2;
 import baekjoon.datastructure.StackQueueDeque;
 import baekjoon.math.Mathematics;
@@ -9,7 +9,7 @@ public class Main {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step1().baekjoon1463();
+        new Step0().baekjoon24480();
 
         // 풍선 터뜨리기
 //        new StackQueueDeque().baekjoon2346();

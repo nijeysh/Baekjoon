@@ -40,7 +40,7 @@ public class Step1 {
         System.out.println(arr[N]);
     }
 
-    private static int read() throws Exception {
+    static int read() throws Exception {
         int c, n = 0, sign = 1;
         while ((c = System.in.read()) <= 32);
         if (c == '-') {

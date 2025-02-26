@@ -98,38 +98,6 @@ public class Step0 {
         System.out.println(triangle[0][0]);
     }
 
-    static void triangle(int parent, int depth) throws Exception {
-//        if (depth == N) {
-//            int val = dp[parent];
-//            if (val > max) {
-//                max = val;
-//            }
-////            System.out.println(dp[parent]);
-////            System.out.println(Arrays.toString(dp));
-//            return;
-//        }
-//        dp[0] = arr[0];
-//
-//        dp[1] = arr[0] + arr[1];
-//        dp[2] = arr[0] + arr[2];
-//
-//        dp[3] = arr[0] + arr[1] + arr[3];
-//        dp[4] = arr[0] + arr[1] + arr[4];
-//        dp[4] = arr[0] + arr[2] + arr[4];
-//        dp[5] = arr[0] + arr[2] + arr[5];
-
-        // parent = 0, start = 1, end = 2
-        // parent = 1, start = 3, end = 4
-//        int start = parent + depth;
-//        int end = start + 1;
-//        for (int i = start; i <= end; i++) {
-//            dp[i] = dp[parent] + arr[i];
-//            System.out.println("dp[" + i + "] = dp[" + parent + "] + arr[" + i + "];");
-////            System.out.println(Arrays.toString(dp));
-//            triangle(i, depth + 1);
-//        }
-    }
-
     private static int read() throws Exception {
         int n;
         int result = 0;
