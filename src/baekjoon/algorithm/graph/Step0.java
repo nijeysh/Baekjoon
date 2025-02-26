@@ -3,6 +3,11 @@ package baekjoon.algorithm.graph;
 import java.util.*;
 
 public class Step0 {
+    static Queue<Integer> queue = new LinkedList<>();
+    static ArrayList<Integer>[] graph;
+    static int[] visited;
+    static int order = 1;
+
     /**
      * 알고리즘 수업 - 깊이 우선 탐색 1
      *
@@ -12,11 +17,6 @@ public class Step0 {
      *
      * 인접 정점은 오름차순으로 방문한다.
      */
-
-
-    static ArrayList<Integer>[] graph;
-    static int[] visited;
-    static int order = 1;
     public void baekjoon24479() throws Exception {
         int N = read();
         int M = read();
@@ -90,6 +90,86 @@ public class Step0 {
         for (int next : graph[node]) {
             if (visited[next] == 0) {
                 dfs(next);
+            }
+        }
+    }
+
+    public void baekjoon24444() throws Exception {
+        int N = read();
+        int M = read();
+        int R = read();
+
+        visited = new int[N + 1];
+        graph = new ArrayList[N + 1];
+        for (int i = 1; i <= N; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < M; i++) {
+            int u = read();
+            int v = read();
+
+            graph[u].add(v);
+            graph[v].add(u);
+        }
+
+        for (int i = 1; i <= N; i++) {
+            Collections.sort(graph[i]);
+        }
+
+        bfs(R);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= N; i++) {
+            sb.append(visited[i]).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    public void baekjoon24445() throws Exception {
+        int N = read();
+        int M = read();
+        int R = read();
+
+        visited = new int[N + 1];
+        graph = new ArrayList[N + 1];
+        for (int i = 1; i <= N; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < M; i++) {
+            int u = read();
+            int v = read();
+
+            graph[u].add(v);
+            graph[v].add(u);
+        }
+
+        for (int i = 1; i <= N; i++) {
+            Collections.sort(graph[i], Collections.reverseOrder());
+        }
+
+        bfs(R);
+
+        StringBuilder sb = new StringBuilder();
+        for (int i = 1; i <= N; i++) {
+            sb.append(visited[i]).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    static void bfs(int node) {
+        queue.offer(node);
+        visited[node] = order++;
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+
+            for (int next : graph[current]) {
+                if (visited[next] == 0) {
+                    visited[next] = order++;
+                    queue.offer(next);
+                }
             }
         }
     }
