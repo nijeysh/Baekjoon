@@ -7,6 +7,7 @@ public class Step0 {
     static ArrayList<Integer>[] graph;
     static int[] visited;
     static int order = 1;
+    static int count = 0;
 
     /**
      * 알고리즘 수업 - 깊이 우선 탐색 1
@@ -174,7 +175,6 @@ public class Step0 {
         }
     }
 
-    static int count = 0;
     public void baekjoon2606() throws Exception {
         int N = read();
         int M = read();
@@ -208,6 +208,76 @@ public class Step0 {
                 if (visited[next] == 0) {
                     visited[next] = ++count;
                     queue.offer(next);
+                }
+            }
+        }
+    }
+
+    /**
+     * DFS와 BFS
+     *
+     * 그래프를 DFS로 탐색한 결과와 BFS로 탐색한 결과를 출력하는 프로그램을 작성하시오. 단, 방문할 수 있는 정점이 여러 개인 경우에는 정점 번호가 작은 것을 먼저 방문하고, 더 이상 방문할 수 있는 점이 없는 경우 종료한다. 정점 번호는 1번부터 N번까지이다.
+     *
+     */
+    static StringBuilder sb = new StringBuilder();
+    static boolean visit[];
+    public void baekjoon1260() throws Exception {
+        int N = read(); // 정점
+        int M = read(); // 간선
+        int V = read(); // 시작 번호
+
+        // 정점을 먼저 할당
+        graph = new ArrayList[N + 1];
+        for (int i = 1; i <= N; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        // 양방향 간선
+        for (int i = 0; i < M; i++) {
+            int u = read();
+            int v = read();
+
+            graph[u].add(v);
+            graph[v].add(u);
+        }
+
+        // 작은 것을 먼저 방문
+        for (int i = 1; i <= N; i++) {
+            Collections.sort(graph[i]);
+        }
+
+        visit = new boolean[N + 1];
+        dfs_(V);
+        Arrays.fill(visit, false);
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("\n");
+
+        bfs_(V);
+        System.out.print(sb.deleteCharAt(sb.length() - 1));
+    }
+
+    static void dfs_(int node) throws Exception {
+        sb.append(node).append(" ");
+        visit[node] = true;
+
+        for (int next : graph[node]) {
+            if (!visit[next]) {
+                dfs_(next);
+            }
+        }
+    }
+
+    static void bfs_(int node) throws Exception {
+        queue.offer(node);
+        visit[node] = true;
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+            sb.append(current).append(" ");
+            for (int next : graph[current]) {
+                if (!visit[next]) {
+                    queue.offer(next);
+                    visit[next] = true;
                 }
             }
         }
