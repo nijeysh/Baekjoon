@@ -174,6 +174,45 @@ public class Step0 {
         }
     }
 
+    static int count = 0;
+    public void baekjoon2606() throws Exception {
+        int N = read();
+        int M = read();
+
+        visited = new int[N + 1];
+        graph = new ArrayList[N + 1];
+        for (int i = 1; i <= N; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int i = 1; i <= M; i++) {
+            int u = read();
+            int v = read();
+
+            graph[u].add(v);
+            graph[v].add(u);
+        }
+
+        worm(1);
+        // 1번 빼고
+        System.out.println(count - 1);
+    }
+
+    static void worm(int node) throws Exception {
+        queue.offer(node);
+        visited[node] = ++count;
+
+        while (!queue.isEmpty()) {
+            int current = queue.poll();
+            for (int next : graph[current]) {
+                if (visited[next] == 0) {
+                    visited[next] = ++count;
+                    queue.offer(next);
+                }
+            }
+        }
+    }
+
     static int read() throws Exception {
         int c, n = 0, sign = 1;
         while ((c = System.in.read()) <= 32);
