@@ -97,7 +97,18 @@
 <ul>
     <li>DFS</li>
 </ul>
-    ![DFS](https://raw.githubusercontent.com/nijeysh/Baekjoon/main/img/dfs.svg)
-<pre>
     
+<pre>
+    <img width="400" src="https://github.com/user-attachments/assets/1b919395-e4c5-4c2f-bd68-0b60000757f0" />
+    <br>
+    <span>1) 한 방향으로 갈 수 있을 때까지 계속 진행</span>
+    <span>2) 더 이상 갈 수 없게 되면 이전 분기점으로 돌아와 다른 경로를 탐색</span>
+    <span>3) 주로 스택(Stack)자료구조나 재귀 함수를 이용하여 구현</span>
+    <br>
+    <span><strong>DFS 응용</strong></span>
+    <span>- 경로 찾기(미로 탐색)</span>
+    <span>- 위상 정렬</span>
+    <span>- 연결 요소 찾기</span>
+    <span>- 사이클감지</span>
+    <span>- 백트래킹</span>
 </pre>
