@@ -97,7 +97,7 @@
 <ul>
     <li>DFS</li>
 </ul>
-    ![로고](./img/logo.svg)
+    ![DFS](https://raw.githubusercontent.com/nijeysh/Baekjoon/main/img/dfs.svg)
 <pre>
     
 </pre>
