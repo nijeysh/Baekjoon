@@ -97,18 +97,52 @@
 <ul>
     <li>DFS</li>
 </ul>
-    
 <pre>
     <img width="400" src="https://github.com/user-attachments/assets/1b919395-e4c5-4c2f-bd68-0b60000757f0" />
     <br>
-    <span>1) 한 방향으로 갈 수 있을 때까지 계속 진행</span>
-    <span>2) 더 이상 갈 수 없게 되면 이전 분기점으로 돌아와 다른 경로를 탐색</span>
-    <span>3) 주로 스택(Stack)자료구조나 재귀 함수를 이용하여 구현</span>
+    <span>1) 시작 노드를 스택에 넣고 방문 표시</span>
+    <span>2) 스택에서 노드를 하나 꺼내어 그 노드의 인접한 노드를 모두 스택에 넣고 방문 표시</span>
+    <span>3) 주더 이상 방문할 노드가 없을 때까지 이 과정을 반복</span>
     <br>
+    <span><strong>DFS 특징</strong></span>
+    <span>- 깊이 우선</span>
+    <span>- 스택(Stack) 사용</span>
+    <span>- 모든 경로를 탐색 (최단 경로에 적합하지 않음)</span>
+    <span>- 재귀적으로 탐색</span>
+    <span>- 백트래킹을 사용할 때 유용</span>
+    <br/>
     <span><strong>DFS 응용</strong></span>
     <span>- 경로 찾기(미로 탐색)</span>
     <span>- 위상 정렬</span>
     <span>- 연결 요소 찾기</span>
     <span>- 사이클감지</span>
     <span>- 백트래킹</span>
+    <span>- BFS에 비해 적은 메모리 사용</span>
+</pre>
+<br>
+<br>
+<h3># BFS(Breadth-First Search, 너비 우선 탐색)</h3>
+<ul>
+    <li>BFS</li>
+</ul>
+<pre>
+    <img width="400" src="https://github.com/user-attachments/assets/c33a3dbf-576e-4321-a532-c2effa9a922b" />
+    <br>
+    <span>1) 시작 노드를 큐에 넣고 방문 표시</span>
+    <span>2) 큐에서 노드를 하나 꺼내어 해당 노드와 인접한 노드를 모두 큐에 넣고 방문 표시</span>
+    <span>3) 큐가 빌 때까지 이 과정을 반복</span>
+    <br>
+    <span><strong>BFS 특징</strong></span>
+    <span>- 너비 우선</span>
+    <span>- 큐(Queue) 사용</span>
+    <span>- 최단경로</span>
+    <span>- 레벨 순서 탐색</span>
+    <span>- DFS보다 더 많은 메모리를 사용</span>
+    <br/>
+    <span><strong>BFS 응용</strong></span>
+    <span>- 두 노드 사이의 최단 경로 찾기</span>
+    <span>- 연결 요소 찾기</span>
+    <span>- 네트워크 분석</span>
+    <span>- 웹크롤링</span>
+    <span>- 퍼즐 게임 해결</span>
 </pre>
