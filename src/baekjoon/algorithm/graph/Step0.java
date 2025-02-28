@@ -1,5 +1,6 @@
 package baekjoon.algorithm.graph;
 
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
@@ -402,6 +403,64 @@ public class Step0 {
             if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
                 if (garden[nr][nc] == 1 && !check[nr][nc]) {
                     cabbage(nr, nc);
+                }
+            }
+        }
+    }
+
+    /**
+     * 미로 탐색
+     */
+    static int[][] maze;
+    static Queue<Point> pointQueue = new LinkedList<>();
+    static int[][] path;
+
+    static class Point {
+        int x, y;
+        Point(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+
+    public void baekjoon2178() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        N = Integer.parseInt(str[0]);
+        M = Integer.parseInt(str[1]);
+
+        maze = new int[N][M];
+        path = new int[N][M];
+        for (int i = 0; i < N; i++) {
+            String cells = br.readLine();
+            for (int j = 0; j < M; j++) {
+                maze[i][j] = cells.charAt(j) - '0';
+            }
+        }
+
+        // (0, 0) 시작
+        path[0][0] = 1;
+        path(0, 0);
+
+        System.out.println(path[N - 1][M - 1]);
+    }
+
+    static void path(int x, int y) throws Exception {
+        pointQueue.offer(new Point(x, y));
+
+        while (!pointQueue.isEmpty()) {
+            Point current = pointQueue.poll();
+
+            if (current.x == (N - 1) && current.y == (M - 1)) {
+                return;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int nx = current.x + dx[i];
+                int ny = current.y + dy[i];
+                if (nx >= 0 && nx < N && ny >= 0 && ny < M && maze[nx][ny] == 1 && path[nx][ny] == 0) {
+                    pointQueue.offer(new Point(nx, ny));
+                    path[nx][ny] = path[current.x][current.y] + 1;
                 }
             }
         }
