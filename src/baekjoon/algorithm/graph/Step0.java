@@ -1,5 +1,7 @@
 package baekjoon.algorithm.graph;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Step0 {
@@ -282,6 +284,74 @@ public class Step0 {
             }
         }
     }
+
+    /**
+     * 단지번호붙이기
+     *
+     * 정사각형 모양의 지도가 있다. 1은 집이 있는 곳을, 0은 집이 없는 곳을 나타낸다.
+     * 철수는 이 지도를 가지고 연결된 집의 모임인 단지를 정의하고, 단지에 번호를 붙이려 한다.
+     * 여기서 연결되었다는 것은 어떤 집이 좌우, 혹은 아래위로 다른 집이 있는 경우를 말한다.
+     * 대각선상에 집이 있는 경우는 연결된 것이 아니다.
+     *
+     * 지도를 입력하여 단지수를 출력하고, 각 단지에 속하는 집의 수를 오름차순으로 정렬하여 출력하는 프로그램을 작성하시오.
+     */
+    static int N;
+    static int[][] square;
+    static boolean[][] check;
+    static ArrayList<Integer> complex = new ArrayList<>();
+    static int[] dx = {-1, 1, 0, 0};
+    static int[] dy = {0, 0, -1, 1};
+    public void baekjoon2667() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        N = Integer.parseInt(br.readLine());
+
+        square = new int[N][N];
+        check = new boolean[N][N];
+
+        // N x N
+        for (int i = 0; i < N; i++) {
+            String str = br.readLine();
+            for (int j = 0; j < N; j++) {
+                square[i][j] = str.charAt(j) - '0';
+            }
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if (square[i][j] == 1 && !check[i][j]) {
+                    count = 0;
+                    dfs(i, j);
+                    complex.add(count);
+                }
+            }
+        }
+
+        Collections.sort(complex);
+        StringBuilder sb = new StringBuilder();
+        sb.append(complex.size()).append("\n");
+        for (int c : complex) {
+            sb.append(c).append("\n");
+        }
+        System.out.print(sb);
+    }
+
+    static void dfs(int x, int y) throws Exception {
+        check[x][y] = true;
+        count++;
+
+        //상하좌우
+        for (int i = 0; i < 4; i++) {
+            int nx = x + dx[i];
+            int ny = y + dy[i];
+
+            if (nx >= 0 && nx < N && ny >= 0 && ny < N) {
+                if (square[nx][ny] == 1 && !check[nx][ny]) {
+                    dfs(nx, ny);
+                }
+            }
+        }
+    }
+
 
     static int read() throws Exception {
         int c, n = 0, sign = 1;
