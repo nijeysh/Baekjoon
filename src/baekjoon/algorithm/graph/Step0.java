@@ -352,6 +352,60 @@ public class Step0 {
         }
     }
 
+    /**
+     * 유기농 배추
+     */
+    static int M;
+    static int K;
+    static int[][] garden;
+    static int[] dr = {-1, 1, 0, 0};
+    static int[] dc = {0, 0, -1, 1};
+    public void baekjoon1012() throws Exception {
+        int T = read();
+
+        for (int t = 0; t < T; t++) {
+            M = read();
+            N = read();
+            K = read();
+
+            check = new boolean[N][M];
+            garden = new int[N][M];
+            for (int i = 0; i < K; i++) {
+                int X = read();
+                int Y = read();
+                garden[Y][X] = 1;
+            }
+
+            // 인접노드찾기
+            int count = 0;
+            for (int i = 0; i < garden.length; i++) {
+                for (int j = 0; j < garden[i].length; j++) {
+                    if (garden[i][j] == 1 && !check[i][j]) {
+                        count++;
+                        cabbage(i, j);
+                    }
+                }
+            }
+            sb.append(count).append("\n");
+
+        }
+        System.out.print(sb);
+    }
+
+    static void cabbage(int row, int col) throws Exception {
+        check[row][col] = true;
+
+        for (int i = 0; i < 4; i++) {
+            int nr = row + dr[i];
+            int nc = col + dc[i];
+
+            if (nr >= 0 && nr < N && nc >= 0 && nc < M) {
+                if (garden[nr][nc] == 1 && !check[nr][nc]) {
+                    cabbage(nr, nc);
+                }
+            }
+        }
+    }
 
     static int read() throws Exception {
         int c, n = 0, sign = 1;
