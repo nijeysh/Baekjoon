@@ -1,15 +1,12 @@
-import baekjoon.algorithm.dynamicProgramming.Step1;
-import baekjoon.algorithm.graph.Step0;
-import baekjoon.algorithm.recursion.Step2;
-import baekjoon.datastructure.StackQueueDeque;
-import baekjoon.math.Mathematics;
+import baekjoon.algorithm.graph.Step0Lv1;
+import baekjoon.algorithm.graph.Step0Lv2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0().baekjoon2178();
+        new Step0Lv2().baekjoon1697();
 
         // 풍선 터뜨리기
 //        new StackQueueDeque().baekjoon2346();

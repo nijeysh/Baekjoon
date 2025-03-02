@@ -1,11 +1,10 @@
 package baekjoon.algorithm.graph;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.*;
 
-public class Step0 {
+public class Step0Lv1 {
     static Queue<Integer> queue = new LinkedList<>();
     static ArrayList<Integer>[] graph;
     static int[] visited;
