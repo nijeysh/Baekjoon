@@ -53,6 +53,67 @@ public class Step0Lv1 {
         return -1;
     }
 
+    static int[][] visited;
+    static Queue<Knight> knightQueue = new LinkedList<>();
+    static int[] dx = {1, 2, 2, 1, -1, -2, -2, -1};
+    static int[] dy = {2, 1, -1, -2, -2, -1, 1, 2};
+    static StringBuilder sb = new StringBuilder();
+    static class Knight {
+        int x;
+        int y;
+        Knight(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
+    }
+    public void baekjoon7562() throws Exception {
+        int N = read();
+
+        for (int i = 0; i < N; i++) {
+            // L x L
+            int L = read();
+            visited = new int[L][L];
+            // 현재 칸
+            int x1 = read();
+            int y1 = read();
+
+            // 이동하려는 칸
+            int x2 = read();
+            int y2 = read();
+
+            bfs(x1, y1, x2, y2, L);
+        }
+
+        System.out.print(sb);
+    }
+
+    static void bfs(int startX, int startY, int endX, int endY, int L) throws Exception {
+        for (int i = 0; i < L; i++) {
+            Arrays.fill(visited[i], -1);
+        }
+        visited[startX][startY] = 0;
+        knightQueue.clear();
+        knightQueue.offer(new Knight(startX, startY));
+
+        while (!knightQueue.isEmpty()) {
+            Knight current = knightQueue.poll();
+            if (current.x == endX && current.y == endY) {
+                sb.append(visited[current.x][current.y]).append("\n");
+                return;
+            }
+
+            for (int i = 0; i < 8; i++) {
+                int nextX = current.x + dx[i];
+                int nextY = current.y + dy[i];
+
+                if (nextX >= 0 && nextX < L && nextY >= 0 && nextY < L && visited[nextX][nextY] == -1) {
+                    visited[nextX][nextY] = visited[current.x][current.y] + 1;
+                    knightQueue.offer(new Knight(nextX, nextY));
+                }
+            }
+        }
+    }
+
     static int read() throws Exception {
         int c, n = 0, sign = 1;
         while ((c = System.in.read()) <= 32);
