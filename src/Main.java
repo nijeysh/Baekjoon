@@ -1,14 +1,13 @@
 import baekjoon.algorithm.graph.Step0Lv1;
+import baekjoon.datastructure.StackQueueDeque;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0Lv1().baekjoon7576();
-
         // 풍선 터뜨리기
-//        new StackQueueDeque().baekjoon2346();
+        new StackQueueDeque().baekjoon2346();
 
         // 비트 연산자
 //        int num1 = 5;

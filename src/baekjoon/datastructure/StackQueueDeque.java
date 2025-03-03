@@ -309,39 +309,42 @@ public class StackQueueDeque {
      */
     public void baekjoon2346() throws IOException {
         int n = read();
-        Deque<Integer> deque = new LinkedList<>();
-        List<Integer> list = new ArrayList<>();
-        int[] step = new int[n + 1];
+        int[] balloon = new int[n];
+        Deque<Integer> deque = new ArrayDeque<>();  // LinkedList로 선언하면 메모리 초과됨
         StringBuilder sb = new StringBuilder();
-        for (int i = 1; i <= n; i++) {
-            deque.add(i);
-            list.add(i);
-            step[i] = read();
+
+        for (int i = 0; i < n; i++) {
+            balloon[i] = read();
+            deque.offer(i);
         }
 
-        int number;
-        int count;
-        int index = 0;
+        int index = 1;
+        while (!deque.isEmpty()) {
+            int current = Math.abs(index);
+            for (int i = 0; i < current; i++) {
+                if (current == i + 1) {
+                    int x;
+                    if (index >= 0) {
+                        x = deque.pollFirst();
+                    } else {
+                        x = deque.pollLast();
+                    }
+                    index = balloon[x];
+                    sb.append(x + 1).append(" ");
+                    break;
+                }
 
-        while (true) {
-            number = list.get(index);
-            list.remove(index);
-
-            if (list.isEmpty()) {
-                sb.append(number);
-                break;
-            }
-            sb.append(number).append(" ");
-
-            count = step[number];
-
-            if (count > 0) {
-                index = (index + (count - 1)) % list.size();
-            } else {
-                index = (index + count + list.size()) % list.size();
+                int temp;
+                if (index >= 0) {
+                    temp = deque.pollFirst();
+                    deque.offerLast(temp);
+                } else {
+                    temp = deque.pollLast();
+                    deque.offerFirst(temp);
+                }
             }
         }
-        System.out.print(sb);
+        System.out.print(sb.deleteCharAt(sb.length() - 1));
     }
 
     /**

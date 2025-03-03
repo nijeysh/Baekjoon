@@ -184,6 +184,13 @@ public class Step0Lv1 {
         return tomato == count ? period : -1;
     }
 
+    /**
+     * 토마토 (3차원)
+     */
+    public void baekjoon7569() throws Exception {
+
+    }
+
     static int read() throws Exception {
         int c, n = 0, sign = 1;
         while ((c = System.in.read()) <= 32);
