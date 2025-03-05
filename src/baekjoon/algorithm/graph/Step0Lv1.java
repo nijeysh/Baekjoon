@@ -1,8 +1,6 @@
 package baekjoon.algorithm.graph;
 
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Step0Lv1 {
 
@@ -186,9 +184,154 @@ public class Step0Lv1 {
 
     /**
      * 토마토 (3차원)
+     *
+     * 2 ≤ M ≤ 100, 2 ≤ N ≤ 100, 1 ≤ H ≤ 100
      */
-    public void baekjoon7569() throws Exception {
+    static Queue<Node> queue = new LinkedList<>();
+    static TomatoMap tomatoMap = new TomatoMap();
+    static int[] nx = {0, 0, -1, 1, 0, 0};
+    static int[] ny = {0, 0, 0, 0, -1, 1};
+    static int[] nz = {-1, 1, 0, 0, 0, 0};
+    static int total = 0;
+    static int ripeTomato = 0;
+    static class Node {
+        int x;
+        int y;
+        int z;
+        int value;
+        int period;
+        Node(int x, int y, int z, int value, int period) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.value = value;
+            this.period = period;
+        }
 
+        Node(int x, int y, int z, int period) {
+            this.x = x;
+            this.y = y;
+            this.z = z;
+            this.period = period;
+        }
+    }
+
+    static class TomatoMap {
+        private HashMap<String, Node> map = new HashMap<>();
+
+        private void put(int x, int y, int z, Node node) {
+            map.put((x + "," + y + "," + z), node);
+        }
+        private Node get(int x, int y, int z) {
+            return map.get((x + "," + y + "," + z));
+        }
+    }
+
+//    public void baekjoon7569() throws Exception {
+//        int M = read(); // 가로
+//        int N = read(); // 세로
+//        int H = read(); // 상자의 층 수
+//
+//        int end = N * H;
+//        for (int i = 0; i < end; i++) {
+//            int row = i % N;
+//            int layer = i / N;
+//            for (int j = 0; j < M; j++) {
+//                Node tomato = new Node(row, j, layer, read(), 0);
+//                tomatoMap.put(row, j, layer, tomato);
+//
+//                if (tomato.value == 1) {
+//                    queue.offer(tomato);
+//                }
+//
+//                if (tomato.value != -1) {
+//                    total++;
+//                }
+//            }
+//        }
+//
+//        ripen(M, N, H);
+//    }
+
+//    static void ripen(int M, int N, int H) throws Exception {
+//        int period = 0;
+//        while (!queue.isEmpty()) {
+//            Node current = queue.poll();
+//            ripeTomato++;
+//
+//            int x = current.x;
+//            int y = current.y;
+//            int z = current.z;
+//
+//            for (int i = 0; i < 6; i++) {
+//                int nextX = x + nx[i];
+//                int nextY = y + ny[i];
+//                int nextZ = z + nz[i];
+//
+//                if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < M && nextZ >= 0 && nextZ < H) {
+//                    Node tomato = tomatoMap.get(nextX, nextY, nextZ);
+//                    if (tomato.value == 0) {
+//                        tomato.value = 1;
+//                        tomato.period = current.period + 1;
+//                        period = tomato.period;
+//
+//                        queue.offer(tomato);
+//                    }
+//                }
+//            }
+//        }
+//
+//        System.out.println(ripeTomato == total ? period : -1);
+//    }
+
+    static int[][][] boxes;
+    public void baekjoon7569() throws Exception {
+        int M = read(); // 가로
+        int N = read(); // 세로
+        int H = read(); // 상자의 층 수
+
+        int end = N * H;
+        boxes = new int[N][M][H];
+        for (int i = 0; i < end; i++) {
+            int row = i % N;
+            int layer = i / N;
+            for (int j = 0; j < M; j++) {
+                boxes[row][j][layer] = read();
+
+                if (boxes[row][j][layer] == 1) {
+                    queue.offer(new Node(row, j, layer, 0));
+                }
+
+                if (boxes[row][j][layer] != -1) {
+                    total++;
+                }
+            }
+        }
+
+//        System.out.println(Arrays.deepToString(boxes));
+        ripen(M, N, H);
+    }
+
+    static void ripen(int M, int N, int H) throws Exception {
+        int period = 0;
+        while (!queue.isEmpty()) {
+            Node current = queue.poll();
+            ripeTomato++;
+
+            for (int i = 0; i < 6; i++) {
+                int nextX = current.x + nx[i];
+                int nextY = current.y + ny[i];
+                int nextZ = current.z + nz[i];
+
+                if (nextX >= 0 && nextX < N && nextY >= 0 && nextY < M && nextZ >= 0 && nextZ < H && boxes[nextX][nextY][nextZ] == 0) {
+                    boxes[nextX][nextY][nextZ] = 1;
+                    period = current.period + 1;
+                    queue.offer(new Node(nextX, nextY, nextZ, period));
+                }
+            }
+        }
+
+        System.out.println(total == ripeTomato ? period : -1);
     }
 
     static int read() throws Exception {
