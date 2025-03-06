@@ -2,6 +2,7 @@ package baekjoon.bruteforce;
 
 import java.io.*;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Algorithm {
@@ -366,7 +367,6 @@ public class Algorithm {
         System.out.print(result);
 */
     }
-
 
 
     private static int read() throws IOException {

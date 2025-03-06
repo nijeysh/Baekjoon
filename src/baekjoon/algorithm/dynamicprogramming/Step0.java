@@ -1,4 +1,4 @@
-package baekjoon.algorithm.dynamicProgramming;
+package baekjoon.algorithm.dynamicprogramming;
 
 public class Step0 {
 

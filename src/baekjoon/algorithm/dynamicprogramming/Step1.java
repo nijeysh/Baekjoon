@@ -1,6 +1,4 @@
-package baekjoon.algorithm.dynamicProgramming;
-
-import java.util.Arrays;
+package baekjoon.algorithm.dynamicprogramming;
 
 public class Step1 {
 
