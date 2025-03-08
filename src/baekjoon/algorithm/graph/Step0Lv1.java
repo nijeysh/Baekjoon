@@ -334,6 +334,27 @@ public class Step0Lv1 {
         System.out.println(total == ripeTomato ? period : -1);
     }
 
+    /**
+     * 뱀과 사다리 게임
+     */
+    static ArrayList<Integer>[] graph;
+    public void baekjoon16928() throws Exception {
+        int N = read(); // 사다리
+        int M = read(); // 뱀
+
+        graph = new ArrayList[100];
+        for (int i = 0; i < 100; i++) {
+            graph[i] = new ArrayList<>();
+        }
+
+        for (int i = 0; i < N + M; i++) {
+            int u = read();
+            int v = read();
+
+            graph[u].add(v);
+        }
+    }
+
     static int read() throws Exception {
         int c, n = 0, sign = 1;
         while ((c = System.in.read()) <= 32);

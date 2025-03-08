@@ -1,5 +1,6 @@
 import baekjoon.algorithm.graph.Step0Lv1;
 import baekjoon.datastructure.StackQueueDeque;
+import baekjoon.math.Mathematics;
 import baekjoon.priority.Step0;
 
 public class Main {
@@ -17,6 +18,7 @@ public class Main {
 //        System.out.println(num1 ^ num2);
     }
 }
+        // 이분탐색
 
         // 정렬 알고리즘 풀이 다시 확인
         //  new Algorithm().baekjoon2751();
