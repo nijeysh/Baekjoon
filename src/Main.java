@@ -1,7 +1,7 @@
 import baekjoon.algorithm.graph.Step0Lv1;
+import baekjoon.algorithm.greedy.Step0;
 import baekjoon.datastructure.StackQueueDeque;
 import baekjoon.math.Mathematics;
-import baekjoon.priority.Step0;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -10,6 +10,9 @@ public class Main {
 
         new Step0Lv1().baekjoon16928();
 
+    }
+
+    static void bit() throws Exception {
         // 비트 연산자
 //        int num1 = 5;
 //        int num2 = 9;

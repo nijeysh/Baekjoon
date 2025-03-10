@@ -338,19 +338,24 @@ public class Step0Lv1 {
      * 뱀과 사다리 게임
      */
     static Queue<Integer> graph = new LinkedList<>();
-    static int[] dice;
+    static int[] board;
     static int[] visit;
+
     public void baekjoon16928() throws Exception {
         int N = read(); // 사다리
         int M = read(); // 뱀
 
-        dice = new int[100];
+        board = new int[101];
         visit = new int[101];
+        for (int i = 1; i <= 100; i++) {
+            board[i] = i;
+        }
+
         for (int i = 0; i < N + M; i++) {
             int u = read();
             int v = read();
 
-            dice[u] = v;
+            board[u] = v;
         }
 
         snakeandladder();
@@ -359,30 +364,27 @@ public class Step0Lv1 {
     static void snakeandladder() throws Exception {
         graph.offer(1);
         Arrays.fill(visit, -1);
-        visit[0] = 0;
+        visit[1] = 0;
 
         while (!graph.isEmpty()) {
             int current = graph.poll();
+
             if (current == 100) {
-                System.out.print(visit[current]);
+                System.out.println(visit[current]);
                 break;
             }
 
-            // 뱀과 사다리가 있을 경우
-            if (dice[current] != 0) {
-                int next = dice[current];
+            for (int i = 1; i <= 6; i++) {
+                int next = current + i;
+                if (next > 100) {
+                    break;
+                }
+
+                next = board[next];
+
                 if (visit[next] == -1) {
                     visit[next] = visit[current] + 1;
                     graph.offer(next);
-                }
-            } else {
-                // 없을 경우 1 ~ 6까지
-                for (int i = 1; i <= 6; i++) {
-                    int next = current + i;
-                    if (next <= 100 && visit[next] == -1) {
-                        visit[next] = visit[current] + 1;
-                        graph.offer(next);
-                    }
                 }
             }
         }
