@@ -8,7 +8,7 @@ public class Main {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0Lv1().baekjoon7569();
+        new Step0Lv1().baekjoon16928();
 
         // 비트 연산자
 //        int num1 = 5;
