@@ -8,19 +8,21 @@ public class Main {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0Lv1().baekjoon16928();
+        new Step0Lv1().baekjoon2206();
 
-    }
-
-    static void bit() throws Exception {
-        // 비트 연산자
-//        int num1 = 5;
-//        int num2 = 9;
-//        System.out.println(num1 & num2);
-//        System.out.println(num1 | num2);
-//        System.out.println(num1 ^ num2);
     }
 }
+
+    // 임시
+//    static void bit() throws Exception {
+//        // 비트 연산자
+////        int num1 = 5;
+////        int num2 = 9;
+////        System.out.println(num1 & num2);
+////        System.out.println(num1 | num2);
+////        System.out.println(num1 ^ num2);
+//    }
+
         // 이분탐색
 
         // 정렬 알고리즘 풀이 다시 확인

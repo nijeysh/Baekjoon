@@ -1,5 +1,7 @@
 package baekjoon.algorithm.graph;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class Step0Lv1 {
@@ -388,6 +390,91 @@ public class Step0Lv1 {
                 }
             }
         }
+    }
+
+    /**
+     * 벽 부수고 이동하기
+     */
+    static Queue<Node_> queue_ = new LinkedList<>();
+    static int[][] arr;
+    static int[][][] path;
+    static class Node_ {
+        int x;
+        int y;
+        int isBreak;
+        Node_(int x, int y, int isBreak) {
+            this.x = x;
+            this.y = y;
+            this.isBreak = isBreak;
+        }
+    }
+    public void baekjoon2206() throws Exception {
+        // 최단경로
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] str = br.readLine().split(" ");
+        int N = Integer.parseInt(str[0]);
+        int M = Integer.parseInt(str[1]);
+
+        arr = new int[N][M];
+        for (int i = 0; i < N; i++) {
+            String line = br.readLine();
+            for (int j = 0; j < M; j++) {
+                // 0 - 이동 가능
+                // 1 - 이동 불가
+                arr[i][j] = line.charAt(j) - '0';
+            }
+        }
+
+        path = new int[N][M][2];
+        wall(N, M);
+    }
+
+    static void wall(int N, int M) throws Exception {
+        int[] dx = {-1, 1, 0, 0};
+        int[] dy = {0, 0, -1, 1};
+        queue_.offer(new Node_(0, 0, 0));
+        path[0][0][0] = 1;
+
+        // 이동 도중에 한 개의 벽을 부수고 이동하는 것이 좀 더 경로가 짧아진다면, 벽을 한 개까지 부수고 이동하여도 된다.
+        while (!queue_.isEmpty()) {
+            Node_ current = queue_.poll();
+            int isBreak = current.isBreak;
+            int distance = path[current.x][current.y][isBreak];
+
+            if (current.x == N - 1 && current.y == M - 1) {
+                System.out.println(path[N - 1][M - 1][isBreak]);
+                return;
+            }
+
+            for (int i = 0; i < 4; i++) {
+                int nx = current.x + dx[i];
+                int ny = current.y + dy[i];
+
+                if (nx >= 0 && nx < N && ny >= 0 && ny < M) {
+                    if (isBreak == 1) {
+                        // 방문했던 곳이 아니면서 벽이 없을 때
+                        if (path[nx][ny][1] == 0 && arr[nx][ny] == 0) {
+                            path[nx][ny][1] = distance + 1;
+                            queue_.offer(new Node_(nx, ny, 1));
+                        }
+                    } else {
+                        if (path[nx][ny][0] == 0) {
+                            if (arr[nx][ny] == 0) {
+                                path[nx][ny][0] = distance + 1;
+                                queue_.offer(new Node_(nx, ny, 0));
+                            } else {
+                                // 방문했던 곳이 아니면서 벽이 있는 경우
+                                path[nx][ny][1] = distance + 1;
+                                queue_.offer(new Node_(nx, ny, 1));
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        System.out.println(-1);
     }
 
     static int read() throws Exception {
