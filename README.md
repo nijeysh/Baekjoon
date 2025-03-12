@@ -44,10 +44,40 @@
 <h3># 최소공배수와 최대공약수</h3>
 <ul>
     <li>유클리드 호제법</li>
-    <span></span>
+    <span>두 수의 최대공약수를 구하는 알고리즘</span>
+    <hr>
+    <div>최대공약수와 최소공배수</div>
+    <div><img width="200" src="https://github.com/user-attachments/assets/453d59f3-afea-476b-9e2a-b4d14341d441" /></div>
 </ul>
 <pre>
+    두 자연수 A와 B (A > B)의 최대공약수를 구하기
+    1. A를 B로 나눈 나머지를 구한다.
+    2. 나머지를 R이라 하면, A와 B의 최대공약수는 B와 R의 최대공약수와 같다.
+    3. B를 R로 나누는 과정을 반복하다가 나머지가 0이 되면, 그때는 나누는 수가 최대공약수이다.
+
 </pre>
+
+    // 반복문
+    public static int gcd(int a, int b) {
+        while (b != 0) {
+            int temp = b;
+            b = a % b;
+            a = temp;
+        }
+        return a;
+    }
+    
+    // 재귀
+    public static int gcd(int a, int b) {
+        if (b == 0) return a;
+        return gcd(b, a % b);
+    }
+
+    // 최소공배수(LCM) 구하기
+    public static int lcm(int a, int b) {
+        return (a * b) / gcd(a, b);
+    }
+
 <br>
 <br>
 <h3># 이항계수</h3>
