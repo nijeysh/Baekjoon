@@ -1,14 +1,12 @@
+import baekjoon.algorithm.bisearch.Step0;
 import baekjoon.algorithm.graph.Step0Lv1;
-import baekjoon.algorithm.greedy.Step0;
-import baekjoon.datastructure.StackQueueDeque;
-import baekjoon.math.Mathematics;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0Lv1().baekjoon2206();
+        new Step0().baekjoon2295();
 
     }
 }
@@ -57,3 +55,6 @@ public class Main {
         // backtracking => 9663(N-Queen, 비스마스크), 14889(스타트와 링크) 다시 풀기
         
         // 스도쿠 다시 보기
+
+        // 이분탐색 다시 하기
+        // new Step0().baekjoon2295();
