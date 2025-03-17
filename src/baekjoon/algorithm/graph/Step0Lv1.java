@@ -477,6 +477,143 @@ public class Step0Lv1 {
         System.out.println(-1);
     }
 
+
+    // 예시
+//    public class Main {
+//        static final int[] dx = {1, 0, -1, 0};
+//        static final int[] dy = {0, 1, 0, -1};
+//
+//        public static void main(String[] args) throws IOException {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+//            StringTokenizer st = new StringTokenizer(br.readLine());
+//
+//            int n = Integer.parseInt(st.nextToken());
+//            int m = Integer.parseInt(st.nextToken());
+//            int k = 1;
+//
+//            int[][] world = new int[n][m];
+//            for (int x = 0; x < n; x++) {
+//                String line = br.readLine();
+//                for (int y = 0; y < m; y++) {
+//                    world[x][y] = line.charAt(y) - '0';
+//                }
+//            }
+//
+//            int[][] broke = new int[n][m];
+//
+//            for (int[] b : broke)
+//                Arrays.fill(b, Integer.MAX_VALUE);
+//
+//            ArrayDeque<Move> queue = new ArrayDeque<>();
+//            broke[0][0] = 0;
+//            queue.add(new Move(0, 0, 1));
+//            int answer = -1;
+//            while (!queue.isEmpty()) {
+//                Move current = queue.removeFirst();
+//
+//                int cx = current.x;
+//                int cy = current.y;
+//                int move = current.move + 1;
+//
+//                if (cx == n - 1 && cy == m - 1) {
+//                    answer = current.move;
+//                    break;
+//                }
+//
+//                for (int dir = 0; dir < 4; dir++) {
+//                    int nx = cx + dx[dir];
+//                    int ny = cy + dy[dir];
+//
+//                    if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
+//                    int nextBrake = broke[cx][cy] + world[nx][ny];
+//                    if (nextBrake > k || broke[nx][ny] <= nextBrake) continue;
+//                    broke[nx][ny] = nextBrake;
+//                    queue.add(new Move(nx, ny, move));
+//                }
+//            }
+//
+//            System.out.print(answer);
+//        }
+//    }
+//    class Move {
+//        public int x, y, move;
+//
+//        Move(int x, int y, int move) {
+//            this.x = x;
+//            this.y = y;
+//            this.move = move;
+//        }
+//    }
+
+    /**
+     * 이분 그래프
+     *
+     * 그래프의 정점의 집합을 둘로 분할하여, 각 집합에 속한 정점끼리는 서로 인접하지 않도록 분할할 수 있을 때, 그러한 그래프를 특별히 이분 그래프 (Bipartite Graph) 라 부른다.
+     * 그래프가 입력으로 주어졌을 때, 이 그래프가 이분 그래프인지 아닌지 판별하는 프로그램을 작성하시오.
+     */
+    static ArrayList<Integer>[] list;
+    static boolean[] bipartite;
+    static boolean[] checked;
+    static boolean stop;
+    static StringBuilder result = new StringBuilder();
+    public void baekjoon1707() throws Exception {
+        int K = read();
+
+        for (int i = 0; i < K; i++) {
+            int V = read(); // 정점의 개수
+            int E = read(); // 간선의 개수
+
+            list = new ArrayList[V + 1];
+            bipartite = new boolean[V + 1];
+            checked = new boolean[V + 1];
+            for (int j = 1; j <= V; j++) {
+                list[j] = new ArrayList<>();
+            }
+
+            for (int j = 0; j < E; j++) {
+                int u = read();
+                int v = read();
+
+                list[u].add(v);
+                list[v].add(u);
+            }
+
+
+//            dfs(1, true);
+            // 연결이 아닐 때
+//            for (int j = 1; j <= V; j++) {
+//                if (!checked[j]) {
+//                    stop = true;
+//                    break;
+//                }
+//            }
+//            result.append(stop ? "NO" : "YES").append("\n");
+//            stop = false;
+//            System.out.println(Arrays.toString(list));
+//            System.out.println(Arrays.toString(bipartite));
+        }
+
+        System.out.print(result);
+    }
+
+    static void dfs(int node, boolean type) throws Exception {
+        if (stop) return;
+        for (int next : list[node]) {
+            if (!checked[next]) {
+                checked[next] = true;
+                bipartite[next] = type;
+                dfs(next, !type);
+            } else {
+                // 방문한 곳이 type이 아닐경우
+                if (bipartite[next] != type) {
+                    stop = true;
+//                    System.out.println("false");
+                    break;
+                }
+            }
+        }
+    }
+
     static int read() throws Exception {
         int c, n = 0, sign = 1;
         while ((c = System.in.read()) <= 32);
