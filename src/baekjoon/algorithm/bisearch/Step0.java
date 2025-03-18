@@ -23,6 +23,49 @@ public class Step0 {
      *
      * 첫째 줄에 N개를 만들 수 있는 랜선의 최대 길이를 센티미터 단위의 정수로 출력한다.
      */
+    static int K;
+    static int N;
+    static int[] arr;
+    public void baekjoon1654() throws Exception {
+        K = read(); // 이미 가지고 있는 랜선 개수
+        N = read(); // 최종적으로 필요한 랜선 개수
+
+        arr = new int[K];
+
+        long start = 1;
+        long end = Integer.MIN_VALUE;
+
+        for (int i = 0; i < K; i++) {
+            arr[i] = read();
+            if (arr[i] > end) {
+                end = arr[i];
+            }
+        }
+
+        parametricSearch(start, end);
+    }
+
+    static void parametricSearch(long start, long end) {
+        while (start < end) {
+            long mid = (start + end + 1) / 2;
+
+            if (isPossible(mid)) {
+                start = mid;
+            } else {
+                end = mid - 1;
+            }
+        }
+
+        System.out.println(start);
+    }
+
+    static boolean isPossible(long x) {
+        long cur = 0;
+        for (int i = 0; i < K; i++) {
+            cur += arr[i] / x;
+        }
+        return cur >= N;
+    }
 
     static ArrayList<Integer> twoSum = new ArrayList<>();
     public void baekjoon2295() throws Exception {

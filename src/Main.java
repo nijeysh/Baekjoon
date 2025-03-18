@@ -6,7 +6,7 @@ public class Main {
         // 별 찍기 - 11
 //        new Step2().baekjoon2448();
 
-        new Step0().baekjoon2295();
+        new Step0().baekjoon1654();
 
     }
 }
