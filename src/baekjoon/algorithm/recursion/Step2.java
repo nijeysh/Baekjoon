@@ -2,6 +2,7 @@ package baekjoon.algorithm.recursion;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class Step2 {
     /**
@@ -67,6 +68,10 @@ public class Step2 {
      *  *****
      *
      */
+    static char[][] arr;
+    static int[] dx = {0, 1, 1, 2, 2, 2, 2, 2};
+    static int[] dy = {0, -1, 1, -2, -1, 0, 1, 2};
+
     public void baekjoon2448() throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
@@ -75,7 +80,10 @@ public class Step2 {
         int x = N;
         int y = (size * 5) + (size - 1);
 
-        int[][] arr = new int[x][y];
+        arr = new char[x][y];
+        for (int i = 0; i < x; i++) {
+            Arrays.fill(arr[i], ' ');
+        }
 
         // 5개씩
         // 사이 공백 1개
@@ -83,26 +91,49 @@ public class Step2 {
         // height -> N임
         // 뭔가.. y / 2 -> y의 index
         // 23, 11, 5
-        star(x, y / 2, N, size);
+        star(0, y / 2, N);
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) {
+                System.out.print(arr[i][j]);
+            }
+            System.out.println();
+        }
     }
 
-    static void star(int x, int y, int height, int size) throws Exception {
-        if (height > 3) {
-            int h = height / 2;
-            int s = size / 2;
+    static void star(int x, int y, int size) throws Exception {
+        if (size > 3) {
+            int h = size / 2;
+//            int s = size / 2;
             // 두개로 나눠서 위에는 2개 밑에는 2개
 
             // x, y를 조정한다
             // 위에
-            star(x, y, h, s);
+            star(x, y, h);
 
             // 밑에
-            int gap = (y - 1) / 2;
-            star(x + h, gap, h, s);
-            star(x + h, y + gap, h, s);
+            star(x + h, y - h, h);
+            star(x + h, y + h, h);
             return;
         }
-        System.out.println("x: " + x + ", y: " + y + ", height: " + height + ", size: " + size);
+
+//        arr[x][y] = '*';
+//        arr[x + 1][y - 1] = '*';
+//        arr[x + 1][y + 1] = '*';
+//        arr[x + 2][y - 2] = '*';
+//
+//        arr[x + 2][y - 2] = '*';
+//        arr[x + 2][y - 1] = '*';
+//        arr[x + 2][y] = '*';
+//        arr[x + 2][y + 1] = '*';
+//        arr[x + 2][y + 2] = '*';
+
+        // 반복문
+        for (int i = 0; i < 8; i++) {
+            arr[x + dx[i]][y + dy[i]] = '*';
+        }
+
+//        System.out.println("x: " + x + ", y: " + y + ", size: " + size);
     }
 
     static int read() throws Exception {
