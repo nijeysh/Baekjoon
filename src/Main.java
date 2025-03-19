@@ -1,12 +1,13 @@
 import baekjoon.algorithm.bisearch.Step0;
 import baekjoon.algorithm.graph.Step0Lv1;
+import baekjoon.algorithm.recursion.Step2;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         // 별 찍기 - 11
-//        new Step2().baekjoon2448();
+        new Step2().baekjoon2448();
 
-        new Step0().baekjoon1654();
+//        new Step0().baekjoon1654();
 
     }
 }

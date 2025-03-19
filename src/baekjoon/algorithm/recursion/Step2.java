@@ -1,5 +1,8 @@
 package baekjoon.algorithm.recursion;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 public class Step2 {
     /**
      * 재귀함수가 뭔가요?
@@ -65,11 +68,41 @@ public class Step2 {
      *
      */
     public void baekjoon2448() throws Exception {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
 
+        int size = N / 3;
+        int x = N;
+        int y = (size * 5) + (size - 1);
+
+        int[][] arr = new int[x][y];
+
+        // 5개씩
+        // 사이 공백 1개
+        // size를 준다. (2^k) -> 8
+        // height -> N임
+        // 뭔가.. y / 2 -> y의 index
+        // 23, 11, 5
+        star(x, y / 2, N, size);
     }
 
-    static void star() throws Exception {
+    static void star(int x, int y, int height, int size) throws Exception {
+        if (height > 3) {
+            int h = height / 2;
+            int s = size / 2;
+            // 두개로 나눠서 위에는 2개 밑에는 2개
 
+            // x, y를 조정한다
+            // 위에
+            star(x, y, h, s);
+
+            // 밑에
+            int gap = (y - 1) / 2;
+            star(x + h, gap, h, s);
+            star(x + h, y + gap, h, s);
+            return;
+        }
+        System.out.println("x: " + x + ", y: " + y + ", height: " + height + ", size: " + size);
     }
 
     static int read() throws Exception {
